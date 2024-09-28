@@ -1,0 +1,88 @@
+{
+  "name": "bagon-hooks",
+  "version": "0.0.0",
+  "description": "A collection of zero-dependency hooks for SolidJS forked directly from Mantine Hooks.",
+  "license": "MIT",
+  "author": "Carlo Taleon",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blankeos/bagon-hooks.git"
+  },
+  "homepage": "https://github.com/Blankeos/bagon-hooks#readme",
+  "bugs": {
+    "url": "https://github.com/Blankeos/bagon-hooks/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "private": false,
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "browser": {},
+  "exports": {
+    "development": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/dev.js"
+      }
+    },
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "typesVersions": {},
+  "scripts": {
+    "dev": "vite serve dev",
+    "build": "tsup",
+    "test": "concurrently bun:test:*",
+    "test:client": "vitest",
+    "test:ssr": "bun run test:client --mode ssr",
+    "prepublishOnly": "bun build",
+    "format": "prettier --ignore-path .gitignore -w \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"dev/**/*.{js,ts,json,css,tsx,jsx}\"",
+    "lint": "concurrently bun:lint:*",
+    "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}",
+    "lint:types": "tsc --noEmit",
+    "update-deps": "bunx npm-check-updates --format group --interactive"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "concurrently": "^9.0.1",
+    "esbuild": "^0.24.0",
+    "esbuild-plugin-solid": "^0.6.0",
+    "eslint": "^9.11.1",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-no-only-tests": "^3.3.0",
+    "jsdom": "^25.0.1",
+    "prettier": "3.3.3",
+    "solid-js": "^1.9.1",
+    "tsup": "^8.3.0",
+    "tsup-preset-solid": "^2.2.0",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8",
+    "vite-plugin-solid": "^2.10.2",
+    "vitest": "^2.1.1"
+  },
+  "keywords": [
+    "solid",
+    "mantine",
+    "solid-js",
+    "hooks",
+    "solid-hooks",
+    "state"
+  ],
+  "packageManager": "pnpm@9.11.0",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9.0.0"
+  }
+}
