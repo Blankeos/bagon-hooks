@@ -2,6 +2,14 @@
 // import { isServer, renderToString } from 'solid-js/web'
 // import { Hello, createHello } from '../src'
 
+import { describe, it, expect } from 'vitest'
+
+describe('server.test.tsx', () => {
+  it('Placeholder test in server', () => {
+    expect(true).toBe(true)
+  })
+})
+
 // describe('environment', () => {
 //   it('runs on server', () => {
 //     expect(typeof window).toBe('undefined')

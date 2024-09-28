@@ -3,6 +3,14 @@
 // import { describe, expect, it } from 'vitest'
 // import { Hello, createHello } from '../src'
 
+import { describe, it, expect } from 'vitest'
+
+describe('index.test.tsx', () => {
+  it('Placeholder test', () => {
+    expect(true).toBe(true)
+  })
+})
+
 // describe('environment', () => {
 //   it('runs on client', () => {
 //     expect(typeof window).toBe('object')
