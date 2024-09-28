@@ -23,6 +23,8 @@ npm i bagon-hooks
 yarn add bagon-hooks
 # or
 pnpm add bagon-hooks
+# or
+bun add bagon-hooks
 ```
 
 Use it:
@@ -70,11 +72,11 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-hash
 - [ ] use-headroom
 - [x] use-hotkeys
-- [ ] use-ho
+- [ ] use-hover
 - [ ] use-id
 - [ ] use-idle
 - [ ] use-in-viewport
-- [ ] use-input-stte
+- [ ] use-input-state
 - [ ] use-intersection
 - [ ] use-interval
 - [ ] use-is-first-render
@@ -119,7 +121,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 
 ### Others
 
-- [ ] Docs Website
+- [ ] Docs Website (Powered by mdx + tailwind prose)
 - [ ] Examples
 - [ ] Tests?
 
