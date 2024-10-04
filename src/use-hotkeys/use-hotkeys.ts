@@ -122,6 +122,13 @@ function shouldFireEvent(
   return true
 }
 
+/**
+ * A hook that listens to keyboard events and triggers a callback when a hotkey is pressed.
+ *
+ * @param hotkeys - An array of hotkey combinations and callbacks.
+ * @param tagsToIgnore - An array of HTML tag names to ignore when listening for hotkeys.
+ * @param triggerOnContentEditable - Whether to trigger the callback when the hotkey is pressed on a contenteditable element.
+ */
 export function useHotkeys(
   hotkeys: HotkeyItem[],
   tagsToIgnore: string[] = ['INPUT', 'TEXTAREA', 'SELECT'],
