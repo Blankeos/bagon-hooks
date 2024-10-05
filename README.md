@@ -91,7 +91,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-mouse
 - [ ] use-move
 - [ ] use-mutation-observer
-- [ ] use-network
+- [x] use-network
 - [ ] use-orientation
 - [x] use-os
 - [ ] use-page-leave
