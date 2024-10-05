@@ -40,7 +40,7 @@ We want to achieve as 1:1 as possible with Mantine's original hooks. So you can 
 - 🌳 Tree-shakable
 - 🖌️ TypeScript support
 - 🔵 For SolidJS
-- 📦 Zero-dependencies
+- 📦 Zero-dependencies (except Solid)
 
 ## Roadmap
 
@@ -111,7 +111,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-throttled-state
 - [ ] use-throttled-value
 - [ ] use-timeout
-- [ ] use-toggle
+- [x] use-toggle
 - [ ] use-uncontrolled
 - [ ] use-validated-state
 - [ ] use-viewport-size

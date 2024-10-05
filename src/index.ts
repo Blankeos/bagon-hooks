@@ -5,3 +5,4 @@ export * from './use-idle/use-idle';
 export * from './use-mounted/use-mounted';
 export * from './use-network/use-network';
 export * from './use-os/use-os';
+export * from './use-toggle/use-toggle';
