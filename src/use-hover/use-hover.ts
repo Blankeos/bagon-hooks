@@ -1,5 +1,9 @@
 import { createEffect, createSignal, onCleanup } from 'solid-js';
 
+/**
+ * A hook that returns true if the mouse is currently hovering over an element;
+ * false otherwise.
+ */
 export function useHover<T extends HTMLElement = HTMLDivElement>() {
   const [hovered, setHovered] = createSignal(false);
   const [ref, setRef] = createSignal<T>();
