@@ -73,8 +73,8 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-headroom
 - [x] use-hotkeys
 - [x] use-hover
-- [ ] use-id
-- [ ] use-idle
+- [x] ~~use-id~~ (Solid has [`createUniqueId`](https://docs.solidjs.com/reference/component-apis/create-unique-id))
+- [x] use-idle (There is [`createIdleTimer`](https://primitives.solidjs.community/package/idle/) solid-primitives as well)
 - [ ] use-in-viewport
 - [ ] use-input-state
 - [ ] use-intersection

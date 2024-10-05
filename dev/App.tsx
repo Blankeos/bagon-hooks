@@ -2,7 +2,7 @@ import type { Component } from 'solid-js';
 import './app.css';
 
 // Hooks
-import { useClickOutside, useHotkeys, useHover, useOs } from '../src';
+import { useClickOutside, useHotkeys, useHover, useIdle, useOs } from '../src';
 
 const App: Component = () => {
   // let ref = useClickOutside(() => {
@@ -13,6 +13,10 @@ const App: Component = () => {
 
   const { hovered, ref } = useHover();
 
+  const idle = useIdle(() => 1000, {
+    events: ['mousemove', 'touchmove'],
+    initialState: false,
+  });
   return (
     <div class="">
       {/* <p class="bg-green-500" ref={ref}>
@@ -22,6 +26,8 @@ const App: Component = () => {
       <p>OS: {os()}</p>
 
       <p ref={ref}>hovered: {JSON.stringify(hovered())}</p>
+
+      <p>idle: {JSON.stringify(idle())}</p>
     </div>
   );
 };
