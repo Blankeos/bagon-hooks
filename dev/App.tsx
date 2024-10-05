@@ -1,25 +1,19 @@
 import type { Component } from 'solid-js'
-import logo from './logo.svg'
-import styles from './App.module.css'
+import './app.css'
+
+// Hooks
+import { useClickOutside } from '../src'
 
 const App: Component = () => {
+  let ref = useClickOutside(() => {
+    alert('I have clicked outside')
+  })
+
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <h1></h1>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
+    <div class="">
+      <p class="bg-green-500" ref={ref}>
+        Hello world!
+      </p>
     </div>
   )
 }
