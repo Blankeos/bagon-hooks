@@ -2,18 +2,22 @@ import type { Component } from 'solid-js'
 import './app.css'
 
 // Hooks
-import { useClickOutside } from '../src'
+import { useClickOutside, useOs } from '../src'
 
 const App: Component = () => {
-  let ref = useClickOutside(() => {
-    alert('I have clicked outside')
-  })
+  // let ref = useClickOutside(() => {
+  //   alert('I have clicked outside')
+  // })
+
+  const os = useOs()
 
   return (
     <div class="">
-      <p class="bg-green-500" ref={ref}>
+      {/* <p class="bg-green-500" ref={ref}>
         Hello world!
-      </p>
+      </p> */}
+
+      <p>OS: {os()}</p>
     </div>
   )
 }

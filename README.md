@@ -49,7 +49,7 @@ We want to achieve as 1:1 as possible with Mantine's original hooks. So you can 
 Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/packages/%40mantine/hooks/src) library.
 
 - [ ] use-callback-ref
-- [ ] use-click-outside
+- [x] use-click-outside
 - [ ] use-clipboard
 - [ ] use-color-scheme
 - [ ] use-counter
@@ -93,7 +93,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-mutation-observer
 - [ ] use-network
 - [ ] use-orientation
-- [ ] use-os
+- [x] use-os
 - [ ] use-page-leave
 - [ ] use-pagination
 - [ ] use-previous
