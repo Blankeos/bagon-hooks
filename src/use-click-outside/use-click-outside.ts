@@ -1,6 +1,6 @@
-import { createEffect, createSignal, onCleanup } from 'solid-js'
+import { createEffect, createSignal, onCleanup } from 'solid-js';
 
-const DEFAULT_EVENTS = ['mousedown', 'touchstart']
+const DEFAULT_EVENTS = ['mousedown', 'touchstart'];
 
 /**
  * A hook that listens to click events outside of a specified element or elements.
@@ -20,29 +20,29 @@ export function useClickOutside<T extends HTMLElement = any>(
    *
    * Reference: https://docs.solidjs.com/concepts/refs#signals-as-refs
    */
-  const [ref, setRef] = createSignal<T>()
+  const [ref, setRef] = createSignal<T>();
 
   createEffect(() => {
-    console.log(ref, 'wowowow')
+    console.log(ref, 'wowowow');
     const listener = (event: any) => {
-      const { target } = event ?? {}
+      const { target } = event ?? {};
       if (Array.isArray(nodes)) {
         const shouldIgnore =
           target?.hasAttribute('data-ignore-outside-clicks') ||
-          (!document.body.contains(target) && target.tagName !== 'HTML')
-        const shouldTrigger = nodes.every(node => !!node && !event.composedPath().includes(node))
-        shouldTrigger && !shouldIgnore && handler()
+          (!document.body.contains(target) && target.tagName !== 'HTML');
+        const shouldTrigger = nodes.every(node => !!node && !event.composedPath().includes(node));
+        shouldTrigger && !shouldIgnore && handler();
       } else if (ref() && !ref()!.contains(target)) {
-        handler()
+        handler();
       }
-    }
+    };
 
-    ;(events || DEFAULT_EVENTS).forEach(fn => document.addEventListener(fn, listener))
+    (events || DEFAULT_EVENTS).forEach(fn => document.addEventListener(fn, listener));
 
     onCleanup(() => {
-      ;(events || DEFAULT_EVENTS).forEach(fn => document.removeEventListener(fn, listener))
-    })
-  })
+      (events || DEFAULT_EVENTS).forEach(fn => document.removeEventListener(fn, listener));
+    });
+  });
 
-  return setRef
+  return setRef;
 }
