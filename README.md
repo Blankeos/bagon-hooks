@@ -30,7 +30,7 @@ bun add bagon-hooks
 Use it:
 
 ```tsx
-import { useHotkeys } from 'bagon-hooks'
+import { useHotkeys } from 'bagon-hooks';
 ```
 
 We want to achieve as 1:1 as possible with Mantine's original hooks. So you can always refer to their [original docs](https://v3.mantine.dev/hooks/use-hotkeys/).
@@ -72,7 +72,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-hash
 - [ ] use-headroom
 - [x] use-hotkeys
-- [ ] use-hover
+- [x] use-hover
 - [ ] use-id
 - [ ] use-idle
 - [ ] use-in-viewport
