@@ -99,7 +99,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-previous
 - [ ] use-queue
 - [ ] use-reduced-motion
-- [ ] use-resize-observer
+- [x] use-resize-observer
 - [ ] use-scroll-into-view
 - [ ] use-session-storage
 - [ ] use-set-state

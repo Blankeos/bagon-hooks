@@ -1,16 +1,19 @@
-import type { Component } from 'solid-js';
+import { createEffect, type Component } from 'solid-js';
 import './app.css';
 
 // Hooks
 import {
   useClickOutside,
+  useElementSize,
   useHotkeys,
   useHover,
   useIdle,
   useNetwork,
   useOs,
+  useResizeObserver,
   useToggle,
 } from '../src';
+import { unwrap } from 'solid-js/store';
 
 const App: Component = () => {
   // let ref = useClickOutside(() => {
@@ -30,8 +33,10 @@ const App: Component = () => {
 
   const [currentOption, toggle] = useToggle(['light', 'dark', 'system']);
 
+  const { ref: elementSizeRef, width, height } = useElementSize();
+
   return (
-    <div class="">
+    <div class="flex flex-col gap-y-5 items-start">
       {/* <p class="bg-green-500" ref={ref}>
         Hello world!
       </p> */}
@@ -45,6 +50,10 @@ const App: Component = () => {
       <p>networkStatus: {JSON.stringify(networkStatus())}</p>
 
       <button onClick={() => toggle()}>Current Toggled: {JSON.stringify(currentOption())}</button>
+
+      <textarea ref={elementSizeRef} class="resize">
+        {width()} | {height()}
+      </textarea>
     </div>
   );
 };
