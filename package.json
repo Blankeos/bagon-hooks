@@ -1,6 +1,6 @@
 {
   "name": "bagon-hooks",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A collection of zero-dependency hooks for SolidJS forked directly from Mantine Hooks.",
   "license": "MIT",
   "author": "Carlo Taleon",

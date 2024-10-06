@@ -1,4 +1,4 @@
-import { Accessor, createEffect, createSignal } from 'solid-js';
+import { Accessor, createSignal, onMount } from 'solid-js';
 
 export type OS = 'undetermined' | 'macos' | 'ios' | 'windows' | 'android' | 'linux';
 
@@ -71,7 +71,7 @@ interface UseOsOptions {
 export function useOs(options: UseOsOptions = { getValueInEffect: true }): Accessor<OS> {
   const [value, setValue] = createSignal<OS>(options.getValueInEffect ? 'undetermined' : getOS());
 
-  createEffect(() => {
+  onMount(() => {
     if (options.getValueInEffect) {
       setValue(getOS);
     }
