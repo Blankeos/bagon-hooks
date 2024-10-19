@@ -47,6 +47,7 @@ export function useNetwork() {
   onMount(() => {
     const onlineListener = () => setStatus({ online: true, ...getConnection() });
     const offlineListener = () => setStatus({ online: false, ...getConnection() });
+    window.addEventListener('online', onlineListener);
     window.addEventListener('offline', offlineListener);
 
     onCleanup(() => {

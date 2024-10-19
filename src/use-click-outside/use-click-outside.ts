@@ -4,9 +4,6 @@ const DEFAULT_EVENTS = ['mousedown', 'touchstart'];
 
 /**
  * A hook that listens to click events outside of a specified element or elements.
- *
- * @example
- *
  */
 export function useClickOutside<T extends HTMLElement = any>(
   handler: () => void,
@@ -23,7 +20,6 @@ export function useClickOutside<T extends HTMLElement = any>(
   const [ref, setRef] = createSignal<T>();
 
   createEffect(() => {
-    console.log(ref, 'wowowow');
     const listener = (event: any) => {
       const { target } = event ?? {};
       if (Array.isArray(nodes)) {

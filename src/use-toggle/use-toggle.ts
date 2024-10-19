@@ -2,6 +2,8 @@ import { createMemo, createSignal } from 'solid-js';
 
 /**
  * A hook that toggles between two or multiple values (by implementing a common state pattern).
+ *
+ * Dev Note: Personally this can be called `useCycle` instead since it cycles through the options.
  */
 export function useToggle<T = boolean>(options: readonly T[] = [false, true] as any) {
   const [_options, _setOptions] = createSignal<typeof options>(options);

@@ -87,7 +87,7 @@ export function useElementSize<T extends HTMLElement = any>(options?: ResizeObse
 
   return {
     ref,
-    width: createMemo(() => rectStore.rect.width),
-    height: createMemo(() => rectStore.rect.height),
+    width: createMemo(() => rectStore?.rect?.width),
+    height: createMemo(() => rectStore?.rect?.height),
   };
 }
