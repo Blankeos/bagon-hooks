@@ -1,9 +1,11 @@
 ```tsx
-const [ref, rectStore] = useElementSize();
+const { ref, width, height } = useElementSize();
 
 return (
-    <textarea ref={ref}>
-        {JSON.stringify(rectStore, null, 2)}
-    </textarea>;
-)
+  <div>
+    <textarea ref={ref}></textarea>
+    Width: {width().toFixed(2)}
+    Height: {height().toFixed(2)}
+  </div>
+);
 ```

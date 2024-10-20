@@ -51,9 +51,9 @@ function Key(props: FlowProps<{ activated: boolean }>) {
     <div class="relative text-xs">
       <div class="absolute inset-0 rounded-md bg-neutral-200 transition"></div>
       <div
-        class="relative rounded-md border bg-neutral-50 px-2 py-1.5"
+        class="relative transform rounded-md border bg-neutral-50 px-2 py-1.5 transition-transform"
         style={{
-          translate: props.activated ? '0px 0px' : '0px -5px',
+          transform: props.activated ? 'translateY(0px)' : 'translateY(-5px)',
         }}
       >
         {props.children}

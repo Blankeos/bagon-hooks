@@ -2,8 +2,9 @@
 const [ref, rectStore] = useResizeObserver();
 
 return (
-    <textarea ref={ref}>
-        {JSON.stringify(rectStore, null, 2)}
-    </textarea>;
-)
+  <div>
+    <textarea ref={ref}></textarea>
+    {JSON.stringify(rectStore, null, 2)}
+  </div>
+);
 ```

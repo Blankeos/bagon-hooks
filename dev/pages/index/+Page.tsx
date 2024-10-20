@@ -11,6 +11,7 @@ import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mount
 import { UseNetworkExample } from 'dev/components/examples/use-network/use-network.example';
 import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
 import { UseResizeObserverExample } from 'dev/components/examples/use-resize-observer/use-resize-observer.example';
+import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
 import { MarkdownContextProvider } from 'dev/components/markdown/markdown.context';
 import { IconLogo } from 'dev/icons';
 import { title } from 'process';
@@ -85,6 +86,10 @@ export default function HomePage() {
     {
       title: 'useElementSize', // Make sure this is under useResizeObserver
       example: <UseElementSizeExample />,
+    },
+    {
+      title: 'useToggle',
+      example: <UseToggleExample />,
     },
   ];
 

@@ -16,7 +16,7 @@ export function ExampleBase(props: FlowProps<ExampleBaseProps>) {
       <div class="flex w-full items-center justify-between">
         <h2 class="text-2xl font-bold">{props.title}</h2>
         <button
-          class="rounded-md border p-2 transition active:scale-95"
+          class={`rounded-md border p-2 transition active:scale-95 ${viewing() === 'code' ? 'bg-background text-white' : ''}`}
           onClick={() => {
             setViewing(viewing() === 'code' ? 'result' : 'code');
           }}
