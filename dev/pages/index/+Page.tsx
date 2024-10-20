@@ -2,6 +2,7 @@ import packageJSON from 'src/../package.json';
 
 // Hooks
 import { UseClickOutsideExample } from 'dev/components/examples/use-click-outside/use-click-outside.example';
+import { UseClipboardExample } from 'dev/components/examples/use-clipboard/use-clipboard.example';
 import { UseCounterExample } from 'dev/components/examples/use-counter/use-counter.example';
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
 import { UseEyeDropperExample } from 'dev/components/examples/use-eye-dropper/use-eye-dropper.example';
@@ -93,6 +94,10 @@ export default function HomePage() {
     {
       title: 'useHash',
       example: <UseHashExample />,
+    },
+    {
+      title: 'useClipboard',
+      example: <UseClipboardExample />,
     },
   ];
 

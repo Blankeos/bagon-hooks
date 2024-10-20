@@ -50,7 +50,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 
 - [ ] use-callback-ref
 - [x] use-click-outside
-- [ ] use-clipboard
+- [x] use-clipboard
 - [ ] use-color-scheme
 - [x] use-counter
 - [ ] use-debounced-callback
@@ -121,8 +121,8 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 
 ### Others
 
-- [ ] Docs Website (Powered by mdx + tailwind prose)
-- [ ] Examples
+- [x] Docs Website (Powered by mdx + tailwind prose)
+- [x] Examples
 - [ ] Tests?
 
 ## Contributing

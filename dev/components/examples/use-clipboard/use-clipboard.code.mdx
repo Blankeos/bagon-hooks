@@ -3,7 +3,7 @@ const { copied, copy, reset } = useClipboard();
 
 return (
     <div>
-        <button>
+        <button onClick={() => copy('Bagon is awesome!')}>
             <Show
                 when={copied()}
                 fallback={<div>Copy</div>}
