@@ -62,7 +62,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-document-visibility
 - [ ] use-event-listener
 - [ ] use-eye-dropper
-- [ ] use-favicon
+- [x] use-favicon
 - [ ] use-fetch
 - [ ] use-focus-return
 - [ ] use-focus-trap

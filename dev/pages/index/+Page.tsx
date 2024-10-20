@@ -1,9 +1,9 @@
 // import { createMemo, type Component } from 'solid-js';
 
 // Hooks
-import { ExampleBase } from 'dev/components/examples/example-base';
 import { UseClickOutsideExample } from 'dev/components/examples/use-click-outside/use-click-outside.example';
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
+import { UseFaviconExample } from 'dev/components/examples/use-favicon/use-favicon.example';
 import { UseHotkeysExample } from 'dev/components/examples/use-hotkeys/use-hotkeys.example';
 import { UseHoverExample } from 'dev/components/examples/use-hover/use-hover.example';
 import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.example';
@@ -12,21 +12,9 @@ import { UseNetworkExample } from 'dev/components/examples/use-network/use-netwo
 import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
 import { UseResizeObserverExample } from 'dev/components/examples/use-resize-observer/use-resize-observer.example';
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
-import { MarkdownContextProvider } from 'dev/components/markdown/markdown.context';
 import { IconLogo } from 'dev/icons';
-import { title } from 'process';
 import { createMemo, createSignal, For } from 'solid-js';
-import {
-  useClickOutside,
-  useElementSize,
-  useHotkeys,
-  useHover,
-  useIdle,
-  useNetwork,
-  useOs,
-  useResizeObserver,
-  useToggle,
-} from 'src';
+import { useOs } from 'src';
 
 export default function HomePage() {
   // // let ref = useClickOutside(() =>
@@ -90,6 +78,10 @@ export default function HomePage() {
     {
       title: 'useToggle',
       example: <UseToggleExample />,
+    },
+    {
+      title: 'useFavicon',
+      example: <UseFaviconExample />,
     },
   ];
 

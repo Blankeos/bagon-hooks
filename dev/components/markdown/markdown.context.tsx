@@ -54,8 +54,8 @@ export function MarkdownContextProvider(props: FlowProps) {
                   fallback={<IconCopy width={23} height={23} />}
                 />
               </button>
-              <div ref={setRef}>
-                {/* This will be replaced, but render it at first paint with opacity 0 so it takes up space. */}
+              <div ref={setRef} class="text-sm">
+                {/* This will be replaced with the code element, but render it at first paint with opacity 0 so it takes up space. */}
                 <div class="opacity-0">{props.children}</div>
               </div>
             </div>

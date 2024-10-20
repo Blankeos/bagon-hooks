@@ -1,0 +1,12 @@
+```tsx
+  const [favicon, setFavicon] = createSignal('https://docs.solidjs.com/favicon.svg');
+  const setXFavicon = () => setFavicon('https://x.com/favicon.ico');
+  const setSolidFavicon = () => setFavicon('https://docs.solidjs.com/favicon.svg');
+
+  useFavicon(favicon);
+
+  return (
+    <button onClick={setXFavicon}>Use X Favicon</button>
+    <button onClick={setSolidFavicon}>Use SolidJS Favicon</button>
+  )
+```
