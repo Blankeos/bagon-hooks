@@ -82,7 +82,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-is-first-render
 - [ ] use-isomorphic-effect
 - [ ] use-list-state
-- [ ] use-local-storage
+- [x] use-local-storage
 - [ ] use-logger
 - [ ] use-map
 - [ ] use-media-query
