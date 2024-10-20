@@ -24,7 +24,7 @@ import { UseResizeObserverExample } from 'dev/components/examples/use-resize-obs
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
 import { IconCheck, IconCopy, IconGithub, IconLogo } from 'dev/icons';
 import { createMemo, createSignal, For, Show } from 'solid-js';
-import { useLocalStorage } from 'src';
+import { useHotkeys, useLocalStorage } from 'src';
 
 export default function HomePage() {
   const [searchInput, setSearchInput] = createSignal('');
@@ -142,6 +142,15 @@ export default function HomePage() {
     return undefined;
   });
 
+  let searchInputRef!: HTMLInputElement;
+  useHotkeys([
+    [
+      'mod+k',
+      () => {
+        searchInputRef.focus();
+      },
+    ],
+  ]);
   return (
     <div class="relative flex flex-col items-start gap-y-5">
       <a
@@ -197,11 +206,12 @@ export default function HomePage() {
         </div>
 
         <input
+          ref={searchInputRef}
           class="mx-auto w-full max-w-md rounded-md p-2.5 px-4"
           onInput={e => {
             setSearchInput(e.currentTarget.value);
           }}
-          placeholder="useClickOutside"
+          placeholder="Cmd + K to search"
         />
       </div>
 
