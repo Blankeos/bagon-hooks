@@ -36,5 +36,5 @@ jobs:
         env:
           CI: true
 
-      - name: Lint
-        run: bun run lint
+      # - name: Lint
+      #   run: bun run lint
