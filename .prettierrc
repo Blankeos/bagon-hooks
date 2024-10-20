@@ -3,6 +3,7 @@
   "tabWidth": 2,
   "printWidth": 100,
   "semi": true,
+  "plugins": ["prettier-plugin-tailwindcss"],
   "singleQuote": true,
   "useTabs": false,
   "arrowParens": "avoid",

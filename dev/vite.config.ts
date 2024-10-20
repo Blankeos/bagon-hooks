@@ -1,17 +1,28 @@
-import { defineConfig } from 'vite';
 import path from 'node:path';
-import solidPlugin from 'vite-plugin-solid';
+import { defineConfig } from 'vite';
+
+// Markdown
+import mdx from '@mdx-js/rollup';
+import remarkGfm from 'remark-gfm';
+
+// Vike
+import vikeSolid from 'vike-solid/vite';
+import vike from 'vike/plugin';
 
 export default defineConfig({
   resolve: {
     alias: {
       src: path.resolve(__dirname, '../src'),
+      dev: path.resolve(__dirname, '../dev'),
     },
   },
   plugins: [
-    solidPlugin(),
+    mdx({
+      remarkPlugins: [remarkGfm],
+      jsxImportSource: 'solid-jsx',
+    }),
     {
-      name: 'Reaplace env variables',
+      name: 'Replace env variables',
       transform(code, id) {
         if (id.includes('node_modules')) {
           return code;
@@ -27,6 +38,10 @@ export default defineConfig({
           .replace(/import\.meta\.env\.NODE_ENV/g, '"development"');
       },
     },
+    vike({
+      prerender: true,
+    }),
+    vikeSolid(),
   ],
   server: {
     port: 3000,

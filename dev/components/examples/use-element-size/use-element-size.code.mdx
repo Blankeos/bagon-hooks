@@ -1,0 +1,9 @@
+```tsx
+const [ref, rectStore] = useElementSize();
+
+return (
+    <textarea ref={ref}>
+        {JSON.stringify(rectStore, null, 2)}
+    </textarea>;
+)
+```

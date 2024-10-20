@@ -1,0 +1,69 @@
+import { IconCheck, IconCopy } from 'dev/icons';
+import { codeToHtml } from 'shiki/index.mjs';
+import { createEffect, createSignal, FlowProps, JSX, Show } from 'solid-js';
+import { MDXProvider } from 'solid-jsx';
+
+/**
+ * Any imports of `.mdx` inside the children components of this
+ * component, will be as if (except no need to pass `components={}` in):
+ *
+ * ```tsx
+ * import MdxComponent from './path/to/file.mdx';
+ *
+ * <MdxComponent component={components} />
+ * ```
+ */
+export function MarkdownContextProvider(props: FlowProps) {
+  return (
+    <MDXProvider
+      components={{
+        code(props: any): JSX.Element {
+          const [ref, setRef] = createSignal<HTMLPreElement | undefined>();
+          const [copied, setCopied] = createSignal(false);
+
+          createEffect(async () => {
+            const current = ref();
+            const content = props.children;
+
+            if (current && content) {
+              const language = props.className.slice(props.className.indexOf('language-') + 9); // 9 chars of 'langauge-'. Stripped
+              console.log();
+              const result = await codeToHtml(content, {
+                lang: 'tsx',
+                theme: 'poimandres',
+              });
+              current.innerHTML = result;
+            }
+          });
+
+          return (
+            <div class="relative bg-pink-500">
+              <button
+                class="absolute right-0 top-0 p-2 text-neutral-50 opacity-50 transition will-change-transform active:scale-95"
+                onClick={() => {
+                  navigator.clipboard.writeText(props.children);
+                  setCopied(true);
+                  setTimeout(() => {
+                    setCopied(false);
+                  }, 800);
+                }}
+              >
+                <Show
+                  when={copied()}
+                  children={<IconCheck width={23} height={23} />}
+                  fallback={<IconCopy width={23} height={23} />}
+                />
+              </button>
+              <div ref={setRef}>
+                {/* This will be replaced, but render it at first paint with opacity 0 so it takes up space. */}
+                <div class="opacity-0">{props.children}</div>
+              </div>
+            </div>
+          );
+        },
+      }}
+    >
+      {props.children}
+    </MDXProvider>
+  );
+}

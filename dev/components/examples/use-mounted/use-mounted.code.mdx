@@ -1,0 +1,11 @@
+```tsx
+const mounted = useMounted();
+
+return (
+    <div>
+        <Show when={mounted()}>
+            This only shows on the client.
+        </Show>
+    </div>;
+)
+```
