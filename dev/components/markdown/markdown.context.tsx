@@ -17,16 +17,20 @@ export function MarkdownContextProvider(props: FlowProps) {
   return (
     <MDXProvider
       components={{
-        code(props: any): JSX.Element {
+        code(codeProps: any): JSX.Element {
           const [ref, setRef] = createSignal<HTMLPreElement | undefined>();
           const [copied, setCopied] = createSignal(false);
 
+          const originalContent = codeProps.children;
+
           createEffect(async () => {
             const current = ref();
-            const content = props.children;
+            const content = originalContent;
 
             if (current && content) {
-              const language = props.className.slice(props.className.indexOf('language-') + 9); // 9 chars of 'langauge-'. Stripped
+              const language = codeProps.className.slice(
+                codeProps.className.indexOf('language-') + 9,
+              ); // 9 chars of 'langauge-'. Stripped
               console.log();
               const result = await codeToHtml(content, {
                 lang: 'tsx',
@@ -41,7 +45,7 @@ export function MarkdownContextProvider(props: FlowProps) {
               <button
                 class="absolute right-0 top-0 p-2 text-neutral-50 opacity-50 transition will-change-transform active:scale-95"
                 onClick={() => {
-                  navigator.clipboard.writeText(props.children);
+                  navigator.clipboard.writeText(originalContent);
                   setCopied(true);
                   setTimeout(() => {
                     setCopied(false);
@@ -56,7 +60,7 @@ export function MarkdownContextProvider(props: FlowProps) {
               </button>
               <div ref={setRef} class="text-sm">
                 {/* This will be replaced with the code element, but render it at first paint with opacity 0 so it takes up space. */}
-                <div class="opacity-0">{props.children}</div>
+                <div class="opacity-0">{originalContent}</div>
               </div>
             </div>
           );

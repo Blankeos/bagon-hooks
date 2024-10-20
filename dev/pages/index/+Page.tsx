@@ -4,6 +4,7 @@ import packageJSON from 'src/../package.json';
 
 // Hooks
 import { UseClickOutsideExample } from 'dev/components/examples/use-click-outside/use-click-outside.example';
+import { UseCounterExample } from 'dev/components/examples/use-counter/use-counter.example';
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
 import { UseEyeDropperExample } from 'dev/components/examples/use-eye-dropper/use-eye-dropper.example';
 import { UseFaviconExample } from 'dev/components/examples/use-favicon/use-favicon.example';
@@ -43,6 +44,10 @@ export default function HomePage() {
   const [searchInput, setSearchInput] = createSignal('');
 
   const LIST = [
+    {
+      title: 'useCounter',
+      example: <UseCounterExample />,
+    },
     {
       title: 'useOS',
       example: <UseOsExample />,

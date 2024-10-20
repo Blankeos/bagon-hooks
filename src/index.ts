@@ -1,4 +1,5 @@
 export * from './use-click-outside/use-click-outside';
+export * from './use-counter/use-counter';
 export * from './use-eye-dropper/use-eye-dropper';
 export * from './use-favicon/use-favicon';
 export * from './use-hotkeys/use-hotkeys';

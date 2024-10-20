@@ -19,8 +19,9 @@ export function UseLocalStorageExample() {
       title="useLocalStorage"
       description={
         <>
-          A hook that allows using value from the localStorage as a signal The hook works the same
-          way as createSignal, but also writes the value to the localStorage.
+          A hook that allows using value from the localStorage as a signal. The hook works exactly
+          the same way as createSignal, but also writes the value to the localStorage. It even works
+          between tabs!
           <br />
           <br />
           To test, try changing the value with two tabs open.

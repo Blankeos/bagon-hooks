@@ -52,7 +52,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-click-outside
 - [ ] use-clipboard
 - [ ] use-color-scheme
-- [ ] use-counter
+- [x] use-counter
 - [ ] use-debounced-callback
 - [ ] use-debounced-state
 - [ ] use-debounced-value
@@ -80,7 +80,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-intersection
 - [ ] use-interval
 - [ ] use-is-first-render
-- [ ] use-isomorphic-effect
+- [x] ~~use-isomorphic-effect~~ (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is actually isomorphic - it works in browser and server).
 - [ ] use-list-state
 - [x] use-local-storage
 - [ ] use-logger
