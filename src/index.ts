@@ -2,6 +2,7 @@ export * from './use-click-outside/use-click-outside';
 export * from './use-counter/use-counter';
 export * from './use-eye-dropper/use-eye-dropper';
 export * from './use-favicon/use-favicon';
+export * from './use-fullscreen/use-fullscreen';
 export * from './use-hotkeys/use-hotkeys';
 export * from './use-hover/use-hover';
 export * from './use-idle/use-idle';

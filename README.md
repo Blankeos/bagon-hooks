@@ -68,7 +68,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-focus-trap
 - [ ] use-focus-within
 - [ ] use-force-update
-- [ ] use-fullscreen
+- [x] use-fullscreen
 - [ ] use-hash
 - [ ] use-headroom
 - [x] use-hotkeys

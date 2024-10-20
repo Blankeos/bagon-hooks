@@ -8,6 +8,7 @@ import { UseCounterExample } from 'dev/components/examples/use-counter/use-count
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
 import { UseEyeDropperExample } from 'dev/components/examples/use-eye-dropper/use-eye-dropper.example';
 import { UseFaviconExample } from 'dev/components/examples/use-favicon/use-favicon.example';
+import { UseFullScreenExample } from 'dev/components/examples/use-fullscreen/use-fullscreen.example';
 import { UseHotkeysExample } from 'dev/components/examples/use-hotkeys/use-hotkeys.example';
 import { UseHoverExample } from 'dev/components/examples/use-hover/use-hover.example';
 import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.example';
@@ -99,6 +100,10 @@ export default function HomePage() {
     {
       title: 'useEyeDropper',
       example: <UseEyeDropperExample />,
+    },
+    {
+      title: 'useFullscreen',
+      example: <UseFullScreenExample />,
     },
   ];
 
