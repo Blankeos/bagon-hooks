@@ -3,6 +3,7 @@ export * from './use-favicon/use-favicon';
 export * from './use-hotkeys/use-hotkeys';
 export * from './use-hover/use-hover';
 export * from './use-idle/use-idle';
+export * from './use-local-storage/use-local-storage';
 export * from './use-mounted/use-mounted';
 export * from './use-network/use-network';
 export * from './use-os/use-os';

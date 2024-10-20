@@ -1,5 +1,7 @@
 ```tsx
-const [value, toggle] = useToggle(['apple', 'orange', 'grape', 'kiwi'] as const);
+const [value, toggle] = useToggle(
+    ['apple', 'orange', 'grape', 'kiwi'] as const
+);
 
 return <div>{value()}</div>;
 ```

@@ -7,14 +7,15 @@ import { UseFaviconExample } from 'dev/components/examples/use-favicon/use-favic
 import { UseHotkeysExample } from 'dev/components/examples/use-hotkeys/use-hotkeys.example';
 import { UseHoverExample } from 'dev/components/examples/use-hover/use-hover.example';
 import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.example';
+import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
 import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mounted.example';
 import { UseNetworkExample } from 'dev/components/examples/use-network/use-network.example';
 import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
 import { UseResizeObserverExample } from 'dev/components/examples/use-resize-observer/use-resize-observer.example';
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
-import { IconLogo } from 'dev/icons';
-import { createMemo, createSignal, For } from 'solid-js';
-import { useOs } from 'src';
+import { IconCheck, IconCopy, IconGithub, IconLogo } from 'dev/icons';
+import { createMemo, createSignal, For, Show } from 'solid-js';
+import { useOs, useToggle } from 'src';
 
 export default function HomePage() {
   // // let ref = useClickOutside(() =>
@@ -83,14 +84,35 @@ export default function HomePage() {
       title: 'useFavicon',
       example: <UseFaviconExample />,
     },
+    {
+      title: 'useLocalStorage',
+      example: <UseLocalStorageExample />,
+    },
   ];
 
   const filteredList = createMemo(() => {
     return LIST.filter(item => item.title.toLowerCase().includes(searchInput().toLowerCase()));
   });
 
+  const [copied, setCopied] = createSignal(false);
+  const [pkgManager, togglePkgManager] = useToggle(['npm', 'bun', 'pnpm', 'yarn'] as const);
+  const pkgManagerColor = createMemo(() => {
+    if (pkgManager() === 'npm') return '#E5312F';
+    if (pkgManager() === 'bun') return '#FBF0DF';
+    if (pkgManager() === 'pnpm') return '#F9AD00';
+    if (pkgManager() === 'yarn') return '#2C8EBB';
+    return undefined;
+  });
+
   return (
-    <div class="flex flex-col items-start gap-y-5">
+    <div class="relative flex flex-col items-start gap-y-5">
+      <a
+        href="https://github.com/Blankeos/bagon-hooks"
+        target="_blank"
+        class="absolute right-0 top-0 m-5 p-1 transition active:scale-95"
+      >
+        <IconGithub class="h-6 w-6 text-white" />
+      </a>
       <div class="mx-auto flex w-full max-w-4xl flex-col gap-y-5 px-4 py-20">
         <IconLogo width={80} height={80} variant="inverted" class="self-center" />
 
@@ -100,8 +122,34 @@ export default function HomePage() {
           some improvements.
         </p>
 
-        <div class="mx-auto rounded-md border border-neutral-950 bg-neutral-800 p-4 text-muted">
-          npm install bagon-hooks
+        <div class="class mx-auto flex items-center gap-x-4 rounded-md border border-neutral-950 bg-neutral-800 p-4 text-muted">
+          <span>
+            <span class="text-green-500">{'>'}</span>{' '}
+            <button
+              class="rounded-md border bg-opacity-50 px-1.5 font-semibold"
+              style={{ 'border-color': pkgManagerColor() }}
+              onClick={togglePkgManager}
+            >
+              {pkgManager()}
+            </button>{' '}
+            install bagon-hooks
+          </span>
+          <button
+            class="transition active:scale-90"
+            onClick={() => {
+              navigator.clipboard.writeText(`${pkgManager()} install bagon-hooks`);
+              setCopied(true);
+              setTimeout(() => {
+                setCopied(false);
+              }, 800);
+            }}
+          >
+            <Show
+              when={copied()}
+              fallback={<IconCopy width={23} height={23} />}
+              children={<IconCheck width={23} height={23} />}
+            />
+          </button>
         </div>
 
         <input

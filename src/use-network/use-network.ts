@@ -44,6 +44,7 @@ export function useNetwork() {
     setStatus(current => ({ ...current, ...getConnection() }));
   }
 
+  // (Replaced useWindowEvent with this)
   onMount(() => {
     const onlineListener = () => setStatus({ online: true, ...getConnection() });
     const offlineListener = () => setStatus({ online: false, ...getConnection() });

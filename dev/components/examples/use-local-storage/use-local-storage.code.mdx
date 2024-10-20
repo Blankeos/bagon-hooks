@@ -1,0 +1,14 @@
+```tsx
+const [value, setValue] = useLocalStorage({
+  key: 'color-scheme',
+  defaultValue: 'dark',
+});
+
+// Value is set both to state and localStorage at 'color-scheme'
+setValue('light');
+
+// You can also use callback like in useState hook to set value
+setValue(current => (current === 'dark' ? 'light' : 'dark'));
+
+return <div>{value()}</div>;
+```
