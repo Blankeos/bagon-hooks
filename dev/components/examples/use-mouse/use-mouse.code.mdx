@@ -1,0 +1,15 @@
+```tsx
+const { ref, position } = useMouse();
+
+return (
+    <div>
+        <div ref={ref} style={{ height: 150, width: 150 }}>
+            Track Here
+        </div>
+
+        Mouse coordinates
+
+        <code>{JSON.stringify(position())}</code>
+    </div>;
+)
+```

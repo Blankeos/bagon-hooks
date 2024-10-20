@@ -16,6 +16,7 @@ import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.exampl
 import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
 import { UseMediaQueryExample } from 'dev/components/examples/use-media-query/use-media-query.example';
 import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mounted.example';
+import { UseMouseExample } from 'dev/components/examples/use-mouse/use-mouse.example';
 import { UseNetworkExample } from 'dev/components/examples/use-network/use-network.example';
 import { UseOrientationExample } from 'dev/components/examples/use-orientation/use-orientation.example';
 import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
@@ -108,6 +109,10 @@ export default function HomePage() {
     {
       title: 'useMediaQuery',
       example: <UseMediaQueryExample />,
+    },
+    {
+      title: 'useMouse',
+      example: <UseMouseExample />,
     },
   ];
 

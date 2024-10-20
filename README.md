@@ -88,7 +88,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-media-query
 - [ ] use-merged-ref
 - [x] use-mounted
-- [ ] use-mouse
+- [x] use-mouse
 - [ ] use-move
 - [ ] use-mutation-observer
 - [x] use-network
