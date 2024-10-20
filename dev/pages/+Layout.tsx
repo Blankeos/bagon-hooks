@@ -10,6 +10,10 @@ export default function Layout(props: FlowProps) {
     <>
       <Head>
         <meta charset="utf-8" />
+        <meta
+          name="description"
+          content="A collection of zero-dependency hooks for SolidJS forked directly from Mantine Hooks, with some improvements."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
       </Head>
