@@ -1,9 +1,12 @@
 ```tsx
-const idle = useIdle(1000);
+const hash = useHash();
 
 return (
-    <div>
-        Is Idle: {idle().toString()}
-    </div>;
-)
+  <div>
+    <button onClick={() => setHash(randomId())}>Set hash</button>
+    <span>
+      Current hash: <code>{hash()}</code>
+    </span>
+  </div>
+);
 ```

@@ -1,0 +1,15 @@
+```tsx
+const { copied, copy, reset } = useClipboard();
+
+return (
+    <div>
+        <button>
+            <Show
+                when={copied()}
+                fallback={<div>Copy</div>}
+                children={<div>Copied!</div>}
+            />
+        </button>
+    </div>
+);
+```

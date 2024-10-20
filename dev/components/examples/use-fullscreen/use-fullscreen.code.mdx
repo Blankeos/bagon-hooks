@@ -1,9 +1,9 @@
 ```tsx
-const idle = useIdle(1000);
+const { fullscreen, toggle } = useFullscreen();
 
 return (
-    <div>
-        Is Idle: {idle().toString()}
-    </div>;
-)
+  <button onClick={toggle}>
+    <Show when={fullscreen()} children={'Exit Fullscreen'} fallback={'Enter Fullscreen'} />
+  </button>
+);
 ```
