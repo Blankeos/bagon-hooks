@@ -2,8 +2,8 @@ import { useToggle } from 'src';
 import { ExampleBase } from '../example-base';
 import Code from './use-toggle.code.mdx';
 
+import { createMemo, FlowProps } from 'solid-js';
 import { useMDXComponents } from 'solid-jsx';
-import { createMemo, createSignal, FlowProps, VoidProps } from 'solid-js';
 
 export function UseToggleExample() {
   const [value, toggle] = useToggle(['apple', 'orange', 'grape', 'kiwi'] as const);
@@ -12,21 +12,10 @@ export function UseToggleExample() {
   const components: any = useMDXComponents();
 
   const color = createMemo(() => {
-    if (value() === 'apple') {
-      return '#e5312f';
-    }
-
-    if (value() === 'orange') {
-      return '#fc8627';
-    }
-
-    if (value() === 'grape') {
-      return '#bc3d73';
-    }
-
-    if (value() === 'kiwi') {
-      return '#acc144';
-    }
+    if (value() === 'apple') return '#e5312f';
+    if (value() === 'orange') return '#fc8627';
+    if (value() === 'grape') return '#bc3d73';
+    if (value() === 'kiwi') return '#acc144';
 
     return undefined;
   });

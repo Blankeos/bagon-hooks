@@ -17,7 +17,15 @@ export function UseLocalStorageExample() {
   return (
     <ExampleBase
       title="useLocalStorage"
-      description="A hook that allows using value from the localStorage as a signal The hook works the same way as createSignal, but also writes the value to the localStorage."
+      description={
+        <>
+          A hook that allows using value from the localStorage as a signal The hook works the same
+          way as createSignal, but also writes the value to the localStorage.
+          <br />
+          <br />
+          To test, try changing the value with two tabs open.
+        </>
+      }
       code={<Code components={components} />}
     >
       <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center transition-colors">
@@ -36,7 +44,7 @@ export function UseLocalStorageExample() {
           </Key>
         </div>
 
-        <span class="text-neutral-500">Favorite Fruit: {value()}</span>
+        <span class="text-sm text-neutral-500">Favorite Fruit: {value()}</span>
       </div>
     </ExampleBase>
   );

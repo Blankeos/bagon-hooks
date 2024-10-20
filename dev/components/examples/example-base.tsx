@@ -3,7 +3,7 @@ import { createSignal, FlowProps, JSX, Show } from 'solid-js';
 
 type ExampleBaseProps = {
   title: JSX.Element;
-  description: string;
+  description: JSX.Element;
   class?: string;
   code?: JSX.Element;
 };
