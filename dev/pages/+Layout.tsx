@@ -2,14 +2,15 @@ import { FlowProps } from 'solid-js';
 
 import { Head } from 'vike-solid/Head';
 
-import '../styles/app.css';
 import { MarkdownContextProvider } from 'dev/components/markdown/markdown.context';
+import '../styles/app.css';
 
 export default function Layout(props: FlowProps) {
   return (
     <>
       <Head>
         <meta charset="utf-8" />
+        <link rel="icon" href="/favicon.svg" />
         <meta
           name="description"
           content="A collection of zero-dependency hooks for SolidJS forked directly from Mantine Hooks, with some improvements."

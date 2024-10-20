@@ -6,11 +6,16 @@ import { createSignal } from 'solid-js';
 import { useMDXComponents } from 'solid-jsx';
 
 export function UseFaviconExample() {
-  const [favicon, setFavicon] = createSignal('https://docs.solidjs.com/favicon.svg');
+  const [touched, setTouched] = createSignal(false);
+
+  // OLD Implementation:
+  // const [favicon, setFavicon] = createSignal('https://docs.solidjs.com/favicon.svg');
+
+  // IMPROVED Implementation:
+  const [_favicon, setFavicon] = useFavicon();
+
   const setXFavicon = () => setFavicon('https://x.com/favicon.ico');
   const setSolidFavicon = () => setFavicon('https://docs.solidjs.com/favicon.svg');
-
-  useFavicon(favicon);
 
   // @ts-ignore
   const components: any = useMDXComponents();
@@ -23,14 +28,20 @@ export function UseFaviconExample() {
     >
       <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center text-sm">
         <button
-          onClick={() => setXFavicon()}
+          onClick={() => {
+            setTouched(true);
+            setXFavicon();
+          }}
           class="rounded-md border px-2 py-1.5 transition active:scale-95"
         >
           X favicon
         </button>
 
         <button
-          onClick={() => setSolidFavicon()}
+          onClick={() => {
+            setTouched(true);
+            setSolidFavicon();
+          }}
           class="rounded-md border px-2 py-1.5 transition active:scale-95"
         >
           Solid favicon

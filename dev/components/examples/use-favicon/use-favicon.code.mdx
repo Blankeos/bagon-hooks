@@ -1,12 +1,29 @@
 ```tsx
+  // ----------
+  // Mantine Implementation
+  // ----------
+
   const [favicon, setFavicon] = createSignal('https://docs.solidjs.com/favicon.svg');
   const setXFavicon = () => setFavicon('https://x.com/favicon.ico');
   const setSolidFavicon = () => setFavicon('https://docs.solidjs.com/favicon.svg');
 
-  useFavicon(favicon);
+  useFavicon(favicon); // Will always run at the start.
 
   return (
     <button onClick={setXFavicon}>Use X Favicon</button>
     <button onClick={setSolidFavicon}>Use SolidJS Favicon</button>
   )
+
+  // ----------
+  // Improved Bagon Implementation
+  // ----------
+  const [favicon, setFavicon] = useFavicon(); // Don't pass an initial accessor, choose to run when you need to.
+
+  const setXFavicon = () => setFavicon('https://x.com/favicon.ico');
+  const setSolidFavicon = () => setFavicon('https://docs.solidjs.com/favicon.svg');
+
+  return (
+    <button onClick={setXFavicon}>Use X Favicon</button>
+    <button onClick={setSolidFavicon}>Use SolidJS Favicon</button>
+  );
 ```
