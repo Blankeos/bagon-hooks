@@ -92,7 +92,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-move
 - [ ] use-mutation-observer
 - [x] use-network
-- [ ] use-orientation
+- [x] use-orientation
 - [x] use-os
 - [ ] use-page-leave
 - [ ] use-pagination

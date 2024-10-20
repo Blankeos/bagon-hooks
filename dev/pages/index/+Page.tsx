@@ -16,6 +16,7 @@ import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.exampl
 import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
 import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mounted.example';
 import { UseNetworkExample } from 'dev/components/examples/use-network/use-network.example';
+import { UseOrientationExample } from 'dev/components/examples/use-orientation/use-orientation.example';
 import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
 import { UseResizeObserverExample } from 'dev/components/examples/use-resize-observer/use-resize-observer.example';
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
@@ -98,6 +99,10 @@ export default function HomePage() {
     {
       title: 'useClipboard',
       example: <UseClipboardExample />,
+    },
+    {
+      title: 'useOrientation',
+      example: <UseOrientationExample />,
     },
   ];
 
