@@ -1,0 +1,19 @@
+```tsx
+const { color, supported, pickColor } = useEyeDropper();
+
+return (
+  <div>
+    <button onClick={pickColor} disabled={!supported()}>
+      Pick Color
+    </button>
+
+    <div>
+      Current Color: <span style={{ height: 32, width: 32, 'background-color': color() }} />
+    </div>
+
+    <Show when={supported() !== undefined && !supported()}>
+      <span>Your browser does not support EyeDropper.</span>
+    </Show>
+  </div>
+);
+```

@@ -61,7 +61,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-document-title
 - [ ] use-document-visibility
 - [ ] use-event-listener
-- [ ] use-eye-dropper
+- [x] use-eye-dropper (improved, state management is inside the hook)
 - [x] use-favicon (improved, more flexible)
 - [ ] use-fetch
 - [ ] use-focus-return
@@ -74,7 +74,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-hotkeys
 - [x] use-hover
 - [x] ~~use-id~~ (Solid has [`createUniqueId`](https://docs.solidjs.com/reference/component-apis/create-unique-id))
-- [x] use-idle (There is [`createIdleTimer`](https://primitives.solidjs.community/package/idle/) solid-primitives as well)
+- [x] use-idle (Added, but note that there is [`createIdleTimer`](https://primitives.solidjs.community/package/idle/) solid-primitives as well)
 - [ ] use-in-viewport
 - [ ] use-input-state
 - [ ] use-intersection

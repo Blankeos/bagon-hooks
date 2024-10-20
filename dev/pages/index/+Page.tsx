@@ -5,6 +5,7 @@ import packageJSON from 'src/../package.json';
 // Hooks
 import { UseClickOutsideExample } from 'dev/components/examples/use-click-outside/use-click-outside.example';
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
+import { UseEyeDropperExample } from 'dev/components/examples/use-eye-dropper/use-eye-dropper.example';
 import { UseFaviconExample } from 'dev/components/examples/use-favicon/use-favicon.example';
 import { UseHotkeysExample } from 'dev/components/examples/use-hotkeys/use-hotkeys.example';
 import { UseHoverExample } from 'dev/components/examples/use-hover/use-hover.example';
@@ -89,6 +90,10 @@ export default function HomePage() {
     {
       title: 'useLocalStorage',
       example: <UseLocalStorageExample />,
+    },
+    {
+      title: 'useEyeDropper',
+      example: <UseEyeDropperExample />,
     },
   ];
 
