@@ -25,7 +25,7 @@ export function ExampleBase(props: FlowProps<ExampleBaseProps>) {
         </button>
       </div>
 
-      <p class="text-sm">{props.description}</p>
+      <p class="text-sm text-opacity-70">{props.description}</p>
 
       <Show when={viewing() === 'result'}>
         <div class="w-full flex-1 rounded-md">{props.children}</div>

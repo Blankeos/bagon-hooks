@@ -1,5 +1,7 @@
 // import { createMemo, type Component } from 'solid-js';
 
+import packageJSON from 'src/../package.json';
+
 // Hooks
 import { UseClickOutsideExample } from 'dev/components/examples/use-click-outside/use-click-outside.example';
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
@@ -15,7 +17,7 @@ import { UseResizeObserverExample } from 'dev/components/examples/use-resize-obs
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
 import { IconCheck, IconCopy, IconGithub, IconLogo } from 'dev/icons';
 import { createMemo, createSignal, For, Show } from 'solid-js';
-import { useOs, useToggle } from 'src';
+import { useLocalStorage, useOs } from 'src';
 
 export default function HomePage() {
   // // let ref = useClickOutside(() =>
@@ -95,7 +97,19 @@ export default function HomePage() {
   });
 
   const [copied, setCopied] = createSignal(false);
-  const [pkgManager, togglePkgManager] = useToggle(['npm', 'bun', 'pnpm', 'yarn'] as const);
+  const [pkgManager, setPackageManager] = useLocalStorage({
+    key: 'preferred-pkg-manager',
+    defaultValue: 'npm',
+  });
+  function togglePkgManager() {
+    setPackageManager(current => {
+      if (current === 'npm') return 'bun';
+      if (current === 'bun') return 'pnpm';
+      if (current === 'pnpm') return 'yarn';
+      if (current === 'yarn') return 'npm';
+      return 'npm';
+    });
+  }
   const pkgManagerColor = createMemo(() => {
     if (pkgManager() === 'npm') return '#E5312F';
     if (pkgManager() === 'bun') return '#FBF0DF';
@@ -116,7 +130,13 @@ export default function HomePage() {
       <div class="mx-auto flex w-full max-w-4xl flex-col gap-y-5 px-4 py-20">
         <IconLogo width={80} height={80} variant="inverted" class="self-center" />
 
-        <h1 class="text-center text-5xl font-medium text-white">Bagon Hooks</h1>
+        <div class="relative mx-auto flex w-max justify-center gap-x-2">
+          <h1 class="text-center text-5xl font-medium text-white">Bagon Hooks</h1>
+          <span class="absolute bottom-0 left-full mx-2 text-base text-muted">
+            v{packageJSON.version}
+          </span>
+        </div>
+
         <p class="text-center text-neutral-50">
           A collection of zero-dependency hooks for SolidJS forked directly from Mantine Hooks, with
           some improvements.
