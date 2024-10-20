@@ -1,5 +1,3 @@
-// import { createMemo, type Component } from 'solid-js';
-
 import packageJSON from 'src/../package.json';
 
 // Hooks
@@ -9,8 +7,10 @@ import { UseElementSizeExample } from 'dev/components/examples/use-element-size/
 import { UseEyeDropperExample } from 'dev/components/examples/use-eye-dropper/use-eye-dropper.example';
 import { UseFaviconExample } from 'dev/components/examples/use-favicon/use-favicon.example';
 import { UseFullScreenExample } from 'dev/components/examples/use-fullscreen/use-fullscreen.example';
+import { UseHashExample } from 'dev/components/examples/use-hash/use-hash.example';
 import { UseHotkeysExample } from 'dev/components/examples/use-hotkeys/use-hotkeys.example';
 import { UseHoverExample } from 'dev/components/examples/use-hover/use-hover.example';
+import { UseIdExample } from 'dev/components/examples/use-id/use-id.example';
 import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.example';
 import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
 import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mounted.example';
@@ -20,28 +20,9 @@ import { UseResizeObserverExample } from 'dev/components/examples/use-resize-obs
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
 import { IconCheck, IconCopy, IconGithub, IconLogo } from 'dev/icons';
 import { createMemo, createSignal, For, Show } from 'solid-js';
-import { useLocalStorage, useOs } from 'src';
+import { useLocalStorage } from 'src';
 
 export default function HomePage() {
-  // // let ref = useClickOutside(() =>
-  // //   alert('I have clicked outside')
-  // // })
-
-  const os = useOs();
-
-  // const { hovered, ref } = useHover();
-
-  // const idle = useIdle(() => 1000, {
-  //   events: ['mousemove', 'touchmove'],
-  //   initialState: false,
-  // });
-
-  // const networkStatus = useNetwork();
-
-  // const [currentOption, toggle] = useToggle(['light', 'dark', 'system']);
-
-  // const { ref: elementSizeRef, width, height } = useElementSize();
-
   const [searchInput, setSearchInput] = createSignal('');
 
   const LIST = [
@@ -68,6 +49,10 @@ export default function HomePage() {
     {
       title: 'useIdle',
       example: <UseIdleExample />,
+    },
+    {
+      title: 'useId',
+      example: <UseIdExample />,
     },
     {
       title: 'useMounted',
@@ -104,6 +89,10 @@ export default function HomePage() {
     {
       title: 'useFullscreen',
       example: <UseFullScreenExample />,
+    },
+    {
+      title: 'useHash',
+      example: <UseHashExample />,
     },
   ];
 

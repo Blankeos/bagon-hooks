@@ -69,11 +69,11 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-focus-within
 - [ ] use-force-update
 - [x] use-fullscreen
-- [ ] use-hash
+- [x] use-hash
 - [ ] use-headroom
 - [x] use-hotkeys
 - [x] use-hover
-- [x] ~~use-id~~ (Solid has [`createUniqueId`](https://docs.solidjs.com/reference/component-apis/create-unique-id))
+- [x] use-id (Added, but note that there is [`createUniqueId`](https://docs.solidjs.com/reference/component-apis/create-unique-id) in Solid)
 - [x] use-idle (Added, but note that there is [`createIdleTimer`](https://primitives.solidjs.community/package/idle/) solid-primitives as well)
 - [ ] use-in-viewport
 - [ ] use-input-state
