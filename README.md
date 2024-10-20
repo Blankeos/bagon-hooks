@@ -85,7 +85,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-local-storage
 - [ ] use-logger
 - [ ] use-map
-- [ ] use-media-query
+- [x] use-media-query
 - [ ] use-merged-ref
 - [x] use-mounted
 - [ ] use-mouse

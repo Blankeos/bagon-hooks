@@ -14,6 +14,7 @@ import { UseHoverExample } from 'dev/components/examples/use-hover/use-hover.exa
 import { UseIdExample } from 'dev/components/examples/use-id/use-id.example';
 import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.example';
 import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
+import { UseMediaQueryExample } from 'dev/components/examples/use-media-query/use-media-query.example';
 import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mounted.example';
 import { UseNetworkExample } from 'dev/components/examples/use-network/use-network.example';
 import { UseOrientationExample } from 'dev/components/examples/use-orientation/use-orientation.example';
@@ -103,6 +104,10 @@ export default function HomePage() {
     {
       title: 'useOrientation',
       example: <UseOrientationExample />,
+    },
+    {
+      title: 'useMediaQuery',
+      example: <UseMediaQueryExample />,
     },
   ];
 

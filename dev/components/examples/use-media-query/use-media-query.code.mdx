@@ -1,0 +1,19 @@
+```tsx
+const sm = useMediaQuery(() => '(min-width: 640px)');
+const md = useMediaQuery(() => '(min-width: 768px)');
+const lg = useMediaQuery(() => '(min-width: 1024px)');
+const xl = useMediaQuery(() => '(min-width: 1280px)');
+const xxl = useMediaQuery(() => '(min-width: 1536px)');
+
+return (
+    <div>
+        <Switch fallback="No match">
+            <Match when={xxl()}>(min-width: 1536px)</Match>
+            <Match when={xl()}>(min-width: 1280px)</Match>
+            <Match when={lg()}>(min-width: 1024px)</Match>
+            <Match when={md()}>(min-width: 768px)</Match>
+            <Match when={sm()}>(min-width: 640px)</Match>
+        </Switch>
+    </div>;
+)
+```
