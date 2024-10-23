@@ -1,6 +1,8 @@
+import fluid, { extract } from 'fluid-tailwind';
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./dev/**/*.{html,js,ts,jsx,tsx}'],
+  content: ['./dev/**/*.{html,js,ts,jsx,tsx}', extract],
   theme: {
     extend: {
       colors: {
@@ -25,5 +27,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [fluid],
 };

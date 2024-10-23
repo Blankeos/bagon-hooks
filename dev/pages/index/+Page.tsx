@@ -13,6 +13,7 @@ import { UseHotkeysExample } from 'dev/components/examples/use-hotkeys/use-hotke
 import { UseHoverExample } from 'dev/components/examples/use-hover/use-hover.example';
 import { UseIdExample } from 'dev/components/examples/use-id/use-id.example';
 import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.example';
+import { UseKeyboardExample } from 'dev/components/examples/use-keyboard/use-keyboard.example';
 import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
 import { UseMediaQueryExample } from 'dev/components/examples/use-media-query/use-media-query.example';
 import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mounted.example';
@@ -22,12 +23,16 @@ import { UseOrientationExample } from 'dev/components/examples/use-orientation/u
 import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
 import { UseResizeObserverExample } from 'dev/components/examples/use-resize-observer/use-resize-observer.example';
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
+import { Kbd } from 'dev/components/kbd';
 import { IconCheck, IconCopy, IconGithub, IconLogo } from 'dev/icons';
 import { createMemo, createSignal, For, Show } from 'solid-js';
-import { useHotkeys, useLocalStorage } from 'src';
+import { createStore } from 'solid-js/store';
+import { getHotkeyHandler, useHotkeys, useKeyboard, useLocalStorage } from 'src';
 
 export default function HomePage() {
   const [searchInput, setSearchInput] = createSignal('');
+
+  const [kbdActiveStore, setKbdActiveStore] = createStore({ cmd: false, K: false });
 
   const LIST = [
     {
@@ -45,6 +50,10 @@ export default function HomePage() {
     {
       title: 'useHotkeys',
       example: <UseHotkeysExample />,
+    },
+    {
+      title: 'useKeyboard',
+      example: <UseKeyboardExample />,
     },
     {
       title: 'useHover',
@@ -143,6 +152,7 @@ export default function HomePage() {
   });
 
   let searchInputRef!: HTMLInputElement;
+
   useHotkeys([
     [
       'mod+k',
@@ -151,6 +161,30 @@ export default function HomePage() {
       },
     ],
   ]);
+
+  useKeyboard({
+    onKeyDown: event => {
+      if (event.key === 'k') {
+        setKbdActiveStore('K', true);
+      }
+      if (event.metaKey) {
+        setKbdActiveStore('cmd', true);
+      }
+    },
+    onKeyUp(event) {
+      if (event.key === 'k') {
+        setKbdActiveStore('K', false);
+      }
+      if (event.key === 'Meta') {
+        setKbdActiveStore('cmd', false);
+
+        if (kbdActiveStore.K) {
+          setKbdActiveStore('K', false);
+        }
+      }
+    },
+  });
+
   return (
     <div class="relative flex flex-col items-start gap-y-5">
       <a
@@ -205,14 +239,29 @@ export default function HomePage() {
           </button>
         </div>
 
-        <input
-          ref={searchInputRef}
-          class="mx-auto w-full max-w-md rounded-md p-2.5 px-4"
-          onInput={e => {
-            setSearchInput(e.currentTarget.value);
-          }}
-          placeholder="Cmd + K to search"
-        />
+        <div class="relative mx-auto flex h-max w-full max-w-md items-center">
+          <input
+            ref={searchInputRef}
+            value={searchInput()}
+            class="relative w-full rounded-md p-2.5 px-4"
+            onInput={e => {
+              setSearchInput(e.currentTarget.value);
+            }}
+            placeholder="Quicksearch..."
+            onKeyDown={getHotkeyHandler([
+              [
+                'Escape',
+                () => {
+                  searchInputRef.blur();
+                },
+              ],
+            ])}
+          />
+          <div class="absolute right-0 top-2.5 flex items-center gap-x-1 px-2 opacity-80">
+            <Kbd activated={kbdActiveStore.cmd}>Cmd</Kbd>
+            <Kbd activated={kbdActiveStore.K}>K</Kbd>
+          </div>
+        </div>
       </div>
 
       <div class="max-w-8xl mx-auto grid w-full grid-cols-1 gap-3 px-5 md:grid-cols-2 xl:grid-cols-3">
