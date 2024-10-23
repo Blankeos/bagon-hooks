@@ -33,7 +33,12 @@ Use it:
 import { useHotkeys } from 'bagon-hooks';
 ```
 
-We want to achieve as 1:1 as possible with Mantine's original hooks. So you can always refer to their [original docs](https://v3.mantine.dev/hooks/use-hotkeys/).
+We want to achieve as 1:1 as possible with Mantine's original hooks. So you can always refer to their [original docs](https://v3.mantine.dev/hooks/use-hotkeys/). There are a few improvements and renaming because SolidJS has its own conventions. But just take note:
+
+1. We removed Solid's convention of `use` vs `create` as it's too confusing for familiarity with Mantine. So every hook in Bagon is prefixed with `use`.
+2. The only renaming we did was `state` -> `signal`.
+3. Refer to [Mantine](https://mantine.dev/hooks/use-click-outside/)'s original docs for deeper examples and usecases.
+4. Refer to [Bagon Hooks](https://bagon-hooks.pages.dev/)'s docs for actual SolidJS examples.
 
 ## Features
 
@@ -54,7 +59,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-color-scheme
 - [x] use-counter
 - [ ] use-debounced-callback
-- [ ] use-debounced-state
+- [ ] ~~use-debounced-state~~ use-debounced-signal
 - [ ] use-debounced-value
 - [ ] use-did-update
 - [ ] use-disclosure
@@ -118,6 +123,10 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-window-event
 - [ ] use-window-scroll
 - [ ] utils
+
+### New in Bagon Hooks
+
+- [x] use-keyboard
 
 ### Others
 

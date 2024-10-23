@@ -1,0 +1,62 @@
+```tsx
+function KeyboardExample() {
+  const [store, setStore] = createStore({ a: false, b: false, c: false, d: false });
+
+  useKeyboard({
+    onKeyDown(event) {
+      // Refactor this into if statements.
+      if (event.key === 'a') {
+        setStore('a', true);
+      } else if (event.key === 'b') {
+        setStore('b', true);
+      } else if (event.key === 'c') {
+        setStore('c', true);
+      } else if (event.key === 'd') {
+        setStore('d', true);
+      }
+    },
+    onKeyUp(event) {
+      // Refactor this into if statements.
+      if (event.key === 'a') {
+        setStore('a', false);
+      } else if (event.key === 'b') {
+        setStore('b', false);
+      } else if (event.key === 'c') {
+        setStore('c', false);
+      } else if (event.key === 'd') {
+        setStore('d', false);
+      }
+    },
+  });
+
+  return (
+    <div>
+      <Kbd activated={store.a}>a</Kbd>
+      <Kbd activated={store.b}>b</Kbd>
+      <Kbd activated={store.c}>c</Kbd>
+      <Kbd activated={store.d}>d</Kbd>
+    </div>
+  );
+}
+
+function Kbd(props: FlowProps<{ activated: boolean }>) {
+  return (
+    <div style={{ display: 'relative' }}>
+      <div style={{ display: 'absolute', inset: 0, background: "#e5e5e5" }}></div>
+      <div
+        style={{
+          background: '#fafafa',
+          padding: '0.5rem',
+          display: 'relative',
+          transition-property: 'transform';
+          transition-timing-function: 'cubic-bezier(0.4, 0, 0.2, 1)';
+          transition-duration: '150ms';
+          transform: props.activated ? 'translateY(0px)' : 'translateY(-5px)',
+        }}
+      >
+        {props.children}
+      </div>
+    </div>
+  );
+}
+```
