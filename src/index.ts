@@ -13,6 +13,7 @@ export * from './use-local-storage/use-local-storage';
 export * from './use-media-query/use-media-query';
 export * from './use-mounted/use-mounted';
 export * from './use-mouse/use-mouse';
+export * from './use-move/use-move';
 export * from './use-network/use-network';
 export * from './use-orientation/use-orientation';
 export * from './use-os/use-os';

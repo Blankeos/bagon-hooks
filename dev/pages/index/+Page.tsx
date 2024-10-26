@@ -18,6 +18,7 @@ import { UseLocalStorageExample } from 'dev/components/examples/use-local-storag
 import { UseMediaQueryExample } from 'dev/components/examples/use-media-query/use-media-query.example';
 import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mounted.example';
 import { UseMouseExample } from 'dev/components/examples/use-mouse/use-mouse.example';
+import { UseMoveExample } from 'dev/components/examples/use-move/use-move.example';
 import { UseNetworkExample } from 'dev/components/examples/use-network/use-network.example';
 import { UseOrientationExample } from 'dev/components/examples/use-orientation/use-orientation.example';
 import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
@@ -122,6 +123,10 @@ export default function HomePage() {
     {
       title: 'useMouse',
       example: <UseMouseExample />,
+    },
+    {
+      title: 'useMove',
+      example: <UseMoveExample />,
     },
   ];
 
@@ -243,7 +248,7 @@ export default function HomePage() {
           <input
             ref={searchInputRef}
             value={searchInput()}
-            class="relative w-full rounded-md p-2.5 px-4"
+            class="pjx-4 relative w-full rounded-md p-2.5"
             onInput={e => {
               setSearchInput(e.currentTarget.value);
             }}

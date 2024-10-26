@@ -16,12 +16,12 @@ export function ExampleBase(props: FlowProps<ExampleBaseProps>) {
       <div class="flex w-full items-center justify-between">
         <h2 class="text-xl font-bold">{props.title}</h2>
         <button
-          class={`rounded-md border p-2 transition active:scale-95 ${viewing() === 'code' ? 'bg-background text-white' : ''}`}
+          class={`flex h-8 w-8 items-center justify-center rounded-md border transition active:scale-95 ${viewing() === 'code' ? 'bg-background text-white' : ''}`}
           onClick={() => {
             setViewing(viewing() === 'code' ? 'result' : 'code');
           }}
         >
-          <IconCode class="h-5 w-5" />
+          <IconCode class="h-4 w-4" />
         </button>
       </div>
 

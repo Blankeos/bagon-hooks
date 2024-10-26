@@ -94,7 +94,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-merged-ref
 - [x] use-mounted
 - [x] use-mouse
-- [ ] use-move
+- [x] use-move
 - [ ] use-mutation-observer
 - [x] use-network
 - [x] use-orientation

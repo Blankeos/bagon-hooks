@@ -1,0 +1,31 @@
+```tsx
+const [value, setValue] = createSignal({ x: 0.5, y: 0.5 });
+const { ref, active } = useMove(({ x, y }) => {
+  setValue({ x, y });
+}, {});
+
+return (
+  <div>
+    <div
+      ref={ref}
+      style={{
+        position: 'relative',
+        width: '400px',
+        height: '120px',
+        backgrund: '#3b82f650',
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          left: `calc(${value().x * 100}% - ${8}px)`,
+          top: `calc(${value().y * 100}% - ${8}px)`,
+          width: '16px',
+          height: '16px',
+          'background-color': active() ? '#22c55e' : '#3b82f6',
+        }}
+      />
+    </div>
+  </div>
+);
+```
