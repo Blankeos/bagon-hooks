@@ -9,6 +9,7 @@ import { UseDebouncedCallbackExample } from 'dev/components/examples/use-debounc
 import { UseDebouncedSignalExample } from 'dev/components/examples/use-debounced-signal/use-debounced-signal.example';
 import { UseDebouncedValueExample } from 'dev/components/examples/use-debounced-value/use-debounced-value.example';
 import { UseDidUpdateExample } from 'dev/components/examples/use-did-update/use-did-update.example';
+import { UseDocumentTitleExample } from 'dev/components/examples/use-document-title/use-document-title.example';
 import { UseDocumentVisibilityExample } from 'dev/components/examples/use-document-visibility/use-document-visibility.example';
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
 import { UseEyeDropperExample } from 'dev/components/examples/use-eye-dropper/use-eye-dropper.example';
@@ -172,6 +173,10 @@ export default function HomePage() {
     {
       title: 'useColorScheme',
       example: <UseColorSchemeExample />,
+    },
+    {
+      title: 'useDocumentTitle',
+      example: <UseDocumentTitleExample />,
     },
   ];
 

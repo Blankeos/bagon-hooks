@@ -1,0 +1,25 @@
+```tsx
+// ----------
+// Mantine Implementation
+// ----------
+
+const [title, setTitle] = createSignal('Home');
+useTitle(title); // Will always run at the start.
+
+return (
+    <button onClick={() => setTitle("Home")}>Set to Home</button>
+    <button onClick={() => setTitle("About")}>set to About</button>
+)
+
+// ----------
+// Improved Bagon Implementation
+// ----------
+const [title, setTitle] = useTitle(); // Don't pass an initial accessor, choose to run when you need to.
+
+
+return (
+    <button onClick={() => setTitle("Home")}>Set to Home</button>
+    <button onClick={() => setTitle("About")}>Set to About</button>
+);
+
+```

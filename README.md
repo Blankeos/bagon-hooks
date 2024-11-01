@@ -56,14 +56,14 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] ~~use-callback-ref~~ (Not needed, only used internally by mantine for preventing re-renders on a function)
 - [x] use-click-outside
 - [x] use-clipboard
-- [ ] use-color-scheme
+- [x] use-color-scheme
 - [x] use-counter
 - [x] use-debounced-callback
 - [x] ~~use-debounced-state~~ use-debounced-signal
 - [x] use-debounced-value
 - [x] use-did-update
 - [ ] use-disclosure
-- [ ] use-document-title
+- [x] use-document-title
 - [x] use-document-visibility
 - [ ] use-event-listener
 - [x] use-eye-dropper (✨ improved, state management is inside the hook)
@@ -85,7 +85,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-intersection (Added, but note that there is [`createIntersectionObserver`](https://primitives.solidjs.community/package/intersection-observer/) in the official solid-primitives as well)
 - [ ] use-interval
 - [x] ~~use-is-first-render~~ (Every component function in SolidJS runs only once! Every component is first render only 🙂)
-- [x] use-isomorphic-effect (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is actually isomorphic - it works in browser and server).
+- [x] ~~use-isomorphic-effect~~ (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is technically already isomorphic because it doesn't error on SSR. Also, it also only runs on client-side.)
 - [ ] use-list-state
 - [x] use-local-storage
 - [ ] use-logger
