@@ -1,0 +1,26 @@
+```tsx
+const [search, setSearch] = createSignal('');
+const [searchResults, setSearchResults] = createSignal<{ id: number; title: string }[]>([]);
+const [loading, setLoading] = createSignal(false);
+
+const debouncedSearch = useDebouncedCallback(async (query: string) => {
+    setLoading(true);
+    setSearchResults(await getSearchResults(query));
+    setLoading(false);
+}, 500);
+
+const handleInput: JSX.EventHandler<HTMLInputElement, InputEvent> = event => {
+    setSearch(event.currentTarget.value);
+    debouncedSearch(event.currentTarget.value);
+};
+
+return (
+    <div>
+        <input type="text" value={search} onInput={handleInput} />
+        <Show when={loading()}
+            children={<div>Loading...</div>}
+            fallback={<For each={searchResults()}>{result => <div>{result.title}</div>}</For>}
+        />
+    </div>;
+)
+```

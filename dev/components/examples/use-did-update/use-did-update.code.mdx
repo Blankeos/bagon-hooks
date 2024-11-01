@@ -1,0 +1,13 @@
+```tsx
+const [signal, setSignal] = createSignal(0);
+
+useDidUpdate(() => {
+    console.log('Did Update', signal());
+}, signal);
+
+return (
+    <div>
+        <button onClick={setSignal(prev => prev + 1)}>Simulate Update {signal()}</button>
+    </div>;
+)
+```

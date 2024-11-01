@@ -19,7 +19,7 @@ export function UseMoveExample() {
       title="useMove"
       description={
         <>
-          handles move behavior over any element inside the constraints of a ref.
+          Handles move behavior over any element inside the constraints of a ref.
           <br />
           <br />
           Can be used to make custom sliders, color pickers, and draggable elements within a

@@ -1,0 +1,9 @@
+```tsx
+const [signal, setSignal] = useDebouncedSignal('', 500);
+return (
+  <>
+    <input value={signal()} onInput={e => setSignal(e.currentTarget.value)} />
+    <span>State: {JSON.stringify(signal())}</span>
+  </>
+);
+```

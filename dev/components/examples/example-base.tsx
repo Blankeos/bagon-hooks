@@ -12,7 +12,7 @@ export function ExampleBase(props: FlowProps<ExampleBaseProps>) {
   const [viewing, setViewing] = createSignal<'code' | 'result'>('result');
 
   return (
-    <div class="flex h-full max-h-[500px] w-full flex-col items-start gap-y-3 overflow-hidden rounded-xl border bg-white p-5">
+    <div class="flex h-full max-h-[500px] w-full flex-col items-start gap-y-3 overflow-hidden rounded-lg bg-white p-5">
       <div class="flex w-full items-center justify-between">
         <h2 class="text-xl font-bold">{props.title}</h2>
         <button
@@ -25,7 +25,7 @@ export function ExampleBase(props: FlowProps<ExampleBaseProps>) {
         </button>
       </div>
 
-      <p class="text-sm text-opacity-70">{props.description}</p>
+      <div class="text-sm text-opacity-70">{props.description}</div>
 
       <Show when={viewing() === 'result'}>
         <div class="w-full flex-1 rounded-md">{props.children}</div>

@@ -1,0 +1,21 @@
+```tsx
+const { ref, entry } = useIntersection({
+    threshold: 0.75, // At least 75% of the element must "intersect" with the viewport
+});
+
+
+return (
+    <div style={{ height: '500px', "overflow-y": 'scroll', padding: '200px' }}>
+        <div
+            ref={ref}
+            style={{ background-color: entry().isIntersecting ? 'green' : 'red' }}
+        >
+            <Show
+                when={entry()?.isIntersecting}
+                children={<>Fully Intersecting</>}
+                fallback={<>Obscured</>}
+            />
+        </div>
+    </div>
+)
+```

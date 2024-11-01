@@ -1,0 +1,11 @@
+```tsx
+const [input, handleInput] = useInputState('');
+const [checked, handleCheckbox] = useInputState(false);
+
+return (
+    <div>
+        <input value={input()} onInput={handleInput} />
+        <input type="checkbox" value={checked()} onChange={handleChecked} />
+    </div>;
+)
+```

@@ -4,6 +4,11 @@ import packageJSON from 'src/../package.json';
 import { UseClickOutsideExample } from 'dev/components/examples/use-click-outside/use-click-outside.example';
 import { UseClipboardExample } from 'dev/components/examples/use-clipboard/use-clipboard.example';
 import { UseCounterExample } from 'dev/components/examples/use-counter/use-counter.example';
+import { UseDebouncedCallbackExample } from 'dev/components/examples/use-debounced-callback/use-debounced-callback.example';
+import { UseDebouncedSignalExample } from 'dev/components/examples/use-debounced-signal/use-debounced-signal.example';
+import { UseDebouncedValueExample } from 'dev/components/examples/use-debounced-value/use-debounced-value.example';
+import { UseDidUpdateExample } from 'dev/components/examples/use-did-update/use-did-update.example';
+import { UseDocumentVisibilityExample } from 'dev/components/examples/use-document-visibility/use-document-visibility.example';
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
 import { UseEyeDropperExample } from 'dev/components/examples/use-eye-dropper/use-eye-dropper.example';
 import { UseFaviconExample } from 'dev/components/examples/use-favicon/use-favicon.example';
@@ -13,6 +18,9 @@ import { UseHotkeysExample } from 'dev/components/examples/use-hotkeys/use-hotke
 import { UseHoverExample } from 'dev/components/examples/use-hover/use-hover.example';
 import { UseIdExample } from 'dev/components/examples/use-id/use-id.example';
 import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.example';
+import { UseInViewportExample } from 'dev/components/examples/use-in-viewport/use-in-viewport.example';
+import { UseInputStateExample } from 'dev/components/examples/use-input-state/use-input-state.example';
+import { UseIntersectionExample } from 'dev/components/examples/use-intersection/use-intersection.example';
 import { UseKeyboardExample } from 'dev/components/examples/use-keyboard/use-keyboard.example';
 import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
 import { UseMediaQueryExample } from 'dev/components/examples/use-media-query/use-media-query.example';
@@ -127,6 +135,38 @@ export default function HomePage() {
     {
       title: 'useMove',
       example: <UseMoveExample />,
+    },
+    {
+      title: 'useDebouncedSignal',
+      example: <UseDebouncedSignalExample />,
+    },
+    {
+      title: 'useDebouncedValue',
+      example: <UseDebouncedValueExample />,
+    },
+    {
+      title: 'useDocumentVisibility',
+      example: <UseDocumentVisibilityExample />,
+    },
+    {
+      title: 'useIntersection',
+      example: <UseIntersectionExample />,
+    },
+    {
+      title: 'useInViewport',
+      example: <UseInViewportExample />,
+    },
+    {
+      title: 'useInputState',
+      example: <UseInputStateExample />,
+    },
+    {
+      title: 'useDebouncedCallback',
+      example: <UseDebouncedCallbackExample />,
+    },
+    {
+      title: 'useDidUpdate',
+      example: <UseDidUpdateExample />,
     },
   ];
 

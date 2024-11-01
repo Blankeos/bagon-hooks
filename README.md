@@ -53,21 +53,21 @@ We want to achieve as 1:1 as possible with Mantine's original hooks. So you can 
 
 Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/packages/%40mantine/hooks/src) library.
 
-- [ ] use-callback-ref
+- [x] ~~use-callback-ref~~ (Not needed, only used internally by mantine for preventing re-renders on a function)
 - [x] use-click-outside
 - [x] use-clipboard
 - [ ] use-color-scheme
 - [x] use-counter
-- [ ] use-debounced-callback
-- [ ] ~~use-debounced-state~~ use-debounced-signal
-- [ ] use-debounced-value
-- [ ] use-did-update
+- [x] use-debounced-callback
+- [x] ~~use-debounced-state~~ use-debounced-signal
+- [x] use-debounced-value
+- [x] use-did-update
 - [ ] use-disclosure
 - [ ] use-document-title
-- [ ] use-document-visibility
+- [x] use-document-visibility
 - [ ] use-event-listener
-- [x] use-eye-dropper (improved, state management is inside the hook)
-- [x] use-favicon (improved, more flexible)
+- [x] use-eye-dropper (✨ improved, state management is inside the hook)
+- [x] use-favicon (✨ improved, more flexible, better control)
 - [ ] use-fetch
 - [ ] use-focus-return
 - [ ] use-focus-trap
@@ -79,13 +79,13 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-hotkeys
 - [x] use-hover
 - [x] use-id (Added, but note that there is [`createUniqueId`](https://docs.solidjs.com/reference/component-apis/create-unique-id) in Solid)
-- [x] use-idle (Added, but note that there is [`createIdleTimer`](https://primitives.solidjs.community/package/idle/) solid-primitives as well)
-- [ ] use-in-viewport
-- [ ] use-input-state
-- [ ] use-intersection
+- [x] use-idle (Added, but note that there is [`createIdleTimer`](https://primitives.solidjs.community/package/idle/) the official solid-primitives as well)
+- [x] use-in-viewport
+- [x] use-input-state
+- [x] use-intersection (Added, but note that there is [`createIntersectionObserver`](https://primitives.solidjs.community/package/intersection-observer/) in the official solid-primitives as well)
 - [ ] use-interval
-- [ ] use-is-first-render
-- [x] ~~use-isomorphic-effect~~ (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is actually isomorphic - it works in browser and server).
+- [x] ~~use-is-first-render~~ (Every component function in SolidJS runs only once! Every component is first render only 🙂)
+- [x] use-isomorphic-effect (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is actually isomorphic - it works in browser and server).
 - [ ] use-list-state
 - [x] use-local-storage
 - [ ] use-logger
