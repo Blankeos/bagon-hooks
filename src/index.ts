@@ -1,5 +1,6 @@
 export * from './use-click-outside/use-click-outside';
 export * from './use-clipboard/use-clipboard';
+export * from './use-color-scheme/use-color-scheme';
 export * from './use-counter/use-counter';
 export * from './use-debounced-callback/use-debounced-callback';
 export * from './use-debounced-signal/use-debounced-signal';

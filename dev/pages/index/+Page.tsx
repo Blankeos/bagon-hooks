@@ -3,6 +3,7 @@ import packageJSON from 'src/../package.json';
 // Hooks
 import { UseClickOutsideExample } from 'dev/components/examples/use-click-outside/use-click-outside.example';
 import { UseClipboardExample } from 'dev/components/examples/use-clipboard/use-clipboard.example';
+import { UseColorSchemeExample } from 'dev/components/examples/use-color-scheme/use-color-scheme.example';
 import { UseCounterExample } from 'dev/components/examples/use-counter/use-counter.example';
 import { UseDebouncedCallbackExample } from 'dev/components/examples/use-debounced-callback/use-debounced-callback.example';
 import { UseDebouncedSignalExample } from 'dev/components/examples/use-debounced-signal/use-debounced-signal.example';
@@ -168,6 +169,10 @@ export default function HomePage() {
       title: 'useDidUpdate',
       example: <UseDidUpdateExample />,
     },
+    {
+      title: 'useColorScheme',
+      example: <UseColorSchemeExample />,
+    },
   ];
 
   const filteredList = createMemo(() => {
@@ -314,17 +319,6 @@ export default function HomePage() {
       </div>
 
       <div class="h-20" />
-      {/* <p ref={ref}>hovered: {JSON.stringify(hovered())}</p>
-
-      <p>idle: {JSON.stringify(idle())}</p>
-
-      <p>networkStatus: {JSON.stringify(networkStatus())}</p>
-
-      <button onClick={() => toggle()}>Current Toggled: {JSON.stringify(currentOption())}</button> */}
-
-      {/* <textarea ref={elementSizeRef} class="resize text-green-500">
-      </textarea>
-        {width()} */}
     </div>
   );
 }
