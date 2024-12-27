@@ -1,6 +1,7 @@
 // ./create-storage.ts
 
-import { Accessor, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { createEffect, onCleanup, onMount } from 'solid-js';
+import { createStore, reconcile, StoreSetter, unwrap } from 'solid-js/store';
 import {
   _createStorageHandler,
   _deserializeJSON,
@@ -14,8 +15,9 @@ import {
 export { readLocalStorageValue, readValue };
 export type { StorageProperties, StorageType };
 
-export function createStorage<T>(type: StorageType, hookName: string) {
-  const eventName = type === 'localStorage' ? 'bagon-local-storage' : 'bagon-session-storage';
+export function createStorageStore<T extends Object>(type: StorageType, hookName: string) {
+  const eventName =
+    type === 'localStorage' ? 'bagon-local-storage-store' : 'bagon-session-storage-store';
   const { getItem, setItem, removeItem } = _createStorageHandler(type);
 
   return function useStorage({
@@ -46,23 +48,14 @@ export function createStorage<T>(type: StorageType, hookName: string) {
       return storageValue !== null ? deserialize(storageValue) : (defaultValue as T);
     };
 
-    const [value, setValue] = createSignal<T>(readStorageValue(getInitialValueInEffect));
+    const [value, setValue] = createStore<T>(readStorageValue(getInitialValueInEffect));
 
-    const setStorageValue = (val: T | ((prevState: T) => T)) => {
-      if (val instanceof Function) {
-        setValue(current => {
-          const result = val(current);
-          setItem(key, serialize(result));
-          window.dispatchEvent(
-            new CustomEvent(eventName, { detail: { key, value: val(current) } }),
-          );
-          return result;
-        });
-      } else {
-        setItem(key, serialize(val));
-        window.dispatchEvent(new CustomEvent(eventName, { detail: { key, value: val } }));
-        setValue(val as any);
-      }
+    const setStorageValue = (setter: StoreSetter<T>) => {
+      setValue(setter);
+
+      const val = unwrap(value);
+      setItem(key, serialize(val));
+      window.dispatchEvent(new CustomEvent(eventName, { detail: { key, value: val } }));
     };
 
     const removeStorageValue = () => {
@@ -75,7 +68,7 @@ export function createStorage<T>(type: StorageType, hookName: string) {
       // 1. Storage Event
       const storageListener = (event: StorageEvent) => {
         if (event.storageArea === window[type] && event.key === key) {
-          setValue(deserialize(event.newValue ?? undefined) as any);
+          setValue(reconcile(deserialize(event.newValue ?? undefined) as any));
         }
       };
       window.addEventListener('storage', storageListener);
@@ -83,7 +76,7 @@ export function createStorage<T>(type: StorageType, hookName: string) {
       // 2. Custom Event (So the stored value is reactive)
       const customEventListener = (event: any) => {
         if (event.detail.key === key) {
-          setValue(event.detail.value);
+          setValue(reconcile(event.detail.value));
         }
       };
       window.addEventListener(eventName as any, storageListener);
@@ -95,8 +88,8 @@ export function createStorage<T>(type: StorageType, hookName: string) {
     });
 
     createEffect(() => {
-      if (defaultValue !== undefined && value() === undefined) {
-        setStorageValue(defaultValue);
+      if (defaultValue !== undefined && value === undefined) {
+        setStorageValue(reconcile(defaultValue));
       }
     });
 
@@ -105,22 +98,22 @@ export function createStorage<T>(type: StorageType, hookName: string) {
       val !== undefined && setStorageValue(val);
     });
 
-    return [
-      value() === undefined ? () => defaultValue : value,
-      setStorageValue,
-      removeStorageValue,
-    ] as [Accessor<T>, (val: T | ((prevState: T) => T)) => void, () => void];
+    return [value === undefined ? defaultValue : value, setStorageValue, removeStorageValue] as [
+      T,
+      typeof setStorageValue,
+      typeof removeStorageValue,
+    ];
   };
 }
 
 // ./use-local-storage.ts
 
 /**
- * A hook that allows using value from the localStorage as a signal.
- * The hook works the same way as createSignal, but also writes the value to the localStorage.
+ * An improved hook similar to `useLocalStorage` that allows using value from the localStorage as a signal.
+ * The hook works the same way as createStore, but also writes the value to the localStorage.
  *
  * It's also reactive across different pages.
  */
-export function useLocalStorage<T>(props: StorageProperties<T>) {
-  return createStorage<T>('localStorage', 'use-local-storage')(props);
+export function useLocalStorageStore<T extends Object>(props: StorageProperties<T>) {
+  return createStorageStore<T>('localStorage', 'use-local-storage')(props);
 }

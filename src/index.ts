@@ -20,6 +20,7 @@ export * from './use-in-viewport/use-in-viewport';
 export * from './use-input-state/use-input-state';
 export * from './use-intersection/use-intersection';
 export * from './use-local-storage/use-local-storage';
+export * from './use-local-storage/use-local-storage-store';
 export * from './use-media-query/use-media-query';
 export * from './use-mounted/use-mounted';
 export * from './use-mouse/use-mouse';

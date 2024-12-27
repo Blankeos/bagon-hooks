@@ -88,6 +88,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] ~~use-isomorphic-effect~~ (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is technically already isomorphic because it doesn't error on SSR. Also, it also only runs on client-side.)
 - [ ] use-list-state
 - [x] use-local-storage
+- [x] use-local-storage-store (✨ Improved, more similar to 'createStore' API).
 - [ ] use-logger
 - [ ] use-map
 - [x] use-media-query
