@@ -1,0 +1,53 @@
+```tsx
+const [value, setValue] = useLocalStorageStore<{ id: string; name: string }[]>({
+  key: 'todos-store',
+  defaultValue: [],
+});
+
+return (
+  <div>
+    <For each={value}>
+      {(todo, index) => {
+        return (
+          <div>
+            <input
+              value={todo.name}
+              onInput={event => {
+                setValue(
+                  produce(_value => {
+                    if (!_value[index()]) return;
+                    _value[index()]!.name = event.target.value ?? '';
+                  }),
+                );
+              }}
+            />
+            <button
+              onClick={() => {
+                setValue(
+                  produce(_value => {
+                    _value.splice(index(), 1);
+                  }),
+                );
+              }}
+            >
+              <IconClose width={18} height={18} />
+            </button>
+          </div>
+        );
+      }}
+    </For>
+
+    <button
+      onClick={() => {
+        setValue(
+          produce(_value => {
+            _value.push({ id: Math.random().toString(), name: 'New Todo' });
+          }),
+        );
+      }}
+    >
+      New Todo
+    </button>
+  </div>
+);
+```

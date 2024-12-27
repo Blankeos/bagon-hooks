@@ -24,6 +24,7 @@ import { UseInViewportExample } from 'dev/components/examples/use-in-viewport/us
 import { UseInputStateExample } from 'dev/components/examples/use-input-state/use-input-state.example';
 import { UseIntersectionExample } from 'dev/components/examples/use-intersection/use-intersection.example';
 import { UseKeyboardExample } from 'dev/components/examples/use-keyboard/use-keyboard.example';
+import { UseLocalStorageStoreExample } from 'dev/components/examples/use-local-storage-store/use-local-storage-store.example';
 import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
 import { UseMediaQueryExample } from 'dev/components/examples/use-media-query/use-media-query.example';
 import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mounted.example';
@@ -177,6 +178,10 @@ export default function HomePage() {
     {
       title: 'useDocumentTitle',
       example: <UseDocumentTitleExample />,
+    },
+    {
+      title: 'useLocalStorageStore',
+      example: <UseLocalStorageStoreExample />,
     },
   ];
 
