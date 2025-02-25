@@ -23,10 +23,12 @@ export function UseDocumentTitleExample() {
       code={<Code components={components} />}
     >
       <div class="flex h-full w-full flex-col items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
-        <div class="flex items-center gap-x-2">
-          <Kbd activated={title() === 'Home'}>Home</Kbd>
-          <Kbd activated={title() === 'About'}>About</Kbd>
-          <Kbd activated={title() === 'Awesome'}>Awesome</Kbd>
+        <div class="flex flex-col items-center gap-y-7">
+          <div class="flex items-center gap-x-2">
+            <Kbd activated={title() === 'Home'}>Home</Kbd>
+            <Kbd activated={title() === 'About'}>About</Kbd>
+            <Kbd activated={title() === 'Awesome'}>Awesome</Kbd>
+          </div>
           <button onClick={_cycle}>Toggle</button>
         </div>
       </div>

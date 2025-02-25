@@ -9,6 +9,7 @@ import { UseDebouncedCallbackExample } from 'dev/components/examples/use-debounc
 import { UseDebouncedSignalExample } from 'dev/components/examples/use-debounced-signal/use-debounced-signal.example';
 import { UseDebouncedValueExample } from 'dev/components/examples/use-debounced-value/use-debounced-value.example';
 import { UseDidUpdateExample } from 'dev/components/examples/use-did-update/use-did-update.example';
+import { UseDisclosureExample } from 'dev/components/examples/use-disclosure/use-disclosure.example';
 import { UseDocumentTitleExample } from 'dev/components/examples/use-document-title/use-document-title.example';
 import { UseDocumentVisibilityExample } from 'dev/components/examples/use-document-visibility/use-document-visibility.example';
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
@@ -108,6 +109,10 @@ export default function HomePage() {
       example: <UseLocalStorageExample />,
     },
     {
+      title: 'useLocalStorageStore',
+      example: <UseLocalStorageStoreExample />,
+    },
+    {
       title: 'useEyeDropper',
       example: <UseEyeDropperExample />,
     },
@@ -180,8 +185,8 @@ export default function HomePage() {
       example: <UseDocumentTitleExample />,
     },
     {
-      title: 'useLocalStorageStore',
-      example: <UseLocalStorageStoreExample />,
+      title: 'useDisclosure',
+      example: <UseDisclosureExample />,
     },
   ];
 
@@ -198,7 +203,8 @@ export default function HomePage() {
     setPackageManager(current => {
       if (current === 'npm') return 'bun';
       if (current === 'bun') return 'pnpm';
-      if (current === 'pnpm') return 'yarn';
+      if (current === 'pnpm') return 'deno';
+      if (current === 'deno') return 'yarn';
       if (current === 'yarn') return 'npm';
       return 'npm';
     });
@@ -279,7 +285,7 @@ export default function HomePage() {
             >
               {pkgManager()}
             </button>{' '}
-            install bagon-hooks
+            install {pkgManager() === 'deno' ? 'npm:' : ''}bagon-hooks
           </span>
           <button
             class="transition active:scale-90"

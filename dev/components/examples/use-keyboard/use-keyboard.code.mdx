@@ -1,4 +1,7 @@
 ```tsx
+import { createStore } from "solid-js/store";
+import { useKeyboard } from "bagon-hooks";
+
 function KeyboardExample() {
   const [store, setStore] = createStore({ a: false, b: false, c: false, d: false });
 

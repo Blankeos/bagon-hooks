@@ -1,10 +1,11 @@
 ```tsx
-const ref = useClickOutside(() => {
-    console.log('Clicked outside!');
-});
+import { useClickOutside } from 'bagon-hooks';
 
-return (
-    <div ref={ref}>
-    </div>;
-)
+export function App() {
+  const ref = useClickOutside(() => {
+    console.log('Clicked outside!');
+  });
+
+  return <div ref={ref}>Click outside of me.</div>;
+}
 ```

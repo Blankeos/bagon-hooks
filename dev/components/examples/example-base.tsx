@@ -15,14 +15,16 @@ export function ExampleBase(props: FlowProps<ExampleBaseProps>) {
     <div class="flex h-full max-h-[500px] w-full flex-col items-start gap-y-3 overflow-hidden rounded-lg bg-white p-5">
       <div class="flex w-full items-center justify-between">
         <h2 class="text-xl font-bold">{props.title}</h2>
-        <button
-          class={`flex h-8 w-8 items-center justify-center rounded-md border transition active:scale-95 ${viewing() === 'code' ? 'bg-background text-white' : ''}`}
-          onClick={() => {
-            setViewing(viewing() === 'code' ? 'result' : 'code');
-          }}
-        >
-          <IconCode class="h-4 w-4" />
-        </button>
+        <div class="flex items-center gap-x-2">
+          <button
+            class={`flex h-8 w-8 items-center justify-center rounded-md border transition active:scale-95 ${viewing() === 'code' ? 'bg-background text-white' : ''}`}
+            onClick={() => {
+              setViewing(viewing() === 'code' ? 'result' : 'code');
+            }}
+          >
+            <IconCode class="h-4 w-4" />
+          </button>
+        </div>
       </div>
 
       <div class="text-sm text-opacity-70">{props.description}</div>

@@ -6,14 +6,11 @@ import { IconSolidJS, IconX } from 'dev/icons';
 import { createSignal } from 'solid-js';
 import { useMDXComponents } from 'solid-jsx';
 
+/** Improved Bagon implementation - You can choose to set it when you want. */
 export function UseFaviconExample() {
-  const [currentIcon, setCurrentIcon] = createSignal<'solid' | 'x' | undefined>(); // Not relevant, just for visuals
+  const [currentIcon, setCurrentIcon] = createSignal<'solid' | 'x' | undefined>(); // Not important (Just for visuals)
 
-  // OLD Implementation:
-  // const [favicon, setFavicon] = createSignal('https://docs.solidjs.com/favicon.svg');
-
-  // IMPROVED Implementation:
-  const [_favicon, setFavicon] = useFavicon();
+  const [_favicon, setFavicon] = useFavicon(); // The secret is: just don't pass an accessor in the hook.
 
   const setXFavicon = () => {
     setCurrentIcon('x');
@@ -62,5 +59,21 @@ export function UseFaviconExample() {
         </button>
       </div>
     </ExampleBase>
+  );
+}
+
+/** Based on Mantine's implementation - it always runs onMount. */
+export function UseFaviconExampleMantine() {
+  const [favicon, setFavicon] = createSignal('https://docs.solidjs.com/favicon.svg');
+  const setXFavicon = () => setFavicon('https://x.com/favicon.ico');
+  const setSolidFavicon = () => setFavicon('https://docs.solidjs.com/favicon.svg');
+
+  useFavicon(favicon); // Will always run at the start.
+
+  return (
+    <>
+      <button onClick={setXFavicon}>Use X Favicon</button>
+      <button onClick={setSolidFavicon}>Use SolidJS Favicon</button>
+    </>
   );
 }

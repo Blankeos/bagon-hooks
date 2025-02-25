@@ -21,9 +21,9 @@ export function UseLocalStorageStoreExample() {
       title="useLocalStorageStore"
       description={
         <>
-          (Improvement) A hook that allows using value from the localStorage as a store. The hook
-          works exactly the same way as createStore, but also writes the value to the localStorage.
-          It even works between tabs!
+          (Improvement) A hook that allows using value from the localStorage as a store for complex
+          and efficient state management. The hook works exactly the same way as createStore, but
+          also writes the value to the localStorage. It even works between tabs!
           <br />
           <br />
           To test, try changing the value with two tabs open.

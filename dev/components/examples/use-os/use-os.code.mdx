@@ -1,9 +1,9 @@
 ```tsx
-const os = useOs();
+import { useOs } from 'bagon-hooks';
 
-return (
-    <div>
-        Current OS: {os()}
-    </div>;
-)
+export function App() {
+  const os = useOs();
+
+  return <div>Current OS: {os()}</div>;
+}
 ```

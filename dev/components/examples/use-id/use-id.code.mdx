@@ -1,5 +1,12 @@
 ```tsx
-const id = useId();
+import { useId } from 'bagon-hooks';
 
-return <div>Random ID: {id()}</div>;
+export function UseIdExample() {
+  const id = useId();
+  return (
+    <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
+      Random ID: <span class="rounded-md bg-neutral-300 px-1.5 py-0.5">{id()}</span>
+    </div>
+  );
+}
 ```

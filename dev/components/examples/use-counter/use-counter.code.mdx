@@ -1,21 +1,16 @@
 ```tsx
-const [count, { decrement, increment, reset, set }] = useCounter(5, { min: 1, max: 10 });
+import { useCounter } from 'bagon-hooks';
 
-return (
+export function App() {
+  const [count, { decrement, increment, reset, set }] = useCounter(5, { min: 1, max: 10 });
+  return (
     <div>
-        {count()}
-        <button onClick={decrement}>-</button>
-        <button onClick={increment}>+</button>
-
-        <button onClick={reset}>
-            Reset
-        </button>
-
-        <button
-            onClick={() => set(Math.floor(Math.random() * 10))}
-        >
-            Set (To Random)
-        </button>
-    </div>;
-)
+      {count()}
+      <button onClick={decrement}>-</button>
+      <button onClick={increment}>+</button>
+      <button onClick={reset}>Reset</button>
+      <button onClick={() => set(Math.floor(Math.random() * 10))}>Set (To Random)</button>
+    </div>
+  );
+}
 ```
