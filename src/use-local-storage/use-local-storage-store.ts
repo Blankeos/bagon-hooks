@@ -1,7 +1,7 @@
 // ./create-storage.ts
 
 import { createEffect, onCleanup, onMount } from 'solid-js';
-import { createStore, reconcile, StoreSetter, unwrap } from 'solid-js/store';
+import { createStore, reconcile, SetStoreFunction, unwrap } from 'solid-js/store';
 import {
   _createStorageHandler,
   _deserializeJSON,
@@ -50,8 +50,8 @@ export function createStorageStore<T extends Object>(type: StorageType, hookName
 
     const [value, setValue] = createStore<T>(readStorageValue(getInitialValueInEffect));
 
-    const setStorageValue = (setter: StoreSetter<T>) => {
-      setValue(setter);
+    const setStorageValue: SetStoreFunction<T> = (...args: any[]) => {
+      setValue(...(args as [any]));
 
       const val = unwrap(value);
       setItem(key, serialize(val));
