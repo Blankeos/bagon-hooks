@@ -13,13 +13,14 @@
 ### Patch Changes
 
 - docs: Finished many examples for each hooks + code examples.
-- feat: Added use-resize-observer.
+- feat: Added use-resize-observer & use-element-size.
 - feat: Added use-favicon.
 - feat: Added use-network.
 - feat: Added use-mounted.
 - feat: Added use-local-storage.
 - fix: get-os to work in onMount (for SSR).
 - feat: Added use-toggle.
+- feat: Added use-idle.
 
 ## 0.0.1
 

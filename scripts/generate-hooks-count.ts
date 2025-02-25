@@ -19,7 +19,10 @@ const countTsFiles = (dir: string): number => {
   return count;
 };
 
-const srcDir = path.join(__dirname, 'src');
+const srcDir = path.resolve('src');
 const count = countTsFiles(srcDir);
 
-fs.writeFileSync('dev/constants/hooks-count.ts', `export const HOOKS_COUNT = ${count};`);
+fs.writeFileSync(
+  path.resolve('dev/constants/hooks-count.ts'),
+  `export const HOOKS_COUNT = ${count};`,
+);

@@ -37,6 +37,7 @@ import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
 import { UseResizeObserverExample } from 'dev/components/examples/use-resize-observer/use-resize-observer.example';
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
 import { Kbd } from 'dev/components/kbd';
+import { HOOKS_COUNT } from 'dev/constants/hooks-count';
 import { IconCheck, IconCopy, IconGithub, IconLogo } from 'dev/icons';
 import { createMemo, createSignal, For, Show } from 'solid-js';
 import { createStore } from 'solid-js/store';
@@ -270,9 +271,9 @@ export default function HomePage() {
           </span>
         </div>
 
-        <p class="text-center text-neutral-50">
-          A collection of zero-dependency hooks for SolidJS forked directly from Mantine Hooks, with
-          some improvements.
+        <p class="mx-auto max-w-lg text-center text-neutral-50">
+          A collection of <span class="font-semibold">{HOOKS_COUNT}+</span> zero-dependency hooks
+          for SolidJS forked directly from Mantine Hooks, with some improvements.
         </p>
 
         <div class="class mx-auto flex items-center gap-x-4 rounded-md border border-neutral-950 bg-neutral-800 p-4 text-muted">

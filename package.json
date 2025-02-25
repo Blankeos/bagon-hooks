@@ -38,6 +38,7 @@
   "typesVersions": {},
   "scripts": {
     "dev": "vite serve dev",
+    "gen:docs": "bun run scripts/generate-code-examples.ts && bun run scripts/generate-hooks-count.ts",
     "build": "tsup",
     "build:site": "vite build dev",
     "preview:site": "vite preview dev",
