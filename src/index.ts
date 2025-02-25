@@ -6,6 +6,7 @@ export * from './use-debounced-callback/use-debounced-callback';
 export * from './use-debounced-signal/use-debounced-signal';
 export * from './use-debounced-value/use-debounced-value';
 export * from './use-did-update/use-did-update';
+export * from './use-disclosure/use-disclosure';
 export * from './use-document-title/use-document-title';
 export * from './use-document-visibility/use-document-visibility';
 export * from './use-eye-dropper/use-eye-dropper';
