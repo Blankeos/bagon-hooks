@@ -1,10 +1,10 @@
-import { defineConfig } from 'vitest/config'
-import solidPlugin from 'vite-plugin-solid'
+import solidPlugin from 'vite-plugin-solid';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig(({ mode }) => {
   // to test in server environment, run with "--mode ssr" or "--mode test:ssr" flag
   // loads only server.test.ts file
-  const testSSR = mode === 'test:ssr' || mode === 'ssr'
+  const testSSR = mode === 'test:ssr' || mode === 'ssr';
 
   return {
     plugins: [
@@ -38,5 +38,5 @@ export default defineConfig(({ mode }) => {
     resolve: {
       conditions: testSSR ? ['node'] : ['browser', 'development'],
     },
-  }
-})
+  };
+});

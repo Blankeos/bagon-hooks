@@ -1,11 +1,23 @@
 ```tsx
-const { ref, width, height } = useElementSize();
+import { useElementSize, useIdle, useNetwork, useOs, useResizeObserver } from 'bagon-hooks';
 
-return (
-  <div>
-    <textarea ref={ref}></textarea>
-    Width: {width().toFixed(2)}
-    Height: {height().toFixed(2)}
-  </div>
-);
+export function UseElementSizeExample() {
+  const { ref, height, width } = useElementSize();
+
+  return (
+    <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-start">
+      <div class="flex flex-col items-center">
+        <span>Width: {width().toFixed(2)}</span>
+        <span>Height: {height().toFixed(2)}</span>
+      </div>
+
+      <div class="relative grid flex-1 place-items-center overflow-hidden">
+        <textarea ref={ref} class="h-20 w-20 resize rounded-md border"></textarea>
+        <div class="pointer-events-none absolute inset-0 grid place-items-center truncate text-center text-xs text-neutral-400">
+          Resize Me
+        </div>
+      </div>
+    </div>
+  );
+}
 ```

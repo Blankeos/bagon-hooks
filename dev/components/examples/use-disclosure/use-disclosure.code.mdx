@@ -1,0 +1,29 @@
+```tsx
+import { useDisclosure } from 'bagon-hooks';
+
+import { Show } from 'solid-js';
+
+export function UseDisclosureExample() {
+  const [opened, handlers] = useDisclosure(false);
+
+  return (
+    <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
+      <button onClick={handlers.open} class="rounded bg-blue-500 px-4 py-2 text-white">
+        Open Dialog
+      </button>
+
+      <Show when={opened()}>
+        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div class="rounded-lg bg-white p-6 shadow-lg">
+            <h2 class="mb-4 text-lg font-bold">Dialog Title</h2>
+            <p class="mb-4">This is an example dialog using useDisclosure</p>
+            <button onClick={handlers.close} class="rounded bg-gray-500 px-4 py-2 text-white">
+              Close
+            </button>
+          </div>
+        </div>
+      </Show>
+    </div>
+  );
+}
+```

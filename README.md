@@ -33,7 +33,12 @@ Use it:
 import { useHotkeys } from 'bagon-hooks';
 ```
 
-We want to achieve as 1:1 as possible with Mantine's original hooks. So you can always refer to their [original docs](https://v3.mantine.dev/hooks/use-hotkeys/).
+We want to achieve as 1:1 as possible with Mantine's original hooks. So you can always refer to their [original docs](https://v3.mantine.dev/hooks/use-hotkeys/). There are a few improvements and renaming because SolidJS has its own conventions. But just take note:
+
+1. We removed Solid's convention of `use` vs `create` as it's too confusing for familiarity with Mantine. So every hook in Bagon is prefixed with `use`.
+2. The only renaming we did was `state` -> `signal`.
+3. Refer to [Mantine](https://mantine.dev/hooks/use-click-outside/)'s original docs for deeper examples and usecases.
+4. Refer to [Bagon Hooks](https://bagon-hooks.pages.dev/)'s docs for actual SolidJS examples.
 
 ## Features
 
@@ -48,51 +53,52 @@ We want to achieve as 1:1 as possible with Mantine's original hooks. So you can 
 
 Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/packages/%40mantine/hooks/src) library.
 
-- [ ] use-callback-ref
+- [x] ~~use-callback-ref~~ (Not needed, only used internally by mantine for preventing re-renders on a function)
 - [x] use-click-outside
-- [ ] use-clipboard
-- [ ] use-color-scheme
+- [x] use-clipboard
+- [x] use-color-scheme
 - [x] use-counter
-- [ ] use-debounced-callback
-- [ ] use-debounced-state
-- [ ] use-debounced-value
-- [ ] use-did-update
+- [x] use-debounced-callback
+- [x] ~~use-debounced-state~~ use-debounced-signal
+- [x] use-debounced-value
+- [x] use-did-update
 - [ ] use-disclosure
-- [ ] use-document-title
-- [ ] use-document-visibility
+- [x] use-document-title
+- [x] use-document-visibility
 - [ ] use-event-listener
-- [x] use-eye-dropper (improved, state management is inside the hook)
-- [x] use-favicon (improved, more flexible)
+- [x] use-eye-dropper (✨ improved, state management is inside the hook)
+- [x] use-favicon (✨ improved, more flexible, better control)
 - [ ] use-fetch
 - [ ] use-focus-return
 - [ ] use-focus-trap
 - [ ] use-focus-within
 - [ ] use-force-update
-- [ ] use-fullscreen
-- [ ] use-hash
+- [x] use-fullscreen
+- [x] use-hash
 - [ ] use-headroom
 - [x] use-hotkeys
 - [x] use-hover
-- [x] ~~use-id~~ (Solid has [`createUniqueId`](https://docs.solidjs.com/reference/component-apis/create-unique-id))
-- [x] use-idle (Added, but note that there is [`createIdleTimer`](https://primitives.solidjs.community/package/idle/) solid-primitives as well)
-- [ ] use-in-viewport
-- [ ] use-input-state
-- [ ] use-intersection
+- [x] use-id (Added, but note that there is [`createUniqueId`](https://docs.solidjs.com/reference/component-apis/create-unique-id) in Solid)
+- [x] use-idle (Added, but note that there is [`createIdleTimer`](https://primitives.solidjs.community/package/idle/) the official solid-primitives as well)
+- [x] use-in-viewport
+- [x] use-input-state
+- [x] use-intersection (Added, but note that there is [`createIntersectionObserver`](https://primitives.solidjs.community/package/intersection-observer/) in the official solid-primitives as well)
 - [ ] use-interval
-- [ ] use-is-first-render
-- [x] ~~use-isomorphic-effect~~ (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is actually isomorphic - it works in browser and server).
+- [x] ~~use-is-first-render~~ (Every component function in SolidJS runs only once! Every component is first render only 🙂)
+- [x] ~~use-isomorphic-effect~~ (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is technically already isomorphic because it doesn't error on SSR. Also, it also only runs on client-side.)
 - [ ] use-list-state
 - [x] use-local-storage
+- [x] use-local-storage-store (✨ Improved, more similar to 'createStore' API).
 - [ ] use-logger
 - [ ] use-map
-- [ ] use-media-query
+- [x] use-media-query
 - [ ] use-merged-ref
 - [x] use-mounted
-- [ ] use-mouse
-- [ ] use-move
+- [x] use-mouse
+- [x] use-move
 - [ ] use-mutation-observer
 - [x] use-network
-- [ ] use-orientation
+- [x] use-orientation
 - [x] use-os
 - [ ] use-page-leave
 - [ ] use-pagination
@@ -119,10 +125,14 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-window-scroll
 - [ ] utils
 
+### New in Bagon Hooks
+
+- [x] use-keyboard
+
 ### Others
 
-- [ ] Docs Website (Powered by mdx + tailwind prose)
-- [ ] Examples
+- [x] Docs Website (Powered by mdx + tailwind prose)
+- [x] Examples
 - [ ] Tests?
 
 ## Contributing

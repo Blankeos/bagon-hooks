@@ -1,0 +1,1 @@
+export const HOOKS_COUNT = 36;
