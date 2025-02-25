@@ -45,6 +45,8 @@
     "test:client": "vitest",
     "test:ssr": "bun run test:client --mode ssr",
     "prepublishOnly": "bun run build",
+    "ci": "bun run lint && bun run build",
+    "publish-ci": "bun run lint && bun run build && changeset publish",
     "format": "prettier --ignore-path .gitignore -w \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"dev/**/*.{js,ts,json,css,tsx,jsx}\"",
     "lint": "concurrently bun:lint:*",
     "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}",
@@ -56,11 +58,12 @@
     "solid-js": "^1.6.0"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.11",
     "@mdx-js/rollup": "^3.0.1",
     "@types/node": "^22.7.6",
     "@typescript-eslint/eslint-plugin": "^8.10.0",
     "@typescript-eslint/parser": "^8.10.0",
-    "auto-changelog": "^2.5.0",
     "autoprefixer": "^10.4.20",
     "concurrently": "^9.0.1",
     "esbuild": "^0.24.0",
