@@ -331,7 +331,9 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div class="max-w-8xl mx-auto grid w-full grid-cols-1 gap-3 px-5 md:grid-cols-2 xl:grid-cols-3">
+      <div
+        class={`${'max-w-8xl mx-auto flex w-full flex-col gap-3 px-3'} grid-cols-1 md:grid md:grid-cols-2 xl:grid-cols-3`}
+      >
         <For each={filteredList()}>{_li => _li.example}</For>
       </div>
 
