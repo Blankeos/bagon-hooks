@@ -1,13 +1,30 @@
 ```tsx
-const [signal, setSignal] = createSignal(0);
+import { useDidUpdate } from 'bagon-hooks';
 
-useDidUpdate(() => {
+import { createSignal } from 'solid-js';
+
+export function UseDidUpdateExample() {
+  const [signal, setSignal] = createSignal(0);
+
+  useDidUpdate(() => {
     console.log('Did Update', signal());
-}, signal);
+  }, signal);
 
-return (
-    <div>
-        <button onClick={setSignal(prev => prev + 1)}>Simulate Update {signal()}</button>
-    </div>;
-)
+  return (
+    <div class="flex h-full w-full flex-col items-center justify-center gap-x-1 gap-y-2 rounded-md border p-3 py-10 text-center text-sm">
+      <p class="max-w-xs text-center text-xs">
+        This logs "Did Update {signal() === 0 ? 'X' : signal()}" to the console. Notice that it
+        doesn't log "Did Update 0" since it happens on mount.
+      </p>
+      <button
+        class="rounded-md bg-primary p-2 text-white transition active:scale-95"
+        onClick={() => {
+          setSignal(signal() + 1);
+        }}
+      >
+        Simulate an Update {signal()}
+      </button>
+    </div>
+  );
+}
 ```

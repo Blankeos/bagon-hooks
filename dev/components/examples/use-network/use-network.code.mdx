@@ -1,9 +1,17 @@
 ```tsx
-const networkStatus = useNetwork();
+import { useIdle, useNetwork, useOs } from 'bagon-hooks';
 
-return (
-    <div>
+export function UseNetworkExample() {
+  const networkStatus = useNetwork();
+
+  return (
+    <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-start">
+      <pre
+        class={`rounded-md border p-3 px-5 ${networkStatus().online ? 'bg-neutral-100' : 'border-red-500 bg-red-200'}`}
+      >
         {JSON.stringify(networkStatus(), null, 2)}
-    </div>;
-)
+      </pre>
+    </div>
+  );
+}
 ```

@@ -1,9 +1,15 @@
 ```tsx
-const orientation = useOrientation();
+import { useOrientation } from 'bagon-hooks';
 
-return (
-    <div>
-        Orientation: {JSON.stringify(orientation())}
-    </div>;
-)
+export function UseOrientationExample() {
+  const orientation = useOrientation();
+
+  return (
+    <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
+      <pre class={`rounded-md border bg-neutral-100 p-3 px-5 text-start text-xs`}>
+        {JSON.stringify(orientation(), null, 2)}
+      </pre>
+    </div>
+  );
+}
 ```

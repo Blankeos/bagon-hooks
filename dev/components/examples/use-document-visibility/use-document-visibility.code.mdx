@@ -1,9 +1,16 @@
 ```tsx
-const visible = useDocumentVisibility();
+import { useDocumentVisibility } from 'bagon-hooks';
 
-return (
-  <div>
-    <div>Tab is currently {visible()}</div>
-  </div>
-);
+export function UseDocumentVisibilityExample() {
+  const visible = useDocumentVisibility();
+
+  return (
+    <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
+      <div class="flex items-center gap-x-1">
+        <div class="h-2 w-2 rounded-full" />
+        Tab is currently {visible()}
+      </div>
+    </div>
+  );
+}
 ```

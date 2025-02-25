@@ -1,8 +1,22 @@
 ```tsx
-const { ref, hovered } = useHover();
+import { useClickOutside, useHover } from 'bagon-hooks';
 
-return (
-    <div ref={ref}>
-    </div>;
-)
+import { createSignal, Show } from 'solid-js';
+
+export function UseHoverExample() {
+  const { ref, hovered } = useHover();
+
+  return (
+    <div class="flex h-full w-full flex-1 items-center justify-center rounded-md border p-3 py-10">
+      <div
+        class={`cursor-pointer select-none rounded-full border bg-neutral-50 p-2 text-xs transition ${hovered() ? 'scale-95' : ''}`}
+        ref={ref}
+      >
+        <Show when={hovered()} fallback={'No detections'}>
+          You hovered me!
+        </Show>
+      </div>
+    </div>
+  );
+}
 ```

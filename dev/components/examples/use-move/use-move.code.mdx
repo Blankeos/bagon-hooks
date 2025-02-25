@@ -1,31 +1,45 @@
 ```tsx
-const [value, setValue] = createSignal({ x: 0.5, y: 0.5 });
-const { ref, active } = useMove(({ x, y }) => {
-  setValue({ x, y });
-}, {});
+import { useMove } from 'bagon-hooks';
 
-return (
-  <div>
-    <div
-      ref={ref}
-      style={{
-        position: 'relative',
-        width: '400px',
-        height: '120px',
-        backgrund: '#3b82f650',
-      }}
-    >
+import { createSignal } from 'solid-js';
+
+export function UseMoveExample() {
+  const [value, setValue] = createSignal({ x: 0.5, y: 0.5 });
+  const { ref, active } = useMove(({ x, y }) => {
+    setValue({ x, y });
+  }, {});
+
+  return (
+    <div class="flex h-full w-full flex-col items-center justify-center gap-x-1 gap-y-3 rounded-md border p-3 py-10 text-center">
       <div
+        ref={ref}
+        class="h-40 w-full rounded bg-blue-400/50"
         style={{
-          position: 'absolute',
-          left: `calc(${value().x * 100}% - ${8}px)`,
-          top: `calc(${value().y * 100}% - ${8}px)`,
-          width: '16px',
-          height: '16px',
-          'background-color': active() ? '#22c55e' : '#3b82f6',
+          position: 'relative',
         }}
-      />
+      >
+        <div
+          style={{
+            position: 'absolute',
+            left: `calc(${value().x * 100}% - ${8}px)`,
+            top: `calc(${value().y * 100}% - ${8}px)`,
+            width: '16px',
+            height: '16px',
+            'background-color': active() ? '#22c55e' : '#3b82f6',
+          }}
+        />
+      </div>
+
+      <div class="flex justify-center">
+        Values:{' '}
+        <code class="rounded-md bg-neutral-300 px-1.5 py-0.5">
+          {JSON.stringify({
+            x: value().x.toFixed(2),
+            y: value().y.toFixed(2),
+          })}
+        </code>
+      </div>
     </div>
-  </div>
-);
+  );
+}
 ```

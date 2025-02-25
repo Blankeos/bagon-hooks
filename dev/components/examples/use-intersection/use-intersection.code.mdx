@@ -1,21 +1,28 @@
 ```tsx
-const { ref, entry } = useIntersection({
+import { useIntersection } from 'bagon-hooks';
+
+import { Show } from 'solid-js';
+
+export function UseIntersectionExample() {
+  const { ref, entry } = useIntersection({
     threshold: 0.75, // At least 75% of the element must "intersect" with the viewport
-});
+  });
 
-
-return (
-    <div style={{ height: '500px', "overflow-y": 'scroll', padding: '200px' }}>
+  return (
+    <div class="relative flex h-full min-h-32 w-full items-center justify-center gap-x-1 overflow-y-scroll rounded-md border p-3 text-center text-sm">
+      <div class="relative top-[calc(60%)] pb-5">
         <div
-            ref={ref}
-            style={{ background-color: entry().isIntersecting ? 'green' : 'red' }}
+          ref={ref}
+          class={`rounded-md p-5 text-white ${entry()?.isIntersecting ? 'bg-green-500' : 'bg-red-500'}`}
         >
-            <Show
-                when={entry()?.isIntersecting}
-                children={<>Fully Intersecting</>}
-                fallback={<>Obscured</>}
-            />
+          <Show
+            when={entry()?.isIntersecting}
+            children={<>Fully Intersecting</>}
+            fallback={<>Obscured</>}
+          />
         </div>
+      </div>
     </div>
-)
+  );
+}
 ```

@@ -1,13 +1,53 @@
 ```tsx
-import { useHotkeys } from 'bagon-hooks';
+import { useHotkeys, useOs } from 'bagon-hooks';
 
-export function App() {
+import { createSignal, FlowProps, VoidProps } from 'solid-js';
+
+export function UseHotkeysExample() {
+  const [activatedHotkey, setActivatedHotkey] = createSignal<-1 | 0 | 1 | 2>(-1);
+
+  let timeout: ReturnType<typeof window.setTimeout>;
+
+  function handleKeyPress(index: ReturnType<typeof activatedHotkey>) {
+    if (timeout) clearTimeout(timeout);
+
+    setActivatedHotkey(index);
+
+    timeout = setTimeout(() => {
+      setActivatedHotkey(-1);
+    }, 400);
+  }
+
   useHotkeys([
-    ['mod+a', () => alert('Ctrl+Shift+A pressed')],
-    ['mod+Enter', () => alert('Alt+Shift+A pressed')],
-    ['shift+g', () => alert('Alt+A pressed')],
+    ['mod+a', () => handleKeyPress(0)],
+    ['mod+Enter', () => handleKeyPress(1)],
+    ['shift+g', () => handleKeyPress(2)],
   ]);
 
-  return <></>;
+  const os = useOs();
+
+  return (
+    <div class="flex h-full w-full flex-wrap items-center justify-center gap-3 rounded-md border p-3 py-10 text-center">
+      <Key activated={activatedHotkey() === 0}>{os() === 'macos' ? 'cmd' : 'ctrl'} + a</Key>
+      <Key activated={activatedHotkey() === 1}>{os() === 'macos' ? 'cmd' : 'ctrl'} + Enter</Key>
+      <Key activated={activatedHotkey() === 2}>shift + g</Key>
+    </div>
+  );
+}
+
+function Key(props: FlowProps<{ activated: boolean }>) {
+  return (
+    <div class="relative text-xs">
+      <div class="absolute inset-0 rounded-md bg-neutral-200 transition"></div>
+      <div
+        class="relative transform rounded-md border bg-neutral-50 px-2 py-1.5 transition-transform"
+        style={{
+          transform: props.activated ? 'translateY(0px)' : 'translateY(-5px)',
+        }}
+      >
+        {props.children}
+      </div>
+    </div>
+  );
 }
 ```

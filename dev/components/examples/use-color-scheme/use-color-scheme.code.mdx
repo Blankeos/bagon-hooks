@@ -1,5 +1,21 @@
 ```tsx
-const colorScheme = useColorScheme();
+import { useColorScheme } from 'bagon-hooks';
 
-return <>Your system color scheme is: {colorScheme()}</>;
+export function UseColorSchemeExample() {
+  const colorScheme = useColorScheme();
+
+  return (
+    <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
+      <div
+        class="rounded-md border px-4 py-2 text-sm"
+        style={{
+          background: colorScheme() === 'dark' ? '#000' : '#fff',
+          color: colorScheme() ? '#fff' : '#000',
+        }}
+      >
+        Your system color scheme is: {colorScheme()}
+      </div>
+    </div>
+  );
+}
 ```

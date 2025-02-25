@@ -1,15 +1,20 @@
 ```tsx
-const { ref, position } = useMouse();
+import { useMouse } from 'bagon-hooks';
 
-return (
-    <div>
-        <div ref={ref} style={{ height: 150, width: 150 }}>
-            Track Here
-        </div>
+export function UseMouseExample() {
+  const { ref, position } = useMouse();
 
-        Mouse coordinates
-
-        <code>{JSON.stringify(position())}</code>
-    </div>;
-)
+  return (
+    <div class="flex h-full w-full flex-col items-center justify-center gap-4 gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
+      <div
+        ref={ref}
+        class="flex h-40 w-40 items-center justify-center rounded border bg-neutral-100 text-sm"
+      >
+        Track Here
+      </div>
+      Mouse coordinates{' '}
+      <code class="rounded-md bg-neutral-300 px-1.5 py-0.5">{JSON.stringify(position())}</code>
+    </div>
+  );
+}
 ```

@@ -1,9 +1,13 @@
 ```tsx
 import { useOs } from 'bagon-hooks';
 
-export function App() {
+export function UseOsExample() {
   const os = useOs();
 
-  return <div>Current OS: {os()}</div>;
+  return (
+    <div class="flex h-full w-full items-center justify-center rounded-md border p-3 py-10 text-center">
+      Current OS: {os()}
+    </div>
+  );
 }
 ```
