@@ -62,7 +62,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] ~~use-debounced-state~~ use-debounced-signal
 - [x] use-debounced-value
 - [x] use-did-update
-- [ ] use-disclosure
+- [x] use-disclosure (✨ Improved, slightly better than mantine thanks to `set` for passing to stuff like `onOpenChange`)
 - [x] use-document-title
 - [x] use-document-visibility
 - [ ] use-event-listener
@@ -127,7 +127,8 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 
 ### New in Bagon Hooks
 
-- [x] use-keyboard
+- [x] use-keyboard (✨ Runs even on single keys as opposed useHotkeys that only runs on combinations, so more general usecases)
+- [x] use-disclosure-data (✨ Improved, an alternative to use-disclosure for data-driven disclosures. I use it)
 
 ### Others
 
