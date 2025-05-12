@@ -20,6 +20,7 @@ export * from './use-idle/use-idle';
 export * from './use-in-viewport/use-in-viewport';
 export * from './use-input-state/use-input-state';
 export * from './use-intersection/use-intersection';
+export * from './use-interval/use-interval';
 export * from './use-local-storage/use-local-storage';
 export * from './use-local-storage/use-local-storage-store';
 export * from './use-media-query/use-media-query';
@@ -30,6 +31,7 @@ export * from './use-network/use-network';
 export * from './use-orientation/use-orientation';
 export * from './use-os/use-os';
 export * from './use-resize-observer/use-resize-observer';
+export * from './use-timeout/use-timeout';
 export * from './use-toggle/use-toggle';
 
 export * from './utils/random-id';

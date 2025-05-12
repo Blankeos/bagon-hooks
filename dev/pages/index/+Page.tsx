@@ -9,6 +9,7 @@ import { UseDebouncedCallbackExample } from 'dev/components/examples/use-debounc
 import { UseDebouncedSignalExample } from 'dev/components/examples/use-debounced-signal/use-debounced-signal.example';
 import { UseDebouncedValueExample } from 'dev/components/examples/use-debounced-value/use-debounced-value.example';
 import { UseDidUpdateExample } from 'dev/components/examples/use-did-update/use-did-update.example';
+import { UseDisclosureDataExample } from 'dev/components/examples/use-disclosure-data/use-disclosure-data.example';
 import { UseDisclosureExample } from 'dev/components/examples/use-disclosure/use-disclosure.example';
 import { UseDocumentTitleExample } from 'dev/components/examples/use-document-title/use-document-title.example';
 import { UseDocumentVisibilityExample } from 'dev/components/examples/use-document-visibility/use-document-visibility.example';
@@ -24,6 +25,7 @@ import { UseIdleExample } from 'dev/components/examples/use-idle/use-idle.exampl
 import { UseInViewportExample } from 'dev/components/examples/use-in-viewport/use-in-viewport.example';
 import { UseInputStateExample } from 'dev/components/examples/use-input-state/use-input-state.example';
 import { UseIntersectionExample } from 'dev/components/examples/use-intersection/use-intersection.example';
+import { UseIntervalExample } from 'dev/components/examples/use-interval/use-interval.example';
 import { UseKeyboardExample } from 'dev/components/examples/use-keyboard/use-keyboard.example';
 import { UseLocalStorageStoreExample } from 'dev/components/examples/use-local-storage-store/use-local-storage-store.example';
 import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
@@ -35,6 +37,7 @@ import { UseNetworkExample } from 'dev/components/examples/use-network/use-netwo
 import { UseOrientationExample } from 'dev/components/examples/use-orientation/use-orientation.example';
 import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
 import { UseResizeObserverExample } from 'dev/components/examples/use-resize-observer/use-resize-observer.example';
+import { UseTimeoutExample } from 'dev/components/examples/use-timeout/use-timeout.example';
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
 import { Kbd } from 'dev/components/kbd';
 import { HOOKS_COUNT } from 'dev/constants/hooks-count';
@@ -188,6 +191,18 @@ export default function HomePage() {
     {
       title: 'useDisclosure',
       example: <UseDisclosureExample />,
+    },
+    {
+      title: 'useDisclosureData',
+      example: <UseDisclosureDataExample />,
+    },
+    {
+      title: 'useTimeout',
+      example: <UseTimeoutExample />,
+    },
+    {
+      title: 'useInterval',
+      example: <UseIntervalExample />,
     },
   ];
 

@@ -54,7 +54,7 @@ export function UseLocalStorageExample() {
 function Key(props: FlowProps<{ activated: boolean; onClick: () => void }>) {
   return (
     <button onClick={props.onClick} class="relative text-xs">
-      <div class="absolute inset-0 rounded-md bg-neutral-200 transition"></div>
+      <div class="absolute inset-0 rounded-md bg-neutral-200 transition" />
       <div
         class="relative transform rounded-md border bg-neutral-50 px-2 py-1.5 transition-transform"
         style={{

@@ -1,1 +1,1 @@
-export const HOOKS_COUNT = 36;
+export const HOOKS_COUNT = 38;
