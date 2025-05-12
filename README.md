@@ -83,7 +83,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-in-viewport
 - [x] use-input-state
 - [x] use-intersection (Added, but note that there is [`createIntersectionObserver`](https://primitives.solidjs.community/package/intersection-observer/) in the official solid-primitives as well)
-- [ ] use-interval
+- [x] use-interval
 - [x] ~~use-is-first-render~~ (Every component function in SolidJS runs only once! Every component is first render only 🙂)
 - [x] ~~use-isomorphic-effect~~ (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is technically already isomorphic because it doesn't error on SSR. Also, it also only runs on client-side.)
 - [ ] use-list-state
@@ -116,7 +116,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-throttled-callback
 - [ ] use-throttled-state
 - [ ] use-throttled-value
-- [ ] use-timeout
+- [x] use-timeout
 - [x] use-toggle
 - [ ] use-uncontrolled
 - [ ] use-validated-state
