@@ -1,5 +1,14 @@
 # bagon-hooks
 
+## 0.0.5
+
+### Patch Changes
+
+- a5fe747: feat: Added use-timeout.
+- a5fe747: feat: Added use-disclosure-data (an alternative to use-disclosure for data-driven disclosures).
+- a5fe747: feat: Improvements for use-disclosure (set so it can be used in onOpenChange).
+- a5fe747: Added use-interval.
+
 ## 0.0.4
 
 ### Patch Changes
