@@ -45,6 +45,7 @@ import { IconCheck, IconCopy, IconGithub, IconLogo } from 'dev/icons';
 import { createMemo, createSignal, For, Show } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { getHotkeyHandler, useHotkeys, useKeyboard, useLocalStorage } from 'src';
+import { UseUncontrolledExample } from 'dev/components/examples/use-uncontrolled/use-uncontrolled.example';
 
 export default function HomePage() {
   const [searchInput, setSearchInput] = createSignal('');
@@ -203,6 +204,10 @@ export default function HomePage() {
     {
       title: 'useInterval',
       example: <UseIntervalExample />,
+    },
+    {
+      title: 'useUncontrolled',
+      example: <UseUncontrolledExample />,
     },
   ];
 

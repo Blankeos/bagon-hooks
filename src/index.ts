@@ -33,6 +33,7 @@ export * from './use-os/use-os';
 export * from './use-resize-observer/use-resize-observer';
 export * from './use-timeout/use-timeout';
 export * from './use-toggle/use-toggle';
+export * from './use-uncontrolled/use-uncontrolled';
 
 export * from './utils/random-id';
 
