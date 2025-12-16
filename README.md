@@ -118,7 +118,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [ ] use-throttled-value
 - [x] use-timeout
 - [x] use-toggle
-- [ ] use-uncontrolled
+- [x] use-uncontrolled
 - [ ] use-validated-state
 - [ ] use-viewport-size
 - [ ] use-window-event
