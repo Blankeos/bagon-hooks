@@ -1,5 +1,11 @@
 # bagon-hooks
 
+## 0.0.6
+
+### Patch Changes
+
+- fae4bf5: feat: added use-uncontrolled.
+
 ## 0.0.5
 
 ### Patch Changes
