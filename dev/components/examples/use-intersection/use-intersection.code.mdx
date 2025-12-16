@@ -8,21 +8,23 @@ export function UseIntersectionExample() {
     threshold: 0.75, // At least 75% of the element must "intersect" with the viewport
   });
 
+
   return (
-    <div class="relative flex h-full min-h-32 w-full items-center justify-center gap-x-1 overflow-y-scroll rounded-md border p-3 text-center text-sm">
-      <div class="relative top-[calc(60%)] pb-5">
-        <div
-          ref={ref}
-          class={`rounded-md p-5 text-white ${entry()?.isIntersecting ? 'bg-green-500' : 'bg-red-500'}`}
-        >
-          <Show
-            when={entry()?.isIntersecting}
-            children={<>Fully Intersecting</>}
-            fallback={<>Obscured</>}
-          />
+      <div class="relative flex h-full min-h-32 w-full items-center justify-center gap-x-1 overflow-y-scroll rounded-md border p-3 text-center text-sm">
+        <div class="relative top-[calc(60%)] pb-5">
+          <div
+            ref={ref}
+            class={`rounded-md p-5 text-white ${entry()?.isIntersecting ? 'bg-green-500' : 'bg-red-500'}`}
+          >
+            <Show
+              when={entry()?.isIntersecting}
+              children={<>Fully Intersecting</>}
+              fallback={<>Obscured</>}
+            />
+          </div>
         </div>
       </div>
-    </div>
   );
 }
+
 ```

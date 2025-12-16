@@ -6,25 +6,27 @@ import { Show } from 'solid-js';
 export function UseInViewportExample() {
   const { ref, inViewport } = useInViewport();
 
-  return (
-    <div class="relative flex h-full min-h-32 w-full flex-col items-center justify-center gap-x-1 overflow-y-scroll rounded-md border p-3 text-center text-sm">
-      <div class="sticky left-0 right-0 top-0 text-center">
-        <Show
-          when={inViewport()}
-          fallback={<>Scroll to See Box</>}
-          children={<>Box is visible</>}
-        />
-      </div>
 
-      <div class="relative top-[calc(60%)] pb-5 pt-20">
-        <div
-          ref={ref}
-          class={`rounded-md p-5 text-white ${inViewport() ? 'bg-green-500' : 'bg-red-500'}`}
-        >
-          <Show when={inViewport()} children={<>Fully Intersecting</>} fallback={<>Obscured</>} />
+  return (
+      <div class="relative flex h-full min-h-32 w-full flex-col items-center justify-center gap-x-1 overflow-y-scroll rounded-md border p-3 text-center text-sm">
+        <div class="sticky left-0 right-0 top-0 text-center">
+          <Show
+            when={inViewport()}
+            fallback={<>Scroll to See Box</>}
+            children={<>Box is visible</>}
+          />
+        </div>
+
+        <div class="relative top-[calc(60%)] pb-5 pt-20">
+          <div
+            ref={ref}
+            class={`rounded-md p-5 text-white ${inViewport() ? 'bg-green-500' : 'bg-red-500'}`}
+          >
+            <Show when={inViewport()} children={<>Fully Intersecting</>} fallback={<>Obscured</>} />
+          </div>
         </div>
       </div>
-    </div>
   );
 }
+
 ```

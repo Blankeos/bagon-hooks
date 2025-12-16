@@ -10,21 +10,23 @@ export function UseDidUpdateExample() {
     console.log('Did Update', signal());
   }, signal);
 
+
   return (
-    <div class="flex h-full w-full flex-col items-center justify-center gap-x-1 gap-y-2 rounded-md border p-3 py-10 text-center text-sm">
-      <p class="max-w-xs text-center text-xs">
-        This logs "Did Update {signal() === 0 ? 'X' : signal()}" to the console. Notice that it
-        doesn't log "Did Update 0" since it happens on mount.
-      </p>
-      <button
-        class="rounded-md bg-primary p-2 text-white transition active:scale-95"
-        onClick={() => {
-          setSignal(signal() + 1);
-        }}
-      >
-        Simulate an Update {signal()}
-      </button>
-    </div>
+      <div class="flex h-full w-full flex-col items-center justify-center gap-x-1 gap-y-2 rounded-md border p-3 py-10 text-center text-sm">
+        <p class="max-w-xs text-center text-xs">
+          This logs "Did Update {signal() === 0 ? 'X' : signal()}" to the console. Notice that it
+          doesn't log "Did Update 0" since it happens on mount.
+        </p>
+        <button
+          class="rounded-md bg-primary p-2 text-white transition active:scale-95"
+          onClick={() => {
+            setSignal(signal() + 1);
+          }}
+        >
+          Simulate an Update {signal()}
+        </button>
+      </div>
   );
 }
+
 ```

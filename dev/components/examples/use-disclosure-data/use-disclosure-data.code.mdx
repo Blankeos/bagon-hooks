@@ -15,36 +15,39 @@ export function UseDisclosureDataExample() {
   const [data, open, handlers] = useDisclosureData<(typeof items)[number]>(null);
 
   return (
-    <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
-      <ul class="flex flex-col gap-2">
-        <For each={items}>
-          {item => (
-            <li>
-              <button
-                onClick={() => {
-                  handlers.open(item);
-                }}
-                class="rounded bg-blue-500 px-4 py-2 text-white"
-              >
-                Open Dialog for {item.title}
-              </button>
-            </li>
-          )}
-        </For>
-      </ul>
+      <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
+        <ul class="flex flex-col gap-2">
+          <For each={items}>
+            {item => (
+              <li>
+                <button
+                  onClick={() => {
+                    handlers.open(item);
+                  }}
+                  class="rounded bg-blue-500 px-4 py-2 text-white"
+                >
+                  Open Dialog for {item.title}
+                </button>
+              </li>
+            )}
+          </For>
+        </ul>
 
-      <Show when={open()}>
-        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div class="rounded-lg bg-white p-6 shadow-lg">
-            <h2 class="mb-4 text-lg font-bold">{data()?.title || 'Dialog Title'}</h2>
-            <p class="mb-4">This is an example dialog using useDisclosure and data: {data()?.id}</p>
-            <button onClick={handlers.close} class="rounded bg-gray-500 px-4 py-2 text-white">
-              Close
-            </button>
+        <Show when={open()}>
+          <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div class="rounded-lg bg-white p-6 shadow-lg">
+              <h2 class="mb-4 text-lg font-bold">{data()?.title || 'Dialog Title'}</h2>
+              <p class="mb-4">
+                This is an example dialog using useDisclosure and data: {data()?.id}
+              </p>
+              <button onClick={handlers.close} class="rounded bg-gray-500 px-4 py-2 text-white">
+                Close
+              </button>
+            </div>
           </div>
-        </div>
-      </Show>
-    </div>
+        </Show>
+      </div>
   );
 }
+
 ```

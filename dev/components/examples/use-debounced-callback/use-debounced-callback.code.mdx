@@ -33,23 +33,25 @@ export function UseDebouncedCallbackExample() {
     debouncedSearch(event.currentTarget.value);
   };
 
-  return (
-    <div class="flex h-full w-full flex-col items-center justify-center gap-x-1 gap-y-2 rounded-md border p-3 py-10 text-center text-sm">
-      <input
-        value={search()}
-        onInput={handleInput}
-        class="rounded-md border p-2"
-        placeholder="Search..."
-      />
 
-      <Show
-        when={loading()}
-        children={<>Loading...</>}
-        fallback={
-          <For each={searchResults()}>{result => <div class="text-xs">{result.title}</div>}</For>
-        }
-      />
-    </div>
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-x-1 gap-y-2 rounded-md border p-3 py-10 text-center text-sm">
+        <input
+          value={search()}
+          onInput={handleInput}
+          class="rounded-md border p-2"
+          placeholder="Search..."
+        />
+
+        <Show
+          when={loading()}
+          children={<>Loading...</>}
+          fallback={
+            <For each={searchResults()}>{result => <div class="text-xs">{result.title}</div>}</For>
+          }
+        />
+      </div>
   );
 }
+
 ```

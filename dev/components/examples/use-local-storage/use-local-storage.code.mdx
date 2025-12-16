@@ -9,25 +9,26 @@ export function UseLocalStorageExample() {
     defaultValue: 'apple',
   });
 
-  return (
-    <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center transition-colors">
-      <div class="flex flex-wrap gap-3">
-        <Key activated={value() === 'apple'} onClick={() => setValue('apple')}>
-          🍎 apple
-        </Key>
-        <Key activated={value() === 'orange'} onClick={() => setValue('orange')}>
-          🍊 orange
-        </Key>
-        <Key activated={value() === 'grape'} onClick={() => setValue('grape')}>
-          🍇 grape
-        </Key>
-        <Key activated={value() === 'kiwi'} onClick={() => setValue('kiwi')}>
-          🥝 kiwi{' '}
-        </Key>
-      </div>
 
-      <span class="text-sm text-neutral-500">Favorite Fruit: {value()}</span>
-    </div>
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center transition-colors">
+        <div class="flex flex-wrap gap-3">
+          <Key activated={value() === 'apple'} onClick={() => setValue('apple')}>
+            🍎 apple
+          </Key>
+          <Key activated={value() === 'orange'} onClick={() => setValue('orange')}>
+            🍊 orange
+          </Key>
+          <Key activated={value() === 'grape'} onClick={() => setValue('grape')}>
+            🍇 grape
+          </Key>
+          <Key activated={value() === 'kiwi'} onClick={() => setValue('kiwi')}>
+            🥝 kiwi{' '}
+          </Key>
+        </div>
+
+        <span class="text-sm text-neutral-500">Favorite Fruit: {value()}</span>
+      </div>
   );
 }
 
@@ -46,4 +47,5 @@ function Key(props: FlowProps<{ activated: boolean; onClick: () => void }>) {
     </button>
   );
 }
+
 ```

@@ -6,6 +6,7 @@ import { createMemo, FlowProps } from 'solid-js';
 export function UseToggleExample() {
   const [value, toggle] = useToggle(['apple', 'orange', 'grape', 'kiwi'] as const);
 
+
   const color = createMemo(() => {
     if (value() === 'apple') return '#e5312f';
     if (value() === 'orange') return '#fc8627';
@@ -16,23 +17,23 @@ export function UseToggleExample() {
   });
 
   return (
-    <div
-      class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center transition-colors"
-      style={{
-        'background-color': color(),
-      }}
-    >
-      <div class="flex flex-wrap gap-3">
-        <Key activated={value() === 'apple'}>🍎 apple</Key>
-        <Key activated={value() === 'orange'}>🍊 orange</Key>
-        <Key activated={value() === 'grape'}>🍇 grape</Key>
-        <Key activated={value() === 'kiwi'}>🥝 kiwi </Key>
-      </div>
+      <div
+        class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center transition-colors"
+        style={{
+          'background-color': color(),
+        }}
+      >
+        <div class="flex flex-wrap gap-3">
+          <Key activated={value() === 'apple'}>🍎 apple</Key>
+          <Key activated={value() === 'orange'}>🍊 orange</Key>
+          <Key activated={value() === 'grape'}>🍇 grape</Key>
+          <Key activated={value() === 'kiwi'}>🥝 kiwi </Key>
+        </div>
 
-      <button onClick={() => toggle()} class="text-white transition active:scale-95">
-        Click me to Toggle
-      </button>
-    </div>
+        <button onClick={() => toggle()} class="text-white transition active:scale-95">
+          Click me to Toggle
+        </button>
+      </div>
   );
 }
 
@@ -51,4 +52,5 @@ function Key(props: FlowProps<{ activated: boolean }>) {
     </div>
   );
 }
+
 ```

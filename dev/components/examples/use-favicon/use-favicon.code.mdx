@@ -5,6 +5,7 @@ import { createSignal } from 'solid-js';
 
 /** Improved Bagon implementation - You can choose to set it when you want. */
 export function UseFaviconExample() {
+
   const [_favicon, setFavicon] = useFavicon(); // The secret is: just don't pass an accessor in the hook.
 
   const setXFavicon = () => {
@@ -16,35 +17,36 @@ export function UseFaviconExample() {
     setFavicon('https://docs.solidjs.com/favicon.svg');
   };
 
+
   return (
-    <div class="relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-md border p-3 py-10 text-center text-sm">
-      <IconSolidJS
-        class="absolute -bottom-10 -right-10 h-48 w-48 rotate-45 transition"
-        style={{ opacity: currentIcon() === 'solid' ? 1 : 0 }}
-      />
-      <IconX
-        class="absolute -bottom-10 -right-10 h-48 w-48 rotate-45 transition"
-        style={{ opacity: currentIcon() === 'x' ? 1 : 0 }}
-      />
+      <div class="relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-md border p-3 py-10 text-center text-sm">
+        <IconSolidJS
+          class="absolute -bottom-10 -right-10 h-48 w-48 rotate-45 transition"
+          style={{ opacity: currentIcon() === 'solid' ? 1 : 0 }}
+        />
+        <IconX
+          class="absolute -bottom-10 -right-10 h-48 w-48 rotate-45 transition"
+          style={{ opacity: currentIcon() === 'x' ? 1 : 0 }}
+        />
 
-      <button
-        onClick={() => {
-          setXFavicon();
-        }}
-        class="relative rounded-md border bg-white px-2 py-1.5 transition active:scale-95"
-      >
-        X favicon
-      </button>
+        <button
+          onClick={() => {
+            setXFavicon();
+          }}
+          class="relative rounded-md border bg-white px-2 py-1.5 transition active:scale-95"
+        >
+          X favicon
+        </button>
 
-      <button
-        onClick={() => {
-          setSolidFavicon();
-        }}
-        class="relative rounded-md border bg-white px-2 py-1.5 transition active:scale-95"
-      >
-        Solid favicon
-      </button>
-    </div>
+        <button
+          onClick={() => {
+            setSolidFavicon();
+          }}
+          class="relative rounded-md border bg-white px-2 py-1.5 transition active:scale-95"
+        >
+          Solid favicon
+        </button>
+      </div>
   );
 }
 
@@ -63,4 +65,5 @@ export function UseFaviconExampleMantine() {
     </>
   );
 }
+
 ```

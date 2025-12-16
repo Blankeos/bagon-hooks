@@ -6,20 +6,22 @@ import { Show } from 'solid-js';
 export function UseIdleExample() {
   const idle = useIdle(1000);
 
+
   return (
-    <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center">
-      <span>Is Idle (1s):</span>
-      <Show
-        when={idle()}
-        fallback={
-          <span>
-            <span class="text-green-500">false</span>
-          </span>
-        }
-      >
-        <span class="text-red-500">true</span>
-      </Show>
-    </div>
+      <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center">
+        <span>Is Idle (1s):</span>
+        <Show
+          when={idle()}
+          fallback={
+            <span>
+              <span class="text-green-500">false</span>
+            </span>
+          }
+        >
+          <span class="text-red-500">true</span>
+        </Show>
+      </div>
   );
 }
+
 ```

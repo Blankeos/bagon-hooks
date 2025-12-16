@@ -1,26 +1,29 @@
 ```tsx
 import { useInputState } from 'bagon-hooks';
 
+
 export function UseInputStateExample() {
   const [input, handleInput] = useInputState('');
   const [checkbox, handleCheckbox] = useInputState(false);
 
+
   return (
-    <div class="flex h-full w-full flex-col items-center justify-center gap-x-1 gap-y-2 rounded-md border p-3 py-10 text-center text-sm">
-      <pre class="rounded bg-neutral-200 p-1 text-xs">
-        {JSON.stringify({
-          input: input(),
-          checkbox: checkbox(),
-        })}
-      </pre>
-      <input value={input()} onInput={handleInput} class="rounded-md border p-2" />
-      <input
-        type="checkbox"
-        checked={checkbox()}
-        onChange={handleCheckbox}
-        class="rounded-md border p-2"
-      />
-    </div>
+      <div class="flex h-full w-full flex-col items-center justify-center gap-x-1 gap-y-2 rounded-md border p-3 py-10 text-center text-sm">
+        <pre class="rounded bg-neutral-200 p-1 text-xs">
+          {JSON.stringify({
+            input: input(),
+            checkbox: checkbox(),
+          })}
+        </pre>
+        <input value={input()} onInput={handleInput} class="rounded-md border p-2" />
+        <input
+          type="checkbox"
+          checked={checkbox()}
+          onChange={handleCheckbox}
+          class="rounded-md border p-2"
+        />
+      </div>
   );
 }
+
 ```

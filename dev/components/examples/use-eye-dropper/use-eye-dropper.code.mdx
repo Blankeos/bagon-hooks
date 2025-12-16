@@ -6,23 +6,25 @@ import { Show } from 'solid-js';
 export function UseEyeDropperExample() {
   const { color, supported, pickColor } = useEyeDropper();
 
+
   return (
-    <div class="flex h-full w-full flex-col items-center justify-center gap-5 rounded-md border p-3 py-10 text-center">
-      <div class="flex items-center gap-x-2">
-        <button class="transition active:scale-95" onClick={pickColor} disabled={!supported()}>
-          <IconEyeDropper />
-        </button>
+      <div class="flex h-full w-full flex-col items-center justify-center gap-5 rounded-md border p-3 py-10 text-center">
+        <div class="flex items-center gap-x-2">
+          <button class="transition active:scale-95" onClick={pickColor} disabled={!supported()}>
+            <IconEyeDropper />
+          </button>
 
-        <div class="flex items-center gap-x-2 text-sm">
-          Picked Color: {color()}
-          <div class="h-8 w-8 rounded-full border" style={{ 'background-color': color() }} />
+          <div class="flex items-center gap-x-2 text-sm">
+            Picked Color: {color()}
+            <div class="h-8 w-8 rounded-full border" style={{ 'background-color': color() }} />
+          </div>
         </div>
-      </div>
 
-      <Show when={supported() !== undefined && !supported()}>
-        <span class="text-xs text-red-500">Your browser does not support EyeDropper.</span>
-      </Show>
-    </div>
+        <Show when={supported() !== undefined && !supported()}>
+          <span class="text-xs text-red-500">Your browser does not support EyeDropper.</span>
+        </Show>
+      </div>
   );
 }
+
 ```

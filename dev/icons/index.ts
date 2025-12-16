@@ -7,4 +7,3 @@ export { default as IconGithub } from './github';
 export { default as IconLogo } from './logo';
 export { default as IconSolidJS } from './solidjs';
 export { default as IconX } from './x';
-

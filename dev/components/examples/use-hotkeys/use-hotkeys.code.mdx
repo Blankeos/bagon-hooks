@@ -26,12 +26,13 @@ export function UseHotkeysExample() {
 
   const os = useOs();
 
+
   return (
-    <div class="flex h-full w-full flex-wrap items-center justify-center gap-3 rounded-md border p-3 py-10 text-center">
-      <Key activated={activatedHotkey() === 0}>{os() === 'macos' ? 'cmd' : 'ctrl'} + a</Key>
-      <Key activated={activatedHotkey() === 1}>{os() === 'macos' ? 'cmd' : 'ctrl'} + Enter</Key>
-      <Key activated={activatedHotkey() === 2}>shift + g</Key>
-    </div>
+      <div class="flex h-full w-full flex-wrap items-center justify-center gap-3 rounded-md border p-3 py-10 text-center">
+        <Key activated={activatedHotkey() === 0}>{os() === 'macos' ? 'cmd' : 'ctrl'} + a</Key>
+        <Key activated={activatedHotkey() === 1}>{os() === 'macos' ? 'cmd' : 'ctrl'} + Enter</Key>
+        <Key activated={activatedHotkey() === 2}>shift + g</Key>
+      </div>
   );
 }
 
@@ -50,4 +51,5 @@ function Key(props: FlowProps<{ activated: boolean }>) {
     </div>
   );
 }
+
 ```
