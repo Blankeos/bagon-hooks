@@ -1,0 +1,20 @@
+```tsx
+import { createSignal } from 'solid-js';
+import { usePageLeave } from 'bagon-hooks';
+
+
+export function UsePageLeaveExample() {
+  const [left, setLeft] = createSignal(0);
+
+  usePageLeave(() => setLeft(n => n + 1));
+
+
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-2 rounded-md border p-3 py-10 text-center text-sm">
+        <span>Move your mouse out of the page</span>
+        <strong>Left count: {left()}</strong>
+      </div>
+  );
+}
+
+```
