@@ -1,50 +1,59 @@
 name: Publish
+
 on:
   push:
     branches:
-      - 'main'
+      - main
 
-# Publish workflows don't happen at the same time.
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
   contents: write
-  pull-requests: write
   id-token: write
+  pull-requests: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+
+      - name: Update npm
+        run: npm install --global npm@11.5.2
+
       - run: bun install --frozen-lockfile
       - run: bun run build
 
-      # Changesets defaults both the release PR and its commit to
-      # "Version Packages". Derive a useful title from the next version.
-      - name: Determine release title
+      # Changesets Action accepts a custom title but does not interpolate the
+      # next version. Derive it from the release plan; on the publish run there
+      # are no pending changesets, so fall back to package.json.
+      # Use a workspace-relative status file — changeset resolves absolute
+      # $RUNNER_TEMP paths incorrectly under bun.
+      - name: Determine release pull request title
         id: release-title
         shell: bash
         run: |
           set -euo pipefail
-          status_file="$RUNNER_TEMP/changeset-status.json"
-          bun changeset status --output "$status_file"
+          status_file="changeset-status.json"
+          bunx changeset status --output "$status_file"
           version="$(node -e '
             const fs = require("node:fs");
             const status = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
             const pkg = require("./package.json");
             process.stdout.write(status.releases[0]?.newVersion ?? pkg.version);
           ' "$status_file")"
+          rm -f "$status_file"
           echo "title=release: v$version" >> "$GITHUB_OUTPUT"
 
-      - name: Create Release Pull Request or Publish
+      - name: Create release pull request or publish
         id: changesets
         uses: changesets/action@v1
         with:
