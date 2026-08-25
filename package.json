@@ -52,8 +52,7 @@
     "lint": "concurrently bun:lint:*",
     "lint:code": "eslint .",
     "lint:types": "tsc --noemit",
-    "update-deps": "bunx npm-check-updates --format group --interactive",
-    "version": "auto-changelog -p && git add CHANGELOG.md"
+    "update": "bunx npm-check-updates --format group --interactive"
   },
   "peerDependencies": {
     "solid-js": "^1.6.0"
