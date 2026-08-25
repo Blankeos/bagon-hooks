@@ -45,16 +45,19 @@ export function useRovingIndex<T extends HTMLElement = HTMLElement>(
   const isActive = () => access(options.active ?? true);
   const shouldLoop = () => access(options.loop ?? true);
 
-  // Focus the active element when index/active changes (not when refs attach)
+  // Move DOM focus when index/active changes — but only if focus is already
+  // inside the group. Avoids stealing focus (and scrolling the page) on mount.
   createEffect(() => {
     const idx = current();
     const active = isActive();
     // Touch total() so size changes are observed if needed later
     total();
 
-    if (active && elements[idx] && document.activeElement !== elements[idx]) {
-      elements[idx]?.focus();
-    }
+    if (!active) return;
+    const el = elements[idx];
+    if (!el || document.activeElement === el) return;
+    if (!elements.includes(document.activeElement as T)) return;
+    el.focus();
   });
 
   const next = () => {
