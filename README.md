@@ -56,6 +56,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] ~~use-callback-ref~~ (Not needed, only used internally by mantine for preventing re-renders on a function)
 - [x] use-click-outside
 - [x] use-clipboard
+- [ ] use-collapse
 - [x] use-color-scheme
 - [x] use-counter
 - [x] use-debounced-callback
@@ -65,10 +66,13 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-disclosure (✨ Improved, slightly better than mantine thanks to `set` for passing to stuff like `onOpenChange`)
 - [x] use-document-title
 - [x] use-document-visibility
+- [ ] use-drag
 - [ ] use-event-listener
 - [x] use-eye-dropper (✨ improved, state management is inside the hook)
 - [x] use-favicon (✨ improved, more flexible, better control)
 - [ ] use-fetch
+- [ ] use-file-dialog
+- [ ] use-floating-window
 - [ ] use-focus-return
 - [ ] use-focus-trap
 - [ ] use-focus-within
@@ -90,7 +94,9 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-local-storage
 - [x] use-local-storage-store (✨ Improved, more similar to 'createStore' API).
 - [ ] use-logger
+- [x] use-long-press
 - [ ] use-map
+- [ ] use-mask
 - [x] use-media-query
 - [ ] use-merged-ref
 - [x] use-mounted
@@ -100,17 +106,24 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-network
 - [x] use-orientation
 - [x] use-os
-- [ ] use-page-leave
+- [x] use-page-leave
 - [ ] use-pagination
-- [ ] use-previous
+- [x] use-previous
 - [ ] use-queue
-- [ ] use-reduced-motion
+- [ ] use-radial-move
+- [x] use-reduced-motion
 - [x] use-resize-observer
+- [ ] use-roving-index
+- [x] use-scroll-direction
 - [ ] use-scroll-into-view
+- [ ] use-scroll-spy
+- [ ] use-scroller
+- [ ] use-selection
 - [ ] use-session-storage
 - [ ] use-set-state
 - [ ] use-set
 - [ ] use-shallow-effect
+- [ ] use-splitter
 - [ ] use-state-history
 - [ ] use-text-selection
 - [ ] use-throttled-callback

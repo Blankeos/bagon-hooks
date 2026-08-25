@@ -1,0 +1,24 @@
+```tsx
+import { createSignal } from 'solid-js';
+import { useLongPress } from 'bagon-hooks';
+
+
+export function UseLongPressExample() {
+  const [count, setCount] = createSignal(0);
+  const handlers = useLongPress(() => setCount(c => c + 1), { threshold: 500 });
+
+
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center text-sm">
+        <button
+          class="select-none rounded-md border px-4 py-2 transition active:scale-95"
+          {...handlers}
+        >
+          Press and hold
+        </button>
+        <strong>Triggered: {count()}</strong>
+      </div>
+  );
+}
+
+```

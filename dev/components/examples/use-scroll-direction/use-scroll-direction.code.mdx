@@ -1,0 +1,17 @@
+```tsx
+import { useScrollDirection } from 'bagon-hooks';
+
+
+export function UseScrollDirectionExample() {
+  const direction = useScrollDirection();
+
+
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-2 rounded-md border p-3 py-10 text-center text-sm">
+        <span>Scroll the page up or down</span>
+        <strong>Direction: {direction()}</strong>
+      </div>
+  );
+}
+
+```

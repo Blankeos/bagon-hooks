@@ -1,0 +1,18 @@
+```tsx
+import { useReducedMotion } from 'bagon-hooks';
+
+
+export function UseReducedMotionExample() {
+  const reducedMotion = useReducedMotion();
+
+
+  return (
+      <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
+        <div class="rounded-md border px-4 py-2 text-sm">
+          Prefers reduced motion: <strong>{String(reducedMotion())}</strong>
+        </div>
+      </div>
+  );
+}
+
+```

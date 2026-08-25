@@ -29,6 +29,7 @@ import { UseIntervalExample } from 'dev/components/examples/use-interval/use-int
 import { UseKeyboardExample } from 'dev/components/examples/use-keyboard/use-keyboard.example';
 import { UseLocalStorageStoreExample } from 'dev/components/examples/use-local-storage-store/use-local-storage-store.example';
 import { UseLocalStorageExample } from 'dev/components/examples/use-local-storage/use-local-storage.example';
+import { UseLongPressExample } from 'dev/components/examples/use-long-press/use-long-press.example';
 import { UseMediaQueryExample } from 'dev/components/examples/use-media-query/use-media-query.example';
 import { UseMountedExample } from 'dev/components/examples/use-mounted/use-mounted.example';
 import { UseMouseExample } from 'dev/components/examples/use-mouse/use-mouse.example';
@@ -36,7 +37,11 @@ import { UseMoveExample } from 'dev/components/examples/use-move/use-move.exampl
 import { UseNetworkExample } from 'dev/components/examples/use-network/use-network.example';
 import { UseOrientationExample } from 'dev/components/examples/use-orientation/use-orientation.example';
 import { UseOsExample } from 'dev/components/examples/use-os/use-os.example';
+import { UsePageLeaveExample } from 'dev/components/examples/use-page-leave/use-page-leave.example';
+import { UsePreviousExample } from 'dev/components/examples/use-previous/use-previous.example';
+import { UseReducedMotionExample } from 'dev/components/examples/use-reduced-motion/use-reduced-motion.example';
 import { UseResizeObserverExample } from 'dev/components/examples/use-resize-observer/use-resize-observer.example';
+import { UseScrollDirectionExample } from 'dev/components/examples/use-scroll-direction/use-scroll-direction.example';
 import { UseTimeoutExample } from 'dev/components/examples/use-timeout/use-timeout.example';
 import { UseToggleExample } from 'dev/components/examples/use-toggle/use-toggle.example';
 import { Kbd } from 'dev/components/kbd';
@@ -208,6 +213,26 @@ export default function HomePage() {
     {
       title: 'useUncontrolled',
       example: <UseUncontrolledExample />,
+    },
+    {
+      title: 'usePrevious',
+      example: <UsePreviousExample />,
+    },
+    {
+      title: 'useReducedMotion',
+      example: <UseReducedMotionExample />,
+    },
+    {
+      title: 'usePageLeave',
+      example: <UsePageLeaveExample />,
+    },
+    {
+      title: 'useLongPress',
+      example: <UseLongPressExample />,
+    },
+    {
+      title: 'useScrollDirection',
+      example: <UseScrollDirectionExample />,
     },
   ];
 
