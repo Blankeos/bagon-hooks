@@ -17,16 +17,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - run: bun run build
 
+      # Changesets defaults both the release PR and its commit to
+      # "Version Packages". Derive a useful title from the next version.
+      - name: Determine release title
+        id: release-title
+        shell: bash
+        run: |
+          set -euo pipefail
+          status_file="$RUNNER_TEMP/changeset-status.json"
+          bun changeset status --output "$status_file"
+          version="$(node -e '
+            const fs = require("node:fs");
+            const status = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+            const pkg = require("./package.json");
+            process.stdout.write(status.releases[0]?.newVersion ?? pkg.version);
+          ' "$status_file")"
+          echo "title=release: v$version" >> "$GITHUB_OUTPUT"
+
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
         with:
           publish: bun run publish-ci
+          title: ${{ steps.release-title.outputs.title }}
+          commit: ${{ steps.release-title.outputs.title }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
