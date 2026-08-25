@@ -1,0 +1,40 @@
+import { useFileDialog } from 'src';
+import { ExampleBase } from '../example-base';
+import Code from './use-file-dialog.code.mdx';
+
+import { For, Show } from 'solid-js';
+import { useMDXComponents } from 'solid-jsx';
+
+export function UseFileDialogExample() {
+  const { files, open, reset } = useFileDialog({ multiple: true, accept: 'image/*' });
+
+  // @ts-ignore
+  const components: any = useMDXComponents();
+
+  return (
+    <ExampleBase
+      title="useFileDialog"
+      description="Opens a native file picker dialog and returns the selected files."
+      code={<Code components={components} />}
+    >
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center text-sm">
+        <div class="flex gap-2">
+          <button class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95" onClick={open}>
+            Open
+          </button>
+          <button class="rounded-md bg-gray-400 px-3 py-1.5 text-white transition active:scale-95" onClick={reset}>
+            Reset
+          </button>
+        </div>
+        <Show
+          when={files()}
+          fallback={<span class="text-xs text-neutral-500">No files selected</span>}
+        >
+          <ul class="text-xs">
+            <For each={Array.from(files()!)}>{file => <li>{file.name}</li>}</For>
+          </ul>
+        </Show>
+      </div>
+    </ExampleBase>
+  );
+}

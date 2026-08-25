@@ -56,7 +56,8 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] ~~use-callback-ref~~ (Not needed, only used internally by mantine for preventing re-renders on a function)
 - [x] use-click-outside
 - [x] use-clipboard
-- [ ] use-collapse
+- [x] use-collapse
+- [x] use-horizontal-collapse
 - [x] use-color-scheme
 - [x] use-counter
 - [x] use-debounced-callback
@@ -66,20 +67,20 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-disclosure (✨ Improved, slightly better than mantine thanks to `set` for passing to stuff like `onOpenChange`)
 - [x] use-document-title
 - [x] use-document-visibility
-- [ ] use-drag
-- [ ] use-event-listener
+- [x] use-drag
+- [x] use-event-listener
 - [x] use-eye-dropper (✨ improved, state management is inside the hook)
 - [x] use-favicon (✨ improved, more flexible, better control)
-- [ ] use-fetch
-- [ ] use-file-dialog
-- [ ] use-floating-window
-- [ ] use-focus-return
-- [ ] use-focus-trap
-- [ ] use-focus-within
-- [ ] use-force-update
+- [x] use-fetch
+- [x] use-file-dialog
+- [x] use-floating-window
+- [x] use-focus-return
+- [x] use-focus-trap
+- [x] use-focus-within
+- [x] ~~use-force-update~~ (Not needed — Solid has fine-grained reactivity; no force re-render)
 - [x] use-fullscreen
 - [x] use-hash
-- [ ] use-headroom
+- [x] use-headroom
 - [x] use-hotkeys
 - [x] use-hover
 - [x] use-id (Added, but note that there is [`createUniqueId`](https://docs.solidjs.com/reference/component-apis/create-unique-id) in Solid)
@@ -90,53 +91,53 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-interval
 - [x] ~~use-is-first-render~~ (Every component function in SolidJS runs only once! Every component is first render only 🙂)
 - [x] ~~use-isomorphic-effect~~ (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is technically already isomorphic because it doesn't error on SSR. Also, it also only runs on client-side.)
-- [ ] use-list-state
+- [x] use-list-state
 - [x] use-local-storage
 - [x] use-local-storage-store (✨ Improved, more similar to 'createStore' API).
-- [ ] use-logger
+- [x] ~~use-logger~~ (Omit — debug helper; prefer Solid DevTools)
 - [x] use-long-press
-- [ ] use-map
-- [ ] use-mask
+- [x] use-map
+- [x] use-mask
 - [x] use-media-query
-- [ ] use-merged-ref
+- [x] ~~use-merged-ref~~ (Not needed — Solid refs compose differently; merge manually if required)
 - [x] use-mounted
 - [x] use-mouse
 - [x] use-move
-- [ ] use-mutation-observer
+- [x] use-mutation-observer
 - [x] use-network
 - [x] use-orientation
 - [x] use-os
 - [x] use-page-leave
-- [ ] use-pagination
+- [x] use-pagination
 - [x] use-previous
-- [ ] use-queue
-- [ ] use-radial-move
+- [x] use-queue
+- [x] use-radial-move
 - [x] use-reduced-motion
 - [x] use-resize-observer
-- [ ] use-roving-index
+- [x] use-roving-index
 - [x] use-scroll-direction
-- [ ] use-scroll-into-view
-- [ ] use-scroll-spy
-- [ ] use-scroller
-- [ ] use-selection
-- [ ] use-session-storage
-- [ ] use-set-state
-- [ ] use-set
-- [ ] use-shallow-effect
-- [ ] use-splitter
-- [ ] use-state-history
-- [ ] use-text-selection
-- [ ] use-throttled-callback
-- [ ] use-throttled-state
-- [ ] use-throttled-value
+- [x] use-scroll-into-view
+- [x] use-scroll-spy ✨ (`scrollHost` scoping + `scrollTo(index)` that won’t scroll ancestors)
+- [x] use-scroller
+- [x] use-selection
+- [x] use-session-storage
+- [x] ~~use-set-state~~ (Not needed — use createStore from solid-js/store)
+- [x] use-set
+- [x] ~~use-shallow-effect~~ (Not needed — Solid effects track precisely; no shallow-compare deps)
+- [x] use-splitter
+- [x] use-state-history
+- [x] use-text-selection
+- [x] use-throttled-callback
+- [x] use-throttled-state
+- [x] use-throttled-value
 - [x] use-timeout
 - [x] use-toggle
 - [x] use-uncontrolled
-- [ ] use-validated-state
-- [ ] use-viewport-size
-- [ ] use-window-event
-- [ ] use-window-scroll
-- [ ] utils
+- [x] use-validated-state
+- [x] use-viewport-size
+- [x] ~~use-window-event~~ (Not needed — use createEffect + addEventListener (or useEventListener))
+- [x] use-window-scroll
+- [x] utils (clamp, random-id, range)
 
 ### New in Bagon Hooks
 

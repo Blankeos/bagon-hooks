@@ -1,0 +1,56 @@
+```tsx
+import { createSignal, Show } from 'solid-js';
+import { useFocusTrap } from 'bagon-hooks';
+
+export function UseFocusTrapExample() {
+  const [active, setActive] = createSignal(false);
+  const trapRef = useFocusTrap(active);
+
+
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center">
+        <button
+          type="button"
+          class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95"
+          onClick={() => setActive(true)}
+        >
+          Open trap
+        </button>
+
+        <Show when={active()}>
+          <div
+            ref={trapRef}
+            class="flex w-full max-w-sm flex-col gap-3 rounded-md border bg-white p-4 shadow-sm"
+          >
+            <p class="text-sm">Focus is trapped — try Tab / Shift+Tab.</p>
+            <input
+              class="rounded-md border px-2 py-1 text-sm"
+              placeholder="First input"
+            />
+            <input
+              class="rounded-md border px-2 py-1 text-sm"
+              placeholder="Second input"
+            />
+            <div class="flex justify-center gap-2">
+              <button type="button" class="rounded-md border px-2 py-1 text-sm transition active:scale-90">
+                Action
+              </button>
+              <button
+                type="button"
+                class="rounded-md bg-gray-400 px-3 py-1.5 text-white transition active:scale-95"
+                onClick={() => setActive(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </Show>
+
+        <button type="button" class="rounded-md border px-2 py-1 text-sm transition active:scale-90">
+          Outside button (unreachable while trapped)
+        </button>
+      </div>
+  );
+}
+
+```

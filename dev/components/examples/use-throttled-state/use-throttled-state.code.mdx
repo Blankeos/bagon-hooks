@@ -1,0 +1,21 @@
+```tsx
+import { useThrottledState } from 'bagon-hooks';
+
+
+export function UseThrottledStateExample() {
+  const [value, setValue] = useThrottledState('', 500);
+
+
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center text-sm">
+        <input
+          onInput={e => setValue(e.currentTarget.value)}
+          class="rounded-md border p-2"
+          placeholder="Type quickly..."
+        />
+        <span>Throttled value: {JSON.stringify(value())}</span>
+      </div>
+  );
+}
+
+```

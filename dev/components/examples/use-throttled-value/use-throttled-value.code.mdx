@@ -1,0 +1,24 @@
+```tsx
+import { useThrottledValue } from 'bagon-hooks';
+
+import { createSignal } from 'solid-js';
+
+export function UseThrottledValueExample() {
+  const [value, setValue] = createSignal('');
+  const throttled = useThrottledValue(value, 500);
+
+
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center text-sm">
+        <input
+          value={value()}
+          onInput={e => setValue(e.currentTarget.value)}
+          class="rounded-md border p-2"
+        />
+        <span>Value: {JSON.stringify(value())}</span>
+        <span>Throttled: {JSON.stringify(throttled())}</span>
+      </div>
+  );
+}
+
+```

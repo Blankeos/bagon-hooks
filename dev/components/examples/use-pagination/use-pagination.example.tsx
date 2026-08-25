@@ -1,0 +1,71 @@
+import { For, Show } from 'solid-js';
+import { usePagination } from 'src/use-pagination';
+import { ExampleBase } from '../example-base';
+import Code from './use-pagination.code.mdx';
+
+export function UsePaginationExample() {
+  const pagination = usePagination({ total: 10, siblings: 1, boundaries: 1 });
+
+  return (
+    <ExampleBase
+      title="usePagination"
+      description="Build pagination ranges with siblings, boundaries, and navigation helpers."
+      code={<Code />}
+    >
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center text-sm">
+        <div class="text-sm">Active page: {pagination.active()}</div>
+
+        <div class="flex flex-wrap items-center justify-center gap-1">
+          <button
+            class="rounded-md border px-2 py-1 text-sm transition active:scale-90"
+            onClick={pagination.previous}
+          >
+            Prev
+          </button>
+
+          <For each={pagination.range()}>
+            {page => (
+              <Show
+                when={page !== 'dots'}
+                fallback={<span class="px-2 text-xs text-neutral-500">...</span>}
+              >
+                <button
+                  class="rounded-md px-2 py-1 text-sm transition active:scale-90"
+                  classList={{
+                    'bg-primary text-white': page === pagination.active(),
+                    border: page !== pagination.active(),
+                  }}
+                  onClick={() => pagination.setPage(page as number)}
+                >
+                  {page}
+                </button>
+              </Show>
+            )}
+          </For>
+
+          <button
+            class="rounded-md border px-2 py-1 text-sm transition active:scale-90"
+            onClick={pagination.next}
+          >
+            Next
+          </button>
+        </div>
+
+        <div class="flex gap-2">
+          <button
+            class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95"
+            onClick={pagination.first}
+          >
+            First
+          </button>
+          <button
+            class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95"
+            onClick={pagination.last}
+          >
+            Last
+          </button>
+        </div>
+      </div>
+    </ExampleBase>
+  );
+}

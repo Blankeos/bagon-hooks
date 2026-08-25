@@ -218,6 +218,8 @@ Early-return / branching in components (body runs once): use `<Show>` / `<Switch
 - `reconcile` on a bare store root without a nested path → awkward updates; wrap as `{ data }`.
 - Expecting `_track = [a(), b()]` to *exclude* other reads — it doesn't; use `on()` to limit.
 - `<Show when={props.children}>` / `typeof prop === 'function'` for optional slots — resolve with `children()` first (hydration bugs).
+- Measuring layout (`scrollHeight`/`getBoundingClientRect`) immediately after setting `style.display` / other styles — Solid batches DOM writes; force a reflow (`el.style.display = 'block'; void el.offsetHeight`) or double `rAF` before measuring. Do not reach for React `flushSync`.
+- Tracking a browser object that **mutates in place** (e.g. `document.getSelection()`) with `createSignal` — Solid’s default `equals` sees the same reference and won’t notify. Use `{ equals: false }`, bump a version signal, or store an immutable snapshot.
 
 ## Backlog (capture as we learn)
 
