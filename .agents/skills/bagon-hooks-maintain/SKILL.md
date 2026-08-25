@@ -57,13 +57,48 @@ Omit when Solid already has a good API (e.g. `use-isomorphic-effect` → `create
 3. Files:
    - `src/use-<name>/use-<name>.ts`
    - export from `src/index.ts`
-   - `dev/components/examples/use-<name>/use-<name>.example.tsx`
+   - `dev/components/examples/use-<name>/use-<name>.example.tsx` (match shell of existing examples — see below)
    - run `bun run gen:docs` (generates `.code.mdx` + hooks count)
    - register example in `dev/pages/index/+Page.tsx`
-4. Mark README `[x]` (add ✨ note if enhanced).
-5. Update `resources/comparisons.md` with a one-line delta.
-6. If you learned a generic translation rule → update `react-to-solid`.
-7. Smoke-check: `bun run lint` / open `bun run dev`.
+4. **Verify the example against the real hook API** (read the return type / JSDoc — do not invent props like `getInputProps` / `refs.window` / `radialMoveProps`).
+5. Mark README `[x]` (add ✨ note if enhanced).
+6. Update `resources/comparisons.md` with a one-line delta.
+7. If you learned a generic translation rule → update `react-to-solid`.
+8. Smoke-check before claiming done:
+   - `bun run lint:types`
+   - `bun run build` (library)
+   - `bun run build:site` (SSR — catches example/API mismatches that types miss)
+   - Prefer a quick CDP/`bun run dev` pass on the new example card
+
+## Example conventions
+
+Match pre-existing cards (`use-timeout`, `use-counter`, `use-hover`, `use-move`):
+
+- Shell: `flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center`
+- Buttons: `rounded-md bg-primary …` / `bg-gray-400 …` / `rounded-md border px-2 py-1 text-sm …`
+- No dark `neutral-800/900` panels; no `position: fixed` demos that escape the card (use `absolute` + `overflow-hidden` playground instead)
+- Spread carefully: if a helper returns Accessors (`style`, `aria-hidden`), unwrap explicitly — don't assume JSX auto-unwraps spreads
+- Put action buttons **above** growing lists; give lists `max-h-* overflow-y-auto` so triggers don't jump
+- JSON/`<pre>` readouts inside centered cards need `text-left` or braces look centered
+- Demo focus rings: use `focus:` (not only `focus-visible:`) when showing programmatic focus return
+- Prefer putting reusable demo helpers on the **hook** (`spy.scrollTo(index)`) instead of duplicating offset math in every example
+- Nested scroll demos: `element.scrollIntoView()` also scrolls ancestor containers (including the page). Scroll the host with `host.scrollTo(...)` / `spy.scrollTo(index)` instead
+- After example edits, re-run `bun run gen:docs` — stale `.code.mdx` is what the code pane shows
+
+## Demo smoke (CDP)
+
+Dev server is often IPv6-only (`http://[::1]:3000/`). Chrome CDP on `9222` via `agent-browser`.
+
+When asserting a live example, target the **result pane**, not the hidden code pane:
+
+```js
+const card = h2.parentElement.parentElement; // ExampleBase root
+const pane = [...card.children].find(d =>
+  d.classList?.contains('flex-1') && !d.className.includes('bg-[#1c1e28]')
+) || card.children[2];
+```
+
+Hard-reload before trusting `agent-browser errors` — HMR can leave stale exceptions from earlier API mismatches.
 
 ## "Implemented" checklist
 
@@ -72,10 +107,12 @@ A hook is done only when **all** apply:
 - [ ] `src/use-<name>/use-<name>.ts` exists and works
 - [ ] Exported from `src/index.ts`
 - [ ] Example at `dev/components/examples/use-<name>/use-<name>.example.tsx`
+- [ ] Example calls the **actual** hook API (cross-check return type / options — not an imagined Mantine React shape)
 - [ ] Example registered on docs index (`dev/pages/index/+Page.tsx`)
 - [ ] `bun run gen:docs` run (`.code.mdx` + count)
 - [ ] README checklist entry checked `[x]` (✨ note if enhanced)
 - [ ] Types clean (`bun run lint:types`)
+- [ ] `bun run build:site` succeeds (SSR must not throw on the example)
 
 Optional (not required today): unit tests.
 
@@ -89,6 +126,8 @@ Optional (not required today): unit tests.
 | `use-hotkeys` | drop React `useEffectEvent` (unneeded in Solid) |
 | `use-debounced-signal` | rename of Mantine debounced-state |
 | `use-keyboard` | new — not in Mantine |
+| `use-scroll-spy` | `scrollHost` scoping + `scrollTo(index)` (no ancestor scroll) |
+| `use-floating-window` | `strategy: 'fixed' \| 'absolute'` for in-card demos |
 
 ## Enhancing / omitting
 

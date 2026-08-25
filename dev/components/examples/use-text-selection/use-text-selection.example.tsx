@@ -1,0 +1,39 @@
+import { createMemo, Show } from 'solid-js';
+import { useMDXComponents } from 'solid-jsx';
+import { useTextSelection } from 'src';
+import { ExampleBase } from '../example-base';
+import Code from './use-text-selection.code.mdx';
+
+export function UseTextSelectionExample() {
+  // @ts-ignore
+  const components: any = useMDXComponents();
+  const selection = useTextSelection();
+  const selectedText = createMemo(() => selection()?.toString() || '');
+
+  return (
+    <ExampleBase
+      title="useTextSelection"
+      description="Tracks `window.getSelection()` (Mantine-compatible). For range/rect helpers see `useSelection`."
+      code={<Code components={components} />}
+    >
+      <div class="flex w-full flex-col gap-3 rounded-md border p-4 text-left text-sm">
+        <p class="select-text leading-relaxed text-neutral-700">
+          Select any part of this paragraph. The hook listens to `selectionchange` and updates even
+          though `document.getSelection()` returns the same object reference. Try selecting “Solid”
+          or a longer phrase below.
+        </p>
+        <p class="select-text leading-relaxed text-neutral-700">
+          Solid reactivity needs an explicit version bump when APIs reuse object identity. That is
+          why this demo updates live while you change the selection.
+        </p>
+
+        <div class="rounded-md bg-neutral-50 px-3 py-2 font-mono text-xs">
+          <div class="mb-1 text-[10px] uppercase tracking-wide text-neutral-500">Selected text</div>
+          <Show when={selectedText()} fallback={<span class="text-neutral-400">(none)</span>}>
+            <span class="text-primary">{selectedText()}</span>
+          </Show>
+        </div>
+      </div>
+    </ExampleBase>
+  );
+}

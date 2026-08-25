@@ -143,3 +143,34 @@ return <Show when={trailing()}>{trailing()}</Show>;
 **Gotcha:** `<Show when={props.children}>` or `typeof props.x === 'function'` is unreliable — children/accessors are often functions. Resolve with `children()` first. Skipping it commonly causes **hydration mismatches**.
 
 Hook args that change over time: accept `Accessor<T> | T` and call through a getter inside effects.
+
+## Layout measure after style write
+
+Solid batches DOM style updates in effects. Measuring `scrollHeight` / `getBoundingClientRect` in the same turn as a style write often returns `0` / stale geometry.
+
+```ts
+el.style.display = 'block';
+el.style.overflow = 'hidden';
+void el.offsetHeight; // force reflow so the next read is correct
+const height = el.scrollHeight;
+```
+
+Double `requestAnimationFrame` also works when you prefer not to write styles imperatively. There is no Solid `flushSync` — don't import React's.
+
+## Mutable browser objects as signals
+
+Solid signals skip updates when `equals` says the value is unchanged (default: `===`). DOM APIs like `document.getSelection()` often return the **same object** after mutation, so:
+
+```ts
+setSelection(document.getSelection()); // may no-op — same reference
+```
+
+```ts
+const [selection, setSelection] = createSignal<Selection | null>(null, { equals: false });
+// or:
+const [version, setVersion] = createSignal(0);
+const handle = () => {
+  setSelection(document.getSelection());
+  setVersion((v) => v + 1); // force dependents to re-run
+};
+```

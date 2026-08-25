@@ -1,0 +1,45 @@
+import { createSignal } from 'solid-js';
+import { useMDXComponents } from 'solid-jsx';
+import { useCollapse } from 'src';
+import { ExampleBase } from '../example-base';
+import Code from './use-collapse.code.mdx';
+
+export function UseCollapseExample() {
+  const [expanded, setExpanded] = createSignal(false);
+  const { getCollapseProps, state } = useCollapse({ expanded });
+  const props = getCollapseProps();
+
+  // @ts-ignore
+  const components: any = useMDXComponents();
+
+  return (
+    <ExampleBase
+      title="useCollapse"
+      description="Animate height for expand/collapse panels with proper a11y attributes."
+      code={<Code components={components} />}
+    >
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center">
+        <button
+          class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95"
+          type="button"
+          onClick={() => setExpanded(value => !value)}
+        >
+          {expanded() ? 'Collapse' : 'Expand'}
+        </button>
+
+        <div
+          ref={props.ref}
+          style={props.style()}
+          aria-hidden={props['aria-hidden']()}
+          onTransitionEnd={props.onTransitionEnd}
+          class="w-full max-w-md overflow-hidden rounded-md border text-left"
+        >
+          <div class="space-y-2 p-3 text-sm text-neutral-600">
+            <p>Collapsible content stays in the DOM while height animates.</p>
+            <p>State: {state()}</p>
+          </div>
+        </div>
+      </div>
+    </ExampleBase>
+  );
+}

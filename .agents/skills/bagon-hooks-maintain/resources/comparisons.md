@@ -23,6 +23,11 @@ Legend: **≈** near-literal · **Δ** translation delta · **✨** intentional 
 | `use-long-press` | handlers + `useEffectEvent` + timeout | handlers + `let` timeout/flags; DOM events | Δ drop EffectEvent / React event types |
 | `use-scroll-direction` | state + scroll/resize listeners | signal + `onMount` listeners | ≈ |
 | `use-page-leave` | `useEffectEvent` + mouseleave | `onMount` + `onCleanup` | Δ drop EffectEvent |
+| `use-scroll-spy` | window scroll + `getActiveElement` | same + optional `scrollHost`; ✨ `scrollTo(index)` uses host `scrollTo` (not `scrollIntoView`) | ✨ nested hosts |
+| `use-floating-window` | `position: fixed` viewport | ✨ `strategy: 'fixed' \| 'absolute'` + parent clamp | ✨ in-card demos |
+| `use-collapse` / `use-horizontal-collapse` | React `flushSync` before measure | imperative style write + `offsetHeight` reflow (Solid batches styles) | Δ |
+| `use-text-selection` | `useState(Selection)` | signal + `{ equals: false }` / version bump — Selection mutates in place | Δ |
+| `use-mutation-observer` | ref + observer | callback/signal ref + options; demos need `subtree: true` for nested adds | ≈ |
 
 ## State helpers
 

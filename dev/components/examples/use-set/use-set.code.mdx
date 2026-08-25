@@ -1,0 +1,45 @@
+```tsx
+import { For } from 'solid-js';
+
+export function UseSetExample() {
+  const set = useSet(['react', 'solid', 'vue']);
+
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center text-sm">
+        <div class="flex flex-wrap justify-center gap-2">
+          <button
+            class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95"
+            onClick={() => set.add(`item-${set().size + 1}`)}
+          >
+            Add
+          </button>
+          <button
+            class="rounded-md bg-gray-400 px-3 py-1.5 text-white transition active:scale-95"
+            onClick={() => set.clear()}
+          >
+            Clear
+          </button>
+        </div>
+
+        <ul class="max-h-40 w-full max-w-sm space-y-1 overflow-y-auto text-sm">
+          <For each={[...set()]}>
+            {item => (
+              <li class="flex items-center justify-between gap-2 rounded-md border px-2 py-1">
+                <span>{item}</span>
+                <button
+                  class="rounded-md bg-gray-400 px-2 py-1 text-xs text-white transition active:scale-90"
+                  onClick={() => set.delete(item)}
+                >
+                  delete
+                </button>
+              </li>
+            )}
+          </For>
+        </ul>
+
+        <div class="text-xs text-neutral-500">size: {set().size}</div>
+      </div>
+  );
+}
+
+```

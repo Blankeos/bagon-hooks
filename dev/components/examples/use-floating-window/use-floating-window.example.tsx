@@ -1,0 +1,96 @@
+import { useMDXComponents } from 'solid-jsx';
+import { onMount } from 'solid-js';
+import { useFloatingWindow } from 'src';
+import { ExampleBase } from '../example-base';
+import Code from './use-floating-window.code.mdx';
+
+export function UseFloatingWindowExample() {
+  // @ts-ignore
+  const components: any = useMDXComponents();
+
+  const { ref, setPosition } = useFloatingWindow({
+    strategy: 'absolute',
+    constrainToViewport: true, // clamp to parent when absolute
+    initialPosition: { top: 56, left: 16 },
+    dragHandleSelector: '.drag-handle',
+  });
+
+  let playground!: HTMLDivElement;
+  let windowEl!: HTMLDivElement;
+
+  const place = (corner: 'tl' | 'tr' | 'bl' | 'br') => {
+    const width = playground.clientWidth;
+    const height = playground.clientHeight;
+    const w = windowEl.offsetWidth;
+    const h = windowEl.offsetHeight;
+    const pad = 8;
+    if (corner === 'tl') setPosition({ top: pad, left: pad });
+    if (corner === 'tr') setPosition({ top: pad, left: width - w - pad });
+    if (corner === 'bl') setPosition({ top: height - h - pad, left: pad });
+    if (corner === 'br') setPosition({ top: height - h - pad, left: width - w - pad });
+  };
+
+  onMount(() => {
+    // Ensure measured sizes are available before placing.
+    place('tl');
+  });
+
+  return (
+    <ExampleBase
+      title="useFloatingWindow"
+      description="Draggable floating window with optional absolute positioning and parent clamping."
+      code={<Code components={components} />}
+    >
+      <div
+        ref={playground}
+        class="relative h-64 w-full overflow-hidden rounded-md border bg-neutral-50"
+      >
+        <div class="absolute left-2 top-2 z-10 flex flex-wrap gap-1">
+          <button
+            type="button"
+            class="rounded bg-white px-2 py-1 text-xs shadow border"
+            onClick={() => place('tl')}
+          >
+            Top-left
+          </button>
+          <button
+            type="button"
+            class="rounded bg-white px-2 py-1 text-xs shadow border"
+            onClick={() => place('tr')}
+          >
+            Top-right
+          </button>
+          <button
+            type="button"
+            class="rounded bg-white px-2 py-1 text-xs shadow border"
+            onClick={() => place('bl')}
+          >
+            Bottom-left
+          </button>
+          <button
+            type="button"
+            class="rounded bg-white px-2 py-1 text-xs shadow border"
+            onClick={() => place('br')}
+          >
+            Bottom-right
+          </button>
+        </div>
+
+        <div
+          ref={el => {
+            ref(el);
+            windowEl = el;
+          }}
+          class="absolute z-20 w-48 overflow-hidden rounded-md border bg-white shadow"
+        >
+          <div class="drag-handle cursor-move bg-primary px-3 py-2 text-sm font-medium text-white">
+            Drag me
+          </div>
+          <div class="p-3 text-sm text-neutral-600">
+            Positioned with <code>strategy: 'absolute'</code> and clamped to this card.
+          </div>
+        </div>
+      </div>
+    </ExampleBase>
+  );
+}
