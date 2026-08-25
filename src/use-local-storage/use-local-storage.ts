@@ -53,9 +53,7 @@ export function createStorage<T>(type: StorageType, hookName: string) {
         setValue(current => {
           const result = val(current);
           setItem(key, serialize(result));
-          window.dispatchEvent(
-            new CustomEvent(eventName, { detail: { key, value: val(current) } }),
-          );
+          window.dispatchEvent(new CustomEvent(eventName, { detail: { key, value: result } }));
           return result;
         });
       } else {
@@ -86,7 +84,7 @@ export function createStorage<T>(type: StorageType, hookName: string) {
           setValue(event.detail.value);
         }
       };
-      window.addEventListener(eventName as any, storageListener);
+      window.addEventListener(eventName, customEventListener);
 
       onCleanup(() => {
         window.removeEventListener('storage', storageListener);
