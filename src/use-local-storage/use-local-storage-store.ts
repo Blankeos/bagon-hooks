@@ -79,7 +79,7 @@ export function createStorageStore<T extends Object>(type: StorageType, hookName
           setValue(reconcile(event.detail.value));
         }
       };
-      window.addEventListener(eventName as any, storageListener);
+      window.addEventListener(eventName, customEventListener);
 
       onCleanup(() => {
         window.removeEventListener('storage', storageListener);
