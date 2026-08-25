@@ -1,5 +1,89 @@
 # bagon-hooks
 
+## 0.0.8
+
+### Patch Changes
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useCollapse hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useDrag hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useEventListener hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useFetch hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useFileDialog hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useFloatingWindow hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useFocusReturn hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useFocusTrap hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useFocusWithin hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useHeadroom hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useHorizontalCollapse hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useListState hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Fix useLocalStorage same-tab custom event listener
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useLongPress hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useMap hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useMask hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useMutationObserver hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add usePageLeave hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add usePagination hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add usePrevious hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useQueue hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useRadialMove hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useReducedMotion hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useRovingIndex hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useScrollDirection hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useScrollIntoView hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useScrollSpy hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useScroller hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useSelection hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useSessionStorage and useSessionStorageStore hooks
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useSet hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useSplitter hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useStateHistory hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useTextSelection hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useThrottledCallback hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useThrottledState hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useThrottledValue hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useValidatedState hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useViewportSize hook
+
+- [`d3c0de4`](https://github.com/Blankeos/bagon-hooks/commit/d3c0de4a48d44605350af402ad3fcd8c1d768232) Thanks [@Blankeos](https://github.com/Blankeos)! - Add useWindowScroll hook
+
 ## 0.0.6
 
 ### Patch Changes
