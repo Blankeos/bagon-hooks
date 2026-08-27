@@ -22,7 +22,7 @@ export function UseDisclosureExample() {
         </button>
 
         <Show when={opened()}>
-          <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
             <div class="rounded-lg bg-white p-6 shadow-lg">
               <h2 class="mb-4 text-lg font-bold">Dialog Title</h2>
               <p class="mb-4">This is an example dialog using useDisclosure</p>
