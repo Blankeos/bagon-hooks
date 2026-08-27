@@ -73,7 +73,7 @@ export function ExampleBase(props: FlowProps<ExampleBaseProps>) {
       <div class="text-sm text-opacity-70">{props.description}</div>
 
       <Show when={viewing() === 'result'}>
-        <div class="w-full flex-1 rounded-md">{props.children}</div>
+        <div class="min-h-0 w-full flex-1 overflow-auto rounded-md">{props.children}</div>
       </Show>
 
       <div

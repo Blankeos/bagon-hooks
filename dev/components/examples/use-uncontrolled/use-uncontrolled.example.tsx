@@ -27,7 +27,7 @@ export function UseUncontrolledExample() {
       }
       code={<Code components={components} />}
     >
-      <div class="flex w-full flex-col items-center justify-center gap-5 gap-x-1 rounded-md border p-3 text-center">
+      <div class="flex w-full flex-col items-stretch gap-3 rounded-md border p-3 text-left">
         <label class="flex items-center gap-2 text-sm">
           <input
             type="checkbox"
@@ -53,21 +53,21 @@ function ControlledUsage() {
   const [value, setValue] = createSignal<string>('controlled text');
 
   return (
-    <div class="flex flex-col gap-3">
-      <h3 class="text-lg font-semibold">Controlled Mode</h3>
-      <pre class="rounded bg-neutral-200 p-1 text-start text-xs">
+    <div class="flex min-w-0 flex-col gap-2">
+      <h3 class="text-sm font-semibold">Controlled Mode</h3>
+      <pre class="overflow-x-auto rounded bg-neutral-200 p-1 text-xs">
         {JSON.stringify({ parent_value: value() }, null, 2)}
       </pre>
 
-      <div class="flex gap-1">
+      <div class="flex min-w-0 flex-col gap-2 sm:flex-row">
         <CustomInput
           value={value()}
           onChange={setValue}
-          class="rounded-md border p-2"
+          class="w-full min-w-0 rounded-md border p-2"
           placeholder="Type something..."
         />
         <input
-          class="h-[42px] rounded-md border p-2"
+          class="h-[42px] w-full min-w-0 shrink rounded-md border p-2 sm:w-1/2"
           value={value()}
           onInput={e => setValue(e.currentTarget.value)}
         />
@@ -78,9 +78,9 @@ function ControlledUsage() {
 
 function UncontrolledUsage() {
   return (
-    <div class="flex flex-col gap-3">
-      <h3 class="text-lg font-semibold">Uncontrolled Mode</h3>
-      <CustomInput class="rounded-md border p-2" placeholder="Type something..." />
+    <div class="flex min-w-0 flex-col gap-2">
+      <h3 class="text-sm font-semibold">Uncontrolled Mode</h3>
+      <CustomInput class="w-full min-w-0 rounded-md border p-2" placeholder="Type something..." />
     </div>
   );
 }
@@ -100,7 +100,7 @@ function CustomInput(props: {
   });
 
   return (
-    <div class="flex flex-col gap-2">
+    <div class="flex min-w-0 flex-1 flex-col gap-2">
       <input
         type="text"
         value={value() ?? ''}
@@ -109,7 +109,7 @@ function CustomInput(props: {
         placeholder={props.placeholder}
       />
 
-      <pre class="rounded bg-neutral-200 p-1 text-start text-xs">
+      <pre class="overflow-x-auto rounded bg-neutral-200 p-1 text-xs">
         {JSON.stringify({ value: value(), isControlled: isControlled }, null, 2)}
       </pre>
     </div>
