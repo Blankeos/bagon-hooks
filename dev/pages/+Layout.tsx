@@ -4,6 +4,7 @@ import { Head } from 'vike-solid/Head';
 
 import { MarkdownContextProvider } from 'dev/components/markdown/markdown.context';
 import '../styles/app.css';
+import '../lib/solid-tippy/tippy.css';
 
 export default function Layout(props: FlowProps) {
   return (
