@@ -1,5 +1,11 @@
 # bagon-hooks
 
+## 0.0.8
+
+### Patch Changes
+
+- [`2e2343f`](https://github.com/Blankeos/bagon-hooks/commit/2e2343f9992be81915d6a67c263202f7d9da040e) Thanks [@Blankeos](https://github.com/Blankeos)! - feat(use-debounced-value): add flush handler, leading option, and onMount guard
+
 ## 0.0.7
 
 ### Patch Changes
