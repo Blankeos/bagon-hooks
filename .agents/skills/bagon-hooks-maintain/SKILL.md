@@ -50,6 +50,8 @@ Periodically compare Mantine's hook list vs README:
 
 Omit when Solid already has a good API (e.g. `use-isomorphic-effect` → `createEffect`, `use-force-update` unnecessary).
 
+Load `react-to-solid` skill before flagging API drift — idiomatic equivalents aren't drift.
+
 ## Adding a hook (workflow)
 
 1. Read Mantine docs + `gh_grep` the source.
