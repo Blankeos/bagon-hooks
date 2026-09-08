@@ -68,6 +68,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-document-title
 - [x] use-document-visibility
 - [x] use-drag
+- [x] use-element-size
 - [x] use-event-listener
 - [x] use-eye-dropper (✨ improved, state management is inside the hook)
 - [x] use-favicon (✨ improved, more flexible, better control)
@@ -121,6 +122,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-scroller
 - [x] use-selection
 - [x] use-session-storage
+- [x] use-session-storage-store (✨ Improved, more similar to 'createStore' API).
 - [x] ~~use-set-state~~ (Not needed — use createStore from solid-js/store)
 - [x] use-set
 - [x] ~~use-shallow-effect~~ (Not needed — Solid effects track precisely; no shallow-compare deps)
