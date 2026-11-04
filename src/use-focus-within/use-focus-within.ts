@@ -1,7 +1,7 @@
 import { Accessor, createSignal, onCleanup } from 'solid-js';
 
 function containsRelatedTarget(event: FocusEvent) {
-  if (event.currentTarget instanceof HTMLElement && event.relatedTarget instanceof HTMLElement) {
+  if (event.currentTarget instanceof HTMLElement && event.relatedTarget instanceof Node) {
     return event.currentTarget.contains(event.relatedTarget);
   }
 

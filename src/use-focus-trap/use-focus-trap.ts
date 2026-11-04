@@ -12,6 +12,34 @@ function isDev() {
   return (import.meta as ImportMeta & { env?: { DEV?: boolean } }).env?.DEV === true;
 }
 
+interface ActiveTrap {
+  node: HTMLElement;
+}
+
+/** Traps that are currently active, used to let the innermost nested trap handle Tab */
+const activeTraps = new Set<ActiveTrap>();
+
+function hasNestedActiveTrap(trap: ActiveTrap, node: HTMLElement) {
+  const activeElement = (node.getRootNode() as unknown as DocumentOrShadowRoot).activeElement;
+  if (!activeElement) {
+    return false;
+  }
+
+  for (const other of activeTraps) {
+    const nested = other.node;
+    if (
+      other !== trap &&
+      nested !== node &&
+      node.contains(nested) &&
+      nested.contains(activeElement)
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function focusNode(node: HTMLElement) {
   let focusElement: HTMLElement | null = node.querySelector('[data-autofocus]');
 
@@ -68,16 +96,27 @@ export function useFocusTrap(
       }
     });
 
+    const trap: ActiveTrap = { node: focusTarget };
+
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Tab' && focusTarget.isConnected) {
-        scopeTab(focusTarget, event);
+      if (
+        event.key !== 'Tab' ||
+        event.defaultPrevented ||
+        !focusTarget.isConnected ||
+        hasNestedActiveTrap(trap, focusTarget)
+      ) {
+        return;
       }
+
+      scopeTab(focusTarget, event);
     };
 
+    activeTraps.add(trap);
     document.addEventListener('keydown', handleKeyDown);
 
     onCleanup(() => {
       clearTimeout(focusTimeout);
+      activeTraps.delete(trap);
       document.removeEventListener('keydown', handleKeyDown);
     });
   });

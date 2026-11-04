@@ -1,4 +1,4 @@
-import { Accessor, createEffect, createSignal } from 'solid-js';
+import { Accessor, createEffect, createSignal, onCleanup } from 'solid-js';
 
 export interface UseMediaQueryOptions {
   getInitialValueInEffect: boolean;
@@ -26,7 +26,11 @@ function getInitialValue(query: string, initialValue?: boolean) {
   }
 
   if (typeof window !== 'undefined' && 'matchMedia' in window) {
-    return window.matchMedia(query).matches;
+    try {
+      return window.matchMedia(query).matches;
+    } catch {
+      return false;
+    }
   }
 
   return false;
@@ -46,17 +50,17 @@ export function useMediaQuery(
     getInitialValueInEffect ? initialValue : getInitialValue(query()),
   );
 
-  let queryRef: MediaQueryList;
-
   createEffect(() => {
-    if ('matchMedia' in window) {
-      queryRef = window.matchMedia(query());
-      setMatches(queryRef.matches);
-      return attachMediaListener(queryRef, event => setMatches(event.matches));
+    try {
+      if ('matchMedia' in window) {
+        const queryRef = window.matchMedia(query());
+        setMatches(queryRef.matches);
+        onCleanup(attachMediaListener(queryRef, event => setMatches(event.matches)));
+      }
+    } catch {
+      // Safari iframe compatibility issue
     }
-
-    return undefined;
   });
 
-  return matches;
+  return () => matches() || false;
 }

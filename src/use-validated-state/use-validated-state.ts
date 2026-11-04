@@ -20,12 +20,16 @@ export type UseValidatedStateReturnValue<T> = [
 export function useValidatedState<T>(
   initialValue: T,
   validate: (value: T) => boolean,
+  /** Overrides the initial `valid` state (otherwise computed with `validate(initialValue)`) */
+  initialValidationState?: boolean,
 ): UseValidatedStateReturnValue<T> {
   const [value, setValue] = createSignal(initialValue);
   const [lastValidValue, setLastValidValue] = createSignal(
     validate(initialValue) ? initialValue : undefined,
   );
-  const [valid, setValid] = createSignal(validate(initialValue));
+  const [valid, setValid] = createSignal(
+    typeof initialValidationState === 'boolean' ? initialValidationState : validate(initialValue),
+  );
 
   const onChange = (val: T) => {
     if (validate(val)) {

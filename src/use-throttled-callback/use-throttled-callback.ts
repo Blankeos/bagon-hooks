@@ -22,11 +22,24 @@ export function useThrottledCallbackWithClearTimeout<T extends (...args: any[]) 
   let waitRef = wait;
   let timeoutRef = -1;
 
-  const clearTimeoutFn = () => clearTimeout(timeoutRef);
+  const clearTimeoutFn = () => {
+    clearTimeout(timeoutRef);
+    timeoutRef = -1;
+    active = true;
+    latestInArgsRef = null;
+    latestOutArgsRef = null;
+  };
 
   const callThrottledCallback = (...args: Parameters<T>) => {
-    handleCallback(...args);
+    latestInArgsRef = args;
     latestOutArgsRef = args;
+    active = false;
+    try {
+      handleCallback(...args);
+    } catch (error) {
+      active = true;
+      throw error;
+    }
   };
 
   const timerCallback = () => {
@@ -44,7 +57,6 @@ export function useThrottledCallbackWithClearTimeout<T extends (...args: any[]) 
 
     if (active) {
       callThrottledCallback(...args);
-      active = false;
       timeoutRef = setTimeout(timerCallback, waitRef) as unknown as number;
     } else {
       latestInArgsRef = args;

@@ -1,4 +1,5 @@
-import { Accessor, JSX, batch, createSignal } from 'solid-js';
+import { Accessor, JSX, createSignal } from 'solid-js';
+import { isMeasured } from '../use-collapse/use-collapse';
 import { useDidUpdate } from '../use-did-update/use-did-update';
 
 function getAutoWidthDuration(width: number | string) {
@@ -96,7 +97,15 @@ export function useHorizontalCollapse({
     };
   };
 
+  const px = (size: number | string) => (typeof size === 'number' ? `${size}px` : size) as any;
+
+  // Incremented on every expanded change, so rAF callbacks of a superseded transition bail out
+  let transitionId = 0;
+
   useDidUpdate(() => {
+    transitionId += 1;
+    const currentId = transitionId;
+    const isCurrentTransition = () => transitionId === currentId && !!element;
     const isExpanded = resolveExpanded(expanded);
     const shouldTransition = transitionDuration !== 0;
 
@@ -106,27 +115,60 @@ export function useHorizontalCollapse({
 
     if (isExpanded) {
       window.requestAnimationFrame(() => {
+        if (!isCurrentTransition()) {
+          return;
+        }
+
         setState('entering');
         mergeStyles({ 'will-change': 'width', display: 'block', overflow: 'hidden' });
         // Force style flush onto the element so scrollWidth is correct
-        if (element) {
-          element.style.display = 'block';
-          element.style.overflow = 'hidden';
-          void element.offsetWidth; // force reflow
-        }
+        element!.style.display = 'block';
+        element!.style.overflow = 'hidden';
+        void element!.offsetWidth; // force reflow
         window.requestAnimationFrame(() => {
+          if (!isCurrentTransition()) {
+            return;
+          }
+
           const width = getElementWidth(element);
-          mergeStyles({ ...getTransitionStyles(width), width: typeof width === "number" ? (`${width}px` as any) : (width as any) });
+
+          // Nothing to animate (e.g. zero-size content) - `transitionend` would never fire
+          if (!isMeasured(width)) {
+            element!.style.display = '';
+            element!.style.overflow = '';
+            setStyles({});
+            setState('entered');
+            onTransitionEnd?.();
+            return;
+          }
+
+          mergeStyles({ ...getTransitionStyles(width), width: px(width) });
         });
       });
     } else {
       window.requestAnimationFrame(() => {
-        batch(() => {
-          setState('exiting');
-          const width = getElementWidth(element);
-          mergeStyles({ ...getTransitionStyles(width), 'will-change': 'width', width: typeof width === "number" ? (`${width}px` as any) : (width as any) });
+        if (!isCurrentTransition()) {
+          return;
+        }
+
+        setState('exiting');
+        const width = getElementWidth(element);
+
+        if (!isMeasured(width)) {
+          setStyles(collapsedStyles);
+          setState('exited');
+          onTransitionEnd?.();
+          return;
+        }
+
+        mergeStyles({ ...getTransitionStyles(width), 'will-change': 'width', width: px(width) });
+        window.requestAnimationFrame(() => {
+          if (!isCurrentTransition()) {
+            return;
+          }
+
+          mergeStyles({ width: '0px', overflow: 'hidden' });
         });
-        window.requestAnimationFrame(() => mergeStyles({ width: '0px', overflow: 'hidden' }));
       });
     }
   }, [() => resolveExpanded(expanded)]);
@@ -147,15 +189,15 @@ export function useHorizontalCollapse({
     if (isExpanded) {
       const width = getElementWidth(element);
 
-      if (width === currentStyles.width) {
+      if (px(width) === currentStyles.width) {
         setStyles({});
       } else {
-        mergeStyles({ width: typeof width === "number" ? (`${width}px` as any) : (width as any) });
+        mergeStyles({ width: px(width) });
       }
 
       setState('entered');
       onTransitionEnd?.();
-    } else if (currentStyles.width === 0) {
+    } else if (currentStyles.width === '0px') {
       setStyles(collapsedStyles);
       setState('exited');
       onTransitionEnd?.();
@@ -164,7 +206,7 @@ export function useHorizontalCollapse({
 
   return {
     state,
-    getCollapseProps: (input) => ({
+    getCollapseProps: input => ({
       'aria-hidden': () => !resolveExpanded(expanded),
       inert: () => (!resolveExpanded(expanded) ? true : undefined),
       ref: (node: HTMLDivElement) => {

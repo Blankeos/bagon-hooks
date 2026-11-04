@@ -1,6 +1,6 @@
 // ./create-storage.ts
 
-import { Accessor, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { Accessor, createEffect, createSignal, on, onCleanup, onMount } from 'solid-js';
 import {
   _createStorageHandler,
   _deserializeJSON,
@@ -19,12 +19,14 @@ export function createStorage<T>(type: StorageType, hookName: string) {
   const { getItem, setItem, removeItem } = _createStorageHandler(type);
 
   return function useStorage({
-    key,
+    key: keyOrAccessor,
     defaultValue,
     getInitialValueInEffect = true,
     deserialize = _deserializeJSON,
     serialize = (value: T) => _serializeJSON(value, hookName),
   }: StorageProperties<T>) {
+    const getKey = () => (typeof keyOrAccessor === 'function' ? keyOrAccessor() : keyOrAccessor);
+
     const readStorageValue = (skipStorage?: boolean): T => {
       let storageBlockedOrSkipped;
 
@@ -42,7 +44,7 @@ export function createStorage<T>(type: StorageType, hookName: string) {
         return defaultValue as T;
       }
 
-      const storageValue = getItem(key);
+      const storageValue = getItem(getKey());
       return storageValue !== null ? deserialize(storageValue) : (defaultValue as T);
     };
 
@@ -52,27 +54,27 @@ export function createStorage<T>(type: StorageType, hookName: string) {
       if (val instanceof Function) {
         setValue(current => {
           const result = val(current);
-          setItem(key, serialize(result));
-          window.dispatchEvent(new CustomEvent(eventName, { detail: { key, value: result } }));
+          setItem(getKey(), serialize(result));
+          window.dispatchEvent(new CustomEvent(eventName, { detail: { key: getKey(), value: result } }));
           return result;
         });
       } else {
-        setItem(key, serialize(val));
-        window.dispatchEvent(new CustomEvent(eventName, { detail: { key, value: val } }));
+        setItem(getKey(), serialize(val));
+        window.dispatchEvent(new CustomEvent(eventName, { detail: { key: getKey(), value: val } }));
         setValue(val as any);
       }
     };
 
     const removeStorageValue = () => {
-      removeItem(key);
-      window.dispatchEvent(new CustomEvent(eventName, { detail: { key, value: defaultValue } }));
+      removeItem(getKey());
+      window.dispatchEvent(new CustomEvent(eventName, { detail: { key: getKey(), value: defaultValue } }));
     };
 
     // (Replaced useWindowEvent with this)
     onMount(() => {
       // 1. Storage Event
       const storageListener = (event: StorageEvent) => {
-        if (event.storageArea === window[type] && event.key === key) {
+        if (event.storageArea === window[type] && event.key === getKey()) {
           setValue(deserialize(event.newValue ?? undefined) as any);
         }
       };
@@ -80,7 +82,7 @@ export function createStorage<T>(type: StorageType, hookName: string) {
 
       // 2. Custom Event (So the stored value is reactive)
       const customEventListener = (event: any) => {
-        if (event.detail.key === key) {
+        if (event.detail.key === getKey()) {
           setValue(event.detail.value);
         }
       };
@@ -98,13 +100,16 @@ export function createStorage<T>(type: StorageType, hookName: string) {
       }
     });
 
-    onMount(() => {
-      const val = readStorageValue();
-      val !== undefined && setStorageValue(val);
-    });
+    // Runs on mount and whenever the key changes
+    createEffect(
+      on(getKey, () => {
+        const val = readStorageValue();
+        val !== undefined ? setStorageValue(val) : setValue(() => val);
+      }),
+    );
 
     return [
-      value() === undefined ? () => defaultValue : value,
+      () => (value() === undefined ? (defaultValue as T) : value()),
       setStorageValue,
       removeStorageValue,
     ] as [Accessor<T>, (val: T | ((prevState: T) => T)) => void, () => void];

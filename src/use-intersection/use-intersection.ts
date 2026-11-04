@@ -21,7 +21,8 @@ export function useIntersection<T extends HTMLElement = any>(
       return;
     }
 
-    observer = new IntersectionObserver(([_entry]) => {
+    observer = new IntersectionObserver(entries => {
+      const _entry = entries[entries.length - 1];
       if (_entry) setEntry(_ => _entry);
       if (options?.callback) options.callback(_entry);
     }, options);
