@@ -1,4 +1,4 @@
-import { createSignal, onMount, Setter } from 'solid-js';
+import { createSignal, onCleanup, Setter } from 'solid-js';
 
 export function useDebouncedSignal<T = any>(
   defaultValue: T,
@@ -6,20 +6,24 @@ export function useDebouncedSignal<T = any>(
   options = { leading: false },
 ) {
   const [value, setValue] = createSignal(defaultValue);
-  let timeoutRef: number | null = null;
+  let timeoutRef: any = null;
   let leadingRef = true;
 
-  const clearTimeout = () => window.clearTimeout(timeoutRef!);
-  onMount(() => clearTimeout);
+  // `onCleanup` also runs on the server, so avoid touching `window` here
+  const clearTimer = () => clearTimeout(timeoutRef!);
+  onCleanup(clearTimer);
 
   // @ts-ignore
   const debouncedSetValue: Setter<T> = newValue => {
-    clearTimeout();
+    clearTimer();
     if (leadingRef && options.leading) {
       // @ts-ignore
       setValue(newValue);
+      timeoutRef = setTimeout(() => {
+        leadingRef = true;
+      }, wait);
     } else {
-      timeoutRef = window.setTimeout(() => {
+      timeoutRef = setTimeout(() => {
         leadingRef = true;
         // @ts-ignore
         setValue(newValue);

@@ -1,4 +1,4 @@
-import { Accessor, createEffect, createSignal, onCleanup } from 'solid-js';
+import { Accessor, createEffect, createSignal, onCleanup, untrack } from 'solid-js';
 
 export interface UseScrollSpyHeadingData {
   /** Heading depth, 1-6 */
@@ -65,10 +65,30 @@ function getDefaultValue(element: HTMLHeadingElement) {
   return element.getAttribute('data-heading') || element.textContent || '';
 }
 
+/** Re-resolves a heading that was detached from the DOM (e.g. after a re-render replaced it). */
+function resolveHeadingNode(
+  heading: HTMLHeadingElement,
+  selector: string,
+  index: number,
+): HTMLHeadingElement {
+  if (heading.isConnected) {
+    return heading;
+  }
+
+  const nodeById = heading.id ? document.getElementById(heading.id) : null;
+
+  if (nodeById) {
+    return nodeById as HTMLHeadingElement;
+  }
+
+  return document.querySelectorAll<HTMLHeadingElement>(selector)[index] || heading;
+}
+
 function getHeadingsData(
   headings: HTMLHeadingElement[],
   getDepth: (element: HTMLHeadingElement) => number,
   getValue: (element: HTMLHeadingElement) => string,
+  selector: string,
 ): UseScrollSpyHeadingData[] {
   const data: UseScrollSpyHeadingData[] = [];
 
@@ -77,7 +97,7 @@ function getHeadingsData(
     data.push({
       depth: getDepth(heading),
       value: getValue(heading),
-      getNode: () => heading,
+      getNode: () => resolveHeadingNode(heading, selector, i),
       id: heading.id,
     });
   }
@@ -131,9 +151,11 @@ export function useScrollSpy(options: UseScrollSpyOptions = {}): UseScrollSpyRet
   const [active, setActive] = createSignal(-1);
   const [headingsData, setHeadingsData] = createSignal<UseScrollSpyHeadingData[]>([]);
   const [initialized, setInitialized] = createSignal(false);
-  const headingsRef: { current: HTMLHeadingElement[] } = { current: [] };
   const getDepth = options.getDepth || getDefaultDepth;
   const getValue = options.getValue || getDefaultValue;
+
+  /** Headings re-resolved against the DOM, so detached nodes don't report empty rects */
+  const currentHeadings = () => untrack(headingsData).map(d => d.getNode());
 
   const initialize = () => {
     const host = resolveScrollHost(options.scrollHost);
@@ -144,9 +166,8 @@ export function useScrollSpy(options: UseScrollSpyOptions = {}): UseScrollSpyRet
     if (host !== window) {
       headings = headings.filter(heading => (host as HTMLElement).contains(heading));
     }
-    headingsRef.current = headings;
     setInitialized(headings.length > 0);
-    setHeadingsData(getHeadingsData(headings, getDepth, getValue));
+    setHeadingsData(getHeadingsData(headings, getDepth, getValue, selector));
     setActive(getActiveElement(headings, options.offset || 0, host));
   };
 
@@ -157,7 +178,7 @@ export function useScrollSpy(options: UseScrollSpyOptions = {}): UseScrollSpyRet
     const host = resolveScrollHost(options.scrollHost);
     initialize();
     const handleScroll = () => {
-      setActive(getActiveElement(headingsRef.current, options.offset || 0, host));
+      setActive(getActiveElement(currentHeadings(), options.offset || 0, host));
     };
 
     const scrollTarget: HTMLElement | Window = host === window ? window : (host as HTMLElement);
@@ -175,7 +196,7 @@ export function useScrollSpy(options: UseScrollSpyOptions = {}): UseScrollSpyRet
   });
 
   const scrollTo = (index: number, scrollToOptions: UseScrollSpyScrollToOptions = {}) => {
-    const heading = headingsRef.current[index];
+    const heading = untrack(headingsData)[index]?.getNode();
     if (!heading) return;
 
     const host = resolveScrollHost(options.scrollHost);

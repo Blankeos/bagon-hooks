@@ -10,8 +10,8 @@ export function useTimeout(
   const start = (...callbackParams: any[]) => {
     if (!timeoutRef) {
       timeoutRef = window.setTimeout(() => {
-        callback(callbackParams);
         timeoutRef = null;
+        callback(...callbackParams);
       }, delay);
     }
   };

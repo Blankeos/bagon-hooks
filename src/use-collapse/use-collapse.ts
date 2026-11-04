@@ -1,4 +1,4 @@
-import { Accessor, JSX, batch, createSignal } from 'solid-js';
+import { Accessor, JSX, createSignal } from 'solid-js';
 import { useDidUpdate } from '../use-did-update/use-did-update';
 
 function getAutoHeightDuration(height: number | string) {
@@ -11,6 +11,10 @@ function getAutoHeightDuration(height: number | string) {
 
 export function getElementHeight(element: HTMLElement | null | undefined): number | string {
   return element ? element.scrollHeight : 'auto';
+}
+
+export function isMeasured(size: number | string): size is number {
+  return typeof size === 'number' && size > 0;
 }
 
 function resolveExpanded(expanded: boolean | Accessor<boolean>): boolean {
@@ -94,7 +98,15 @@ export function useCollapse({
     };
   };
 
+  const px = (size: number | string) => (typeof size === 'number' ? `${size}px` : size) as any;
+
+  // Incremented on every expanded change, so rAF callbacks of a superseded transition bail out
+  let transitionId = 0;
+
   useDidUpdate(() => {
+    transitionId += 1;
+    const currentId = transitionId;
+    const isCurrentTransition = () => transitionId === currentId && !!element;
     const isExpanded = resolveExpanded(expanded);
     const shouldTransition = transitionDuration !== 0;
 
@@ -104,27 +116,64 @@ export function useCollapse({
 
     if (isExpanded) {
       window.requestAnimationFrame(() => {
+        if (!isCurrentTransition()) {
+          return;
+        }
+
         setState('entering');
         mergeStyles({ 'will-change': 'height', display: 'block', overflow: 'hidden' });
         // Force style flush onto the element so scrollHeight is correct
-        if (element) {
-          element.style.display = 'block';
-          element.style.overflow = 'hidden';
-          void element.offsetHeight; // force reflow
-        }
+        element!.style.display = 'block';
+        element!.style.overflow = 'hidden';
+        void element!.offsetHeight; // force reflow
         window.requestAnimationFrame(() => {
+          if (!isCurrentTransition()) {
+            return;
+          }
+
           const height = getElementHeight(element);
-          mergeStyles({ ...getTransitionStyles(height), height: typeof height === "number" ? (`${height}px` as any) : (height as any) });
+
+          // Nothing to animate (e.g. zero-size content) - `transitionend` would never fire
+          if (!isMeasured(height)) {
+            element!.style.display = '';
+            element!.style.overflow = '';
+            setStyles({});
+            setState('entered');
+            onTransitionEnd?.();
+            return;
+          }
+
+          mergeStyles({ ...getTransitionStyles(height), height: px(height) });
         });
       });
     } else {
       window.requestAnimationFrame(() => {
-        batch(() => {
-          setState('exiting');
-          const height = getElementHeight(element);
-          mergeStyles({ ...getTransitionStyles(height), 'will-change': 'height', height: typeof height === "number" ? (`${height}px` as any) : (height as any) });
+        if (!isCurrentTransition()) {
+          return;
+        }
+
+        setState('exiting');
+        const height = getElementHeight(element);
+
+        if (!isMeasured(height)) {
+          setStyles(collapsedStyles);
+          setState('exited');
+          onTransitionEnd?.();
+          return;
+        }
+
+        mergeStyles({
+          ...getTransitionStyles(height),
+          'will-change': 'height',
+          height: px(height),
         });
-        window.requestAnimationFrame(() => mergeStyles({ height: '0px', overflow: 'hidden' }));
+        window.requestAnimationFrame(() => {
+          if (!isCurrentTransition()) {
+            return;
+          }
+
+          mergeStyles({ height: '0px', overflow: 'hidden' });
+        });
       });
     }
   }, [() => resolveExpanded(expanded)]);
@@ -145,15 +194,15 @@ export function useCollapse({
     if (isExpanded) {
       const height = getElementHeight(element);
 
-      if (height === currentStyles.height) {
+      if (px(height) === currentStyles.height) {
         setStyles({});
       } else {
-        mergeStyles({ height: typeof height === "number" ? (`${height}px` as any) : (height as any) });
+        mergeStyles({ height: px(height) });
       }
 
       setState('entered');
       onTransitionEnd?.();
-    } else if (currentStyles.height === 0) {
+    } else if (currentStyles.height === '0px') {
       setStyles(collapsedStyles);
       setState('exited');
       onTransitionEnd?.();
@@ -162,7 +211,7 @@ export function useCollapse({
 
   return {
     state,
-    getCollapseProps: (input) => ({
+    getCollapseProps: input => ({
       'aria-hidden': () => !resolveExpanded(expanded),
       inert: () => (!resolveExpanded(expanded) ? true : undefined),
       ref: (node: HTMLDivElement) => {

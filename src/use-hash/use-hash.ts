@@ -15,7 +15,7 @@ export function useHash({ getInitialValueInEffect = true }: UseHashOptions = {})
   const setHashHandler = (value: string) => {
     const valueWithHash = value.startsWith('#') ? value : `#${value}`;
     window.location.hash = valueWithHash;
-    setHash(valueWithHash);
+    setHash(window.location.hash);
   };
 
   // (Replaced useWindowEvent with this)

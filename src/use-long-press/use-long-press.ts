@@ -70,7 +70,7 @@ export function useLongPress(
         : cancelOnMove;
 
   const start = (event: MouseEvent | TouchEvent) => {
-    if (!isMouseEvent(event) && !isTouchEvent(event)) {
+    if (isPressed || (!isMouseEvent(event) && !isTouchEvent(event))) {
       return;
     }
 

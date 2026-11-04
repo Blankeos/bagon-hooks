@@ -74,6 +74,7 @@ export function useScrollIntoView<
     if (frameID) {
       cancelAnimationFrame(frameID);
       frameID = 0;
+      startTime = 0;
       setScrolling(false);
     }
   };
@@ -119,7 +120,7 @@ export function useScrollIntoView<
       const elapsed = now - startTime;
 
       // Easing timing progress
-      const t = reducedMotion() || duration === 0 ? 1 : elapsed / duration;
+      const t = reducedMotion() || duration === 0 ? 1 : Math.min(elapsed / duration, 1);
 
       const distance = start + change * _easing(t);
 

@@ -34,18 +34,17 @@ export function useFetch<T>(
 
   const abort = () => {
     controller?.abort('');
-    controller = null;
   };
 
   const refetch = (): Promise<T | Error> => {
     const currentUrl = resolveUrl();
 
     abort();
-    controller = new AbortController();
+    const requestController = new AbortController();
+    controller = requestController;
     setLoading(true);
-    setError(null);
 
-    return fetch(currentUrl, { ...options, signal: controller.signal })
+    return fetch(currentUrl, { ...options, signal: requestController.signal })
       .then(res => {
         if (!res.ok) {
           throw new Error(`Request failed with status ${res.status}`);
@@ -53,14 +52,20 @@ export function useFetch<T>(
         return res.json();
       })
       .then((res: T) => {
-        setData(() => res);
-        setLoading(false);
+        // Ignore responses of requests that were superseded or aborted
+        if (controller === requestController) {
+          setData(() => res);
+          setError(null);
+          setLoading(false);
+        }
         return res;
       })
       .catch((err: Error) => {
-        setLoading(false);
-        if (err?.name !== 'AbortError') {
-          setError(err);
+        if (controller === requestController) {
+          setLoading(false);
+          if (!requestController.signal.aborted) {
+            setError(err);
+          }
         }
         return err;
       });

@@ -19,8 +19,14 @@ export function useClipboard(params: { timeout: number } = { timeout: 2000 }) {
     if ('clipboard' in navigator) {
       navigator.clipboard
         .writeText(valueToCopy)
-        .then(() => handleCopyResult(true))
-        .catch(err => setError(err));
+        .then(() => {
+          setError(null);
+          handleCopyResult(true);
+        })
+        .catch(err => {
+          setError(err);
+          setCopied(false);
+        });
     } else {
       setError(new Error('useClipboard: navigator.clipboard is not supported'));
     }

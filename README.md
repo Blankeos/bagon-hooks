@@ -54,13 +54,13 @@ We want to achieve as 1:1 as possible with Mantine's original hooks. So you can 
 Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/packages/%40mantine/hooks/src) library.
 
 - [x] ~~use-callback-ref~~ (Not needed, only used internally by mantine for preventing re-renders on a function)
-- [x] use-click-outside
+- [x] use-click-outside (✨ `enabled` may be an accessor)
 - [x] use-clipboard
 - [x] use-collapse
 - [x] use-horizontal-collapse
 - [x] use-color-scheme
 - [x] use-counter
-- [x] use-debounced-callback
+- [x] use-debounced-callback (full Mantine API: `number | { delay, flushOnUnmount, leading, maxWait }`, returns fn with `flush` / `cancel` / `isPending`)
 - [x] ~~use-debounced-state~~ use-debounced-signal
 - [x] use-debounced-value
 - [x] use-did-update
@@ -93,7 +93,7 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] ~~use-is-first-render~~ (Every component function in SolidJS runs only once! Every component is first render only 🙂)
 - [x] ~~use-isomorphic-effect~~ (Solid's [`createEffect`](https://docs.solidjs.com/reference/basic-reactivity/create-effect) is technically already isomorphic because it doesn't error on SSR. Also, it also only runs on client-side.)
 - [x] use-list-state
-- [x] use-local-storage
+- [x] use-local-storage (✨ `key` may be an accessor — re-reads or resets to default when it changes)
 - [x] use-local-storage-store (✨ Improved, more similar to 'createStore' API).
 - [x] ~~use-logger~~ (Omit — debug helper; prefer Solid DevTools)
 - [x] use-long-press
@@ -115,11 +115,11 @@ Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/
 - [x] use-radial-move
 - [x] use-reduced-motion
 - [x] use-resize-observer
-- [x] use-roving-index
+- [x] use-roving-index (Mantine API: `getItemProps({ index })`, `orientation`, `columns` grid mode, `isItemDisabled`; `total` / `focusedIndex` may be accessors)
 - [x] use-scroll-direction
 - [x] use-scroll-into-view
 - [x] use-scroll-spy ✨ (`scrollHost` scoping + `scrollTo(index)` that won’t scroll ancestors)
-- [x] use-scroller
+- [x] use-scroller (Mantine API: `canScrollStart` / `canScrollEnd` / `scrollStart` / `scrollEnd` / `dragHandlers`; ✨ keeps `scrollTo` / `scrollToTop` / `scrollToBottom` + `behavior`)
 - [x] use-selection
 - [x] use-session-storage
 - [x] use-session-storage-store (✨ Improved, more similar to 'createStore' API).
