@@ -1,4 +1,4 @@
-import { createEffect, createSignal, onCleanup } from 'solid-js';
+import { Accessor, createEffect, createSignal, onCleanup } from 'solid-js';
 
 const DEFAULT_EVENTS = ['mousedown', 'touchstart'];
 
@@ -6,9 +6,13 @@ const DEFAULT_EVENTS = ['mousedown', 'touchstart'];
  * A hook that listens to click events outside of a specified element or elements.
  */
 export function useClickOutside<T extends HTMLElement = any>(
-  handler: () => void,
+  handler: (event: MouseEvent | TouchEvent) => void,
   events?: string[] | null,
   nodes?: (HTMLElement | null)[],
+  /** Set to `false` to detach the listeners, `true` by default. Can be an accessor. */
+  enabled: boolean | Accessor<boolean> = true,
+  /** Listen in the capture phase, `false` by default */
+  capture: boolean = false,
 ) {
   /**
    * When inside hooks, what I found is that it's better to use a signal for a ref
@@ -20,6 +24,10 @@ export function useClickOutside<T extends HTMLElement = any>(
   const [ref, setRef] = createSignal<T>();
 
   createEffect(() => {
+    if (!(typeof enabled === 'function' ? enabled() : enabled)) {
+      return;
+    }
+
     const listener = (event: any) => {
       const { target } = event ?? {};
       if (Array.isArray(nodes)) {
@@ -27,16 +35,16 @@ export function useClickOutside<T extends HTMLElement = any>(
           target?.hasAttribute('data-ignore-outside-clicks') ||
           (!document.body.contains(target) && target.tagName !== 'HTML');
         const shouldTrigger = nodes.every(node => !!node && !event.composedPath().includes(node));
-        shouldTrigger && !shouldIgnore && handler();
+        shouldTrigger && !shouldIgnore && handler(event);
       } else if (ref() && !ref()!.contains(target)) {
-        handler();
+        handler(event);
       }
     };
 
-    (events || DEFAULT_EVENTS).forEach(fn => document.addEventListener(fn, listener));
+    (events || DEFAULT_EVENTS).forEach(fn => document.addEventListener(fn, listener, capture));
 
     onCleanup(() => {
-      (events || DEFAULT_EVENTS).forEach(fn => document.removeEventListener(fn, listener));
+      (events || DEFAULT_EVENTS).forEach(fn => document.removeEventListener(fn, listener, capture));
     });
   });
 

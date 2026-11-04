@@ -1,8 +1,10 @@
+import type { Accessor } from 'solid-js';
+
 export type StorageType = 'localStorage' | 'sessionStorage';
 
 export interface StorageProperties<T> {
-  /** Storage key */
-  key: string;
+  /** Storage key. Can be an accessor — when it changes, the value is re-read from storage (or reset to `defaultValue`/`undefined` when nothing is stored) */
+  key: string | Accessor<string>;
 
   /** Default value that will be set if value is not found in storage */
   defaultValue?: T;
@@ -85,7 +87,7 @@ export function readValue(type: StorageType) {
       return defaultValue as T;
     }
 
-    const storageValue = getItem(key);
+    const storageValue = getItem(typeof key === 'function' ? key() : key);
     return storageValue !== null ? deserialize(storageValue) : (defaultValue as T);
   };
 }

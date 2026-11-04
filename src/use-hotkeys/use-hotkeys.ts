@@ -36,13 +36,42 @@ export function parseHotkey(hotkey: string): Hotkey {
 
   return {
     ...modifiers,
-    key: freeKey,
+    key: freeKey === '[plus]' ? '+' : freeKey,
   };
 }
 
-function isExactHotkey(hotkey: Hotkey, event: KeyboardEvent): boolean {
+const keyNameMap: Record<string, string> = {
+  ' ': 'space',
+  ArrowLeft: 'arrowleft',
+  ArrowRight: 'arrowright',
+  ArrowUp: 'arrowup',
+  ArrowDown: 'arrowdown',
+  Escape: 'escape',
+  Esc: 'escape',
+  esc: 'escape',
+  Enter: 'enter',
+  Tab: 'tab',
+  Backspace: 'backspace',
+  Delete: 'delete',
+  Insert: 'insert',
+  Home: 'home',
+  End: 'end',
+  PageUp: 'pageup',
+  PageDown: 'pagedown',
+  '+': 'plus',
+  '-': 'minus',
+  '*': 'asterisk',
+  '/': 'slash',
+};
+
+function normalizeKey(key: string): string {
+  const lowerKey = key.replace('Key', '').toLowerCase();
+  return keyNameMap[key] || lowerKey;
+}
+
+function isExactHotkey(hotkey: Hotkey, event: KeyboardEvent, usePhysicalKeys?: boolean): boolean {
   const { alt, ctrl, meta, mod, shift, key } = hotkey;
-  const { altKey, ctrlKey, metaKey, shiftKey, key: pressedKey } = event;
+  const { altKey, ctrlKey, metaKey, shiftKey, key: pressedKey, code: pressedCode } = event;
 
   if (alt !== altKey) {
     return false;
@@ -66,8 +95,9 @@ function isExactHotkey(hotkey: Hotkey, event: KeyboardEvent): boolean {
 
   if (
     key &&
-    (pressedKey.toLowerCase() === key.toLowerCase() ||
-      event.code.replace('Key', '').toLowerCase() === key.toLowerCase())
+    (usePhysicalKeys
+      ? normalizeKey(pressedCode) === normalizeKey(key)
+      : normalizeKey(pressedKey ?? pressedCode) === normalizeKey(key))
   ) {
     return true;
   }
@@ -75,21 +105,26 @@ function isExactHotkey(hotkey: Hotkey, event: KeyboardEvent): boolean {
   return false;
 }
 
-export function getHotkeyMatcher(hotkey: string): CheckHotkeyMatch {
-  return event => isExactHotkey(parseHotkey(hotkey), event);
+export function getHotkeyMatcher(hotkey: string, usePhysicalKeys?: boolean): CheckHotkeyMatch {
+  return event => isExactHotkey(parseHotkey(hotkey), event, usePhysicalKeys);
 }
 
 export interface HotkeyItemOptions {
+  /** Call `event.preventDefault()` when the hotkey matches, `true` by default */
   preventDefault?: boolean;
+  /** Match against the physical key (`event.code`, e.g. `Digit1`) instead of the produced character, `false` by default */
+  usePhysicalKeys?: boolean;
 }
 
 export function getHotkeyHandler(hotkeys: HotkeyItem[]) {
   //  TODO fix the any
   return (event: any) => {
     const _event = 'nativeEvent' in event ? event.nativeEvent : event;
-    hotkeys.forEach(([hotkey, handler, options = { preventDefault: true }]) => {
-      if (getHotkeyMatcher(hotkey)(_event)) {
-        if (options.preventDefault) {
+    hotkeys.forEach(([hotkey, handler, options]) => {
+      const { preventDefault = true, usePhysicalKeys = false } = options || {};
+
+      if (getHotkeyMatcher(hotkey, usePhysicalKeys)(_event)) {
+        if (preventDefault) {
           event.preventDefault();
         }
 
@@ -136,12 +171,14 @@ export function useHotkeys(
 ) {
   createEffect(() => {
     const keydownListener = (event: KeyboardEvent) => {
-      hotkeys.forEach(([hotkey, handler, options = { preventDefault: true }]) => {
+      hotkeys.forEach(([hotkey, handler, options]) => {
+        const { preventDefault = true, usePhysicalKeys = false } = options || {};
+
         if (
-          getHotkeyMatcher(hotkey)(event) &&
+          getHotkeyMatcher(hotkey, usePhysicalKeys)(event) &&
           shouldFireEvent(event, tagsToIgnore, triggerOnContentEditable)
         ) {
-          if (options.preventDefault) {
+          if (preventDefault) {
             event.preventDefault();
           }
 
