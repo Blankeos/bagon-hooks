@@ -1,5 +1,5 @@
 ---
-'bagon-hooks': minor
+'bagon-hooks': patch
 ---
 
 Port upstream Mantine 9.7.5 hook drift.
