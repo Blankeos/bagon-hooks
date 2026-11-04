@@ -123,7 +123,9 @@ Optional (not required today): unit tests.
 | Hook | Enhancement |
 | --- | --- |
 | `use-disclosure` | extra `set(value)` |
-| `use-local-storage` | store variant (`createStore` + `reconcile`) |
+| `use-local-storage` | store variant (`createStore` + `reconcile`); `key` may be an accessor |
+| `use-click-outside` | `enabled` may be an accessor |
+| `use-scroller` | keeps `scrollTo` / `scrollToTop` / `scrollToBottom` + `behavior` on top of Mantine's API |
 | `use-intersection` | optional `callback` |
 | `use-hotkeys` | drop React `useEffectEvent` (unneeded in Solid) |
 | `use-debounced-signal` | rename of Mantine debounced-state |

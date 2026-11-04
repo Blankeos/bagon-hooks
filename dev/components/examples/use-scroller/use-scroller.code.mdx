@@ -1,40 +1,45 @@
 ```tsx
 
 export function UseScrollerExample() {
-  const { ref, scrollToTop, scrollToBottom, scrollTo } = useScroller({ behavior: 'smooth' });
+  const { ref, canScrollStart, canScrollEnd, scrollStart, scrollEnd, isDragging, dragHandlers } =
+    useScroller({ scrollAmount: 160 });
 
 
   return (
       <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center">
         <div class="flex flex-wrap justify-center gap-2">
           <button
-            class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95"
+            class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95 disabled:opacity-40"
             type="button"
-            onClick={scrollToTop}
+            disabled={!canScrollStart()}
+            onClick={scrollStart}
           >
-            Top
+            ← Start
           </button>
           <button
-            class="rounded-md border px-2 py-1 text-sm transition active:scale-90"
+            class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95 disabled:opacity-40"
             type="button"
-            onClick={() => scrollTo({ y: 120 })}
+            disabled={!canScrollEnd()}
+            onClick={scrollEnd}
           >
-            Mid
-          </button>
-          <button
-            class="rounded-md bg-primary px-3 py-1.5 text-white transition active:scale-95"
-            type="button"
-            onClick={scrollToBottom}
-          >
-            Bottom
+            End →
           </button>
         </div>
 
-        <div ref={ref} class="h-40 w-full overflow-auto rounded-md border p-3 text-left text-sm">
-          {Array.from({ length: 30 }, (_, index) => (
-            <p class="mb-2">Line {index + 1}</p>
+        <div
+          ref={ref}
+          {...dragHandlers}
+          class="flex w-full cursor-grab gap-2 overflow-x-auto rounded-md border p-3 text-sm"
+        >
+          {Array.from({ length: 20 }, (_, index) => (
+            <div class="w-24 shrink-0 rounded-md border px-3 py-6">Card {index + 1}</div>
           ))}
         </div>
+
+        <p class="text-xs text-neutral-500">
+          canScrollStart: {String(canScrollStart())} · canScrollEnd: {String(canScrollEnd())} ·
+          dragging: {String(isDragging())} (drag the cards with the mouse)
+        </p>
       </div>
   );
 }

@@ -24,15 +24,21 @@ export function UseDebouncedCallbackExample() {
   const [searchResults, setSearchResults] = createSignal<{ id: number; title: string }[]>([]);
   const [loading, setLoading] = createSignal(false);
 
-  const debouncedSearch = useDebouncedCallback(async (query: string) => {
-    setLoading(true);
-    setSearchResults(await getSearchResults(query));
-    setLoading(false);
-  }, 500);
+  const debouncedSearch = useDebouncedCallback(
+    async (query: string) => {
+      setLoading(true);
+      setSearchResults(await getSearchResults(query));
+      setLoading(false);
+    },
+    { delay: 500, maxWait: 2000 },
+  );
+
+  const [pending, setPending] = createSignal(false);
 
   const handleInput: JSX.EventHandler<HTMLInputElement, InputEvent> = event => {
     setSearch(event.currentTarget.value);
     debouncedSearch(event.currentTarget.value);
+    setPending(debouncedSearch.isPending());
   };
 
   // @ts-ignore
@@ -51,6 +57,30 @@ export function UseDebouncedCallbackExample() {
           class="rounded-md border p-2"
           placeholder="Search..."
         />
+
+        <div class="flex gap-2">
+          <button
+            type="button"
+            class="rounded-md border px-2 py-1 text-xs transition active:scale-90"
+            onClick={() => {
+              debouncedSearch.flush();
+              setPending(false);
+            }}
+          >
+            Flush
+          </button>
+          <button
+            type="button"
+            class="rounded-md border px-2 py-1 text-xs transition active:scale-90"
+            onClick={() => {
+              debouncedSearch.cancel();
+              setPending(false);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+        <p class="text-xs text-neutral-500">pending (at last keystroke): {String(pending())}</p>
 
         <Show
           when={loading()}

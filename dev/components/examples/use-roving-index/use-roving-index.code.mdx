@@ -1,38 +1,34 @@
 ```tsx
-import { createSignal, For } from 'solid-js';
+import { For } from 'solid-js';
 import { useRovingIndex } from 'bagon-hooks';
 
 const ITEMS = ['Home', 'Search', 'Library', 'Settings'] as const;
 
 export function UseRovingIndexExample() {
-  const [index, setIndex] = createSignal(0);
-  const { getElementProps, getElementRef, onKeyDown } = useRovingIndex(index, setIndex, {
+  const { getItemProps, focusedIndex } = useRovingIndex({
     total: ITEMS.length,
     loop: true,
+    isItemDisabled: i => ITEMS[i] === 'Library',
   });
 
 
   return (
       <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center">
-        <p class="text-xs text-neutral-500">Focus the toolbar, then use Arrow keys / Home / End.</p>
+        <p class="text-xs text-neutral-500">
+          Focus the toolbar, then use Arrow Left / Right / Home / End.
+        </p>
 
-        <div
-          role="toolbar"
-          aria-label="Demo toolbar"
-          class="flex flex-wrap justify-center gap-2"
-          onKeyDown={onKeyDown}
-        >
+        <div role="toolbar" aria-label="Demo toolbar" class="flex flex-wrap justify-center gap-2">
           <For each={[...ITEMS]}>
             {(label, i) => (
               <button
                 type="button"
-                ref={getElementRef(i())}
-                {...getElementProps(i())}
-                class="rounded-md border px-2 py-1 text-sm transition active:scale-90 outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                {...getItemProps({ index: i() })}
+                disabled={label === 'Library'}
+                class="rounded-md border px-2 py-1 text-sm outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500 active:scale-90 disabled:opacity-40"
                 classList={{
-                  'bg-primary text-white border-transparent': index() === i(),
+                  'bg-primary text-white border-transparent': focusedIndex() === i(),
                 }}
-                onClick={() => setIndex(i())}
               >
                 {label}
               </button>
@@ -40,7 +36,7 @@ export function UseRovingIndexExample() {
           </For>
         </div>
 
-        <p class="text-sm">Active index: {index()}</p>
+        <p class="text-sm">Focused index: {focusedIndex()} (Library is disabled and skipped)</p>
       </div>
   );
 }
