@@ -1,5 +1,14 @@
 # bagon-hooks
 
+## 0.0.10
+
+### Patch Changes
+
+- [#10](https://github.com/Blankeos/bagon-hooks/pull/10) [`2a1153e`](https://github.com/Blankeos/bagon-hooks/commit/2a1153e6efc10b1e6c220904d9d9152fd21ab7af) Thanks [@Blankeos](https://github.com/Blankeos)! - Port Mantine 9.8.0 hooks.
+
+  - New `useActiveElement({ deep, triggerOnRemoval })` returning an accessor of the focused element.
+  - New `useBrowserLanguage()` and `usePreferredLanguages()` returning accessors that follow `languagechange`.
+
 ## 0.0.9
 
 ### Patch Changes
