@@ -1,5 +1,5 @@
 ---
-'bagon-hooks': minor
+'bagon-hooks': patch
 ---
 
 Port Mantine 9.8.0 hooks.
