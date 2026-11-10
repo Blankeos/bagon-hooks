@@ -53,6 +53,8 @@ We want to achieve as 1:1 as possible with Mantine's original hooks. So you can 
 
 Based on the [@mantine/hooks](https://github.com/mantinedev/mantine/tree/master/packages/%40mantine/hooks/src) library.
 
+- [x] use-active-element
+- [x] use-browser-language (also exports `usePreferredLanguages`)
 - [x] ~~use-callback-ref~~ (Not needed, only used internally by mantine for preventing re-renders on a function)
 - [x] use-click-outside (✨ `enabled` may be an accessor)
 - [x] use-clipboard

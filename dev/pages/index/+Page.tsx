@@ -20,6 +20,8 @@ import { UseDidUpdateExample } from 'dev/components/examples/use-did-update/use-
 import { UseDisclosureExample } from 'dev/components/examples/use-disclosure/use-disclosure.example';
 import { UseDisclosureDataExample } from 'dev/components/examples/use-disclosure-data/use-disclosure-data.example';
 import { UseDocumentTitleExample } from 'dev/components/examples/use-document-title/use-document-title.example';
+import { UseActiveElementExample } from 'dev/components/examples/use-active-element/use-active-element.example';
+import { UseBrowserLanguageExample } from 'dev/components/examples/use-browser-language/use-browser-language.example';
 import { UseDocumentVisibilityExample } from 'dev/components/examples/use-document-visibility/use-document-visibility.example';
 import { UseDragExample } from 'dev/components/examples/use-drag/use-drag.example';
 import { UseElementSizeExample } from 'dev/components/examples/use-element-size/use-element-size.example';
@@ -156,6 +158,14 @@ export default function HomePage() {
     {
       title: 'useDocumentTitle',
       example: <UseDocumentTitleExample />,
+    },
+    {
+      title: 'useActiveElement',
+      example: <UseActiveElementExample />,
+    },
+    {
+      title: 'useBrowserLanguage',
+      example: <UseBrowserLanguageExample />,
     },
     {
       title: 'useDocumentVisibility',

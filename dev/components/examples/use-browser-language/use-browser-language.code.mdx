@@ -1,0 +1,16 @@
+```tsx
+import { useBrowserLanguage } from 'bagon-hooks';
+
+
+export function UseBrowserLanguageExample() {
+  const language = useBrowserLanguage();
+
+
+  return (
+      <div class="flex h-full w-full items-center justify-center gap-x-1 rounded-md border p-3 py-10 text-center text-sm">
+        Your browser language: <code class="rounded-md border px-1">{language() ?? 'unknown'}</code>
+      </div>
+  );
+}
+
+```
