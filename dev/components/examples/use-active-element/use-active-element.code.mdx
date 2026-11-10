@@ -1,0 +1,27 @@
+```tsx
+import { useActiveElement } from 'bagon-hooks';
+
+
+function describe(element: Element | null) {
+  if (!element) return 'null';
+  return element.id ? `${element.tagName.toLowerCase()}#${element.id}` : element.tagName.toLowerCase();
+}
+
+export function UseActiveElementExample() {
+  const activeElement = useActiveElement();
+
+
+  return (
+      <div class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-3 py-10 text-center text-sm">
+        <div>
+          Focused element: <code class="rounded-md border px-1">{describe(activeElement())}</code>
+        </div>
+        <div class="flex gap-2">
+          <input id="first-name" class="rounded-md border px-2 py-1" placeholder="First name" />
+          <input id="last-name" class="rounded-md border px-2 py-1" placeholder="Last name" />
+        </div>
+      </div>
+  );
+}
+
+```

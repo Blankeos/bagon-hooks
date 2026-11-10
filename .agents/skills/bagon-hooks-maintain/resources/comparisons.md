@@ -32,6 +32,8 @@ Legend: **≈** near-literal · **Δ** translation delta · **✨** intentional 
 | `use-roving-index` | `useUncontrolled` + `useCallback` | own controlled/uncontrolled signal; `getItemProps` returns a getter `tabIndex`; `focusedIndex` is an accessor | Δ **breaking** vs bagon ≤0.0.8 (`getElementProps`/`getElementRef`/`onKeyDown` removed) — Mantine API shape; `total`/`focusedIndex` accept accessors, other options are read lazily from the input object |
 | `use-scroller` | `useState` + ref-callback cleanup | signal ref + `createEffect`/`onCleanup`; `canScrollStart`/`canScrollEnd`/`isDragging` are accessors | Δ **breaking** — Mantine API shape; ✨ keeps old `scrollTo`/`scrollToTop`/`scrollToBottom` + `behavior` |
 | `use-mask` | refs + callbacks | `{ current }` boxes + signals | ≈ 9.7.5: non-string `e.key` guard, `transform` on initial value, own-value re-apply from raw, `#` token `[+\-0-9]` |
+| `use-active-element` | state + effect with deps | signal + `createEffect`/`onCleanup`; options read inside the effect | ≈ 9.8.0, returns accessor |
+| `use-browser-language` | state + `languagechange` effect | shared signal helper + effect; also `usePreferredLanguages` | ≈ 9.8.0, returns accessors |
 
 ## State helpers
 
