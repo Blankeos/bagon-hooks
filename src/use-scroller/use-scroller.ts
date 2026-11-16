@@ -121,6 +121,9 @@ export function useScroller<T extends HTMLElement = HTMLDivElement>(
     const resizeObserver =
       typeof ResizeObserver !== 'undefined' ? new ResizeObserver(updateScrollState) : null;
     resizeObserver?.observe(node);
+    if (node.firstElementChild) {
+      resizeObserver?.observe(node.firstElementChild);
+    }
 
     onCleanup(() => {
       node.removeEventListener('scroll', updateScrollState);

@@ -34,6 +34,7 @@ Legend: **≈** near-literal · **Δ** translation delta · **✨** intentional 
 | `use-mask` | refs + callbacks | `{ current }` boxes + signals | ≈ 9.7.5: non-string `e.key` guard, `transform` on initial value, own-value re-apply from raw, `#` token `[+\-0-9]` |
 | `use-active-element` | state + effect with deps | signal + `createEffect`/`onCleanup`; options read inside the effect | ≈ 9.8.0, returns accessor |
 | `use-browser-language` | state + `languagechange` effect | shared signal helper + effect; also `usePreferredLanguages` | ≈ 9.8.0, returns accessors |
+| `use-9.8.1 drift` | — | `use-hotkeys` key-code normalisation (`/^Key/i`) and `use-scroller` observes the first child; `use-disclosure` (StrictMode double-fire) and `use-resize-observer` `box` (already contentRect-only) not applicable | ≈ 9.8.1 |
 
 ## State helpers
 
